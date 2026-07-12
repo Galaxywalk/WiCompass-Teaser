@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WiCompass — MobiCom '26 teaser</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage" id="stage" aria-label="WiCompass teaser video preview">
+        <svg class="svg-defs" aria-hidden="true">
+          <defs>
+            <symbol id="pose-standing" viewBox="0 0 120 210">
+              <g class="pose-lines">
+                <circle cx="60" cy="22" r="13" />
+                <path d="M60 36 L60 105 M60 54 L28 89 M60 54 L94 85 M60 104 L34 154 L27 199 M60 104 L86 154 L96 199" />
+                <circle cx="60" cy="54" r="4" /><circle cx="60" cy="104" r="4" />
+                <circle cx="28" cy="89" r="4" /><circle cx="94" cy="85" r="4" />
+                <circle cx="34" cy="154" r="4" /><circle cx="86" cy="154" r="4" />
+              </g>
+            </symbol>
+            <symbol id="pose-wave" viewBox="0 0 120 210">
+              <g class="pose-lines">
+                <circle cx="60" cy="22" r="13" />
+                <path d="M60 36 L60 105 M60 55 L25 70 L16 35 M60 55 L92 80 M60 104 L35 154 L28 199 M60 104 L84 154 L93 199" />
+                <circle cx="60" cy="55" r="4" /><circle cx="60" cy="104" r="4" />
+                <circle cx="25" cy="70" r="4" /><circle cx="16" cy="35" r="4" /><circle cx="92" cy="80" r="4" />
+                <circle cx="35" cy="154" r="4" /><circle cx="84" cy="154" r="4" />
+              </g>
+            </symbol>
+            <symbol id="pose-lunge" viewBox="0 0 160 210">
+              <g class="pose-lines">
+                <circle cx="72" cy="25" r="13" />
+                <path d="M70 39 L76 108 M72 58 L34 82 M72 58 L112 79 M76 108 L42 146 L18 191 M76 108 L115 138 L146 157" />
+                <circle cx="72" cy="58" r="4" /><circle cx="76" cy="108" r="4" />
+                <circle cx="34" cy="82" r="4" /><circle cx="112" cy="79" r="4" />
+                <circle cx="42" cy="146" r="4" /><circle cx="115" cy="138" r="4" />
+              </g>
+            </symbol>
+          </defs>
+        </svg>
+
+        <div class="paper-grid" aria-hidden="true"></div>
+        <div class="radar-sweep" aria-hidden="true"></div>
+        <div class="grain" aria-hidden="true"></div>
+
+        <header class="stage-header">
+          <div class="mini-wordmark"><span>Wi</span>COMPASS</div>
+          <div class="header-rule"></div>
+          <div class="conference">MOBICOM '26 · AUSTIN</div>
+        </header>
+
+        <article class="scene scene-hook" data-scene="0">
+          <div class="hook-copy">
+            <p class="eyebrow">Privacy-preserving sensing meets an unseen motion</p>
+            <h1>One missing gesture.<br /><em>More than double</em> the error.</h1>
+            <div class="error-readout">
+              <span class="error-before">≈ 50 <small>mm</small></span>
+              <span class="error-arrow">→</span>
+              <span class="error-after"><strong id="error-number">50</strong> <small>mm</small></span>
+            </div>
+          </div>
+          <div class="sensor-card">
+            <div class="card-label">RADAR VIEW · LEFT-HAND WAVE</div>
+            <div class="point-cloud" id="point-cloud"></div>
+            <svg class="hero-pose good-pose"><use href="#pose-wave" /></svg>
+            <svg class="hero-pose bad-pose"><use href="#pose-wave" /></svg>
+            <div class="scan-line"></div>
+            <div class="sensor-meta"><span>79 GHz</span><span>NO CAMERA</span><span>OOD</span></div>
+          </div>
+        </article>
+
+        <article class="scene scene-redundancy" data-scene="1">
+          <div class="statement-block">
+            <p class="eyebrow">The intuitive fix wastes the collection budget</p>
+            <h2>More data is not<br />the same as <em>more coverage.</em></h2>
+          </div>
+          <div class="duplicate-field" id="duplicate-field" aria-hidden="true"></div>
+          <div class="discard-meter">
+            <div class="discard-number"><span id="discard-number">0</span><sup>%</sup></div>
+            <div class="discard-label">of samples discarded</div>
+            <div class="loss-chip">&lt; 2% accuracy loss</div>
+          </div>
+        </article>
+
+        <article class="scene scene-oracle" data-scene="2">
+          <div class="oracle-copy">
+            <p class="eyebrow">WiCompass uses motion capture as an oracle</p>
+            <h2>Build a map of motion<br /><em>before collecting radar.</em></h2>
+            <p class="supporting">AMASS becomes a universal vocabulary of human pose — a reference for what the radar dataset has never seen.</p>
+          </div>
+          <div class="motion-map">
+            <div class="map-ring ring-a"></div><div class="map-ring ring-b"></div><div class="map-ring ring-c"></div>
+            <div class="map-points" id="map-points"></div>
+            <div class="compass">
+              <div class="needle"><span></span></div>
+              <div class="compass-center">W</div>
+            </div>
+            <div class="map-tag tag-a">daily motion</div><div class="map-tag tag-b">exercise</div><div class="map-tag tag-c">rare pose</div>
+          </div>
+        </article>
+
+        <article class="scene scene-gaps" data-scene="3">
+          <div class="gaps-heading">
+            <p class="eyebrow">Shared pose space · directional k-NN coverage</p>
+            <h2>Find what is <em>missing.</em><br />Ignore what repeats.</h2>
+          </div>
+          <div class="coverage-panel">
+            <div class="coverage-field" id="coverage-field"></div>
+            <div class="coverage-legend"><span class="covered">covered</span><span class="missing">collection target</span></div>
+          </div>
+          <div class="target-stack">
+            <div class="target-card"><span>GAP 07</span><svg><use href="#pose-lunge" /></svg></div>
+            <div class="target-card"><span>GAP 19</span><svg><use href="#pose-wave" /></svg></div>
+            <div class="target-card"><span>GAP 31</span><svg><use href="#pose-standing" /></svg></div>
+          </div>
+        </article>
+
+        <article class="scene scene-loop" data-scene="4">
+          <div class="loop-heading">
+            <p class="eyebrow">A concrete, closed-loop acquisition workflow</p>
+            <h2>Turn coverage gaps into <em>radar samples.</em></h2>
+          </div>
+          <div class="loop-track">
+            <div class="loop-node target-screen"><b>01</b><div class="monitor"><svg><use href="#pose-lunge" /></svg></div><span>render target</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="loop-node participant"><b>02</b><div class="person-stage"><svg><use href="#pose-lunge" /></svg></div><span>participant mimics</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="loop-node radar-capture"><b>03</b><div class="radar-box"><i></i><i></i><i></i><i></i></div><span>capture mmWave</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="loop-node dataset"><b>04</b><div class="dataset-stack"><i></i><i></i><i></i></div><span>recompute coverage</span></div>
+          </div>
+          <div class="return-line"><span>repeat until the informative gaps close</span></div>
+        </article>
+
+        <article class="scene scene-results" data-scene="5">
+          <div class="results-heading">
+            <p class="eyebrow">Same budget · more informative samples</p>
+            <h2>Coverage-aware collection<br /><em>keeps scaling.</em></h2>
+          </div>
+          <div class="result-cards">
+            <div class="result-card simulation">
+              <span class="result-label">CONTROLLED SIMULATION · 2K–40K SAMPLES</span>
+              <strong><span>25–30</span> <small>mm</small></strong>
+              <p>lower out-of-distribution error</p>
+              <div class="micro-chart"><svg viewBox="0 0 360 90"><path class="baseline-line" d="M8 22 C95 24, 215 37, 352 49"/><path class="wicompass-line" d="M8 28 C95 39, 215 57, 352 80"/></svg><span>more data →</span></div>
+            </div>
+            <div class="result-card realworld">
+              <span class="result-label">REAL WORLD · SAME 8K-FRAME BUDGET</span>
+              <div class="bar-row baseline-bar"><span>baseline</span><i></i><b>112.9</b></div>
+              <div class="bar-row compass-bar"><span>WiCompass</span><i></i><b>105.7</b></div>
+              <p>test MPJPE, lower is better</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="scene scene-finale" data-scene="6">
+          <div class="final-compass"><div class="final-ring"></div><div class="final-needle"></div></div>
+          <p class="final-kicker">STOP COLLECTING MORE OF THE SAME.</p>
+          <h2>Let <span>WiCompass</span> point to<br />what your dataset needs next.</h2>
+          <div class="paper-title">WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation</div>
+          <div class="authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao · Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</div>
+          <div class="final-links"><span>MobiCom '26</span><span>github.com/Galaxywalk/WiCompass</span></div>
+        </article>
+
+        <footer class="caption-band">
+          <div class="scene-index" id="scene-index">01 / 07</div>
+          <div class="caption" id="caption"></div>
+          <div class="timeline-mark"><span id="timeline-progress"></span></div>
+        </footer>
+      </section>
+
+      <nav class="controls" aria-label="Playback controls">
+        <button id="restart" type="button" aria-label="Restart">↺</button>
+        <button id="play" type="button" class="play-button" aria-label="Play">▶</button>
+        <input id="scrubber" type="range" min="0" max="86" step="0.01" value="0" aria-label="Timeline" />
+        <output id="timecode">00:00 / 01:26</output>
+        <button id="mute" type="button" aria-label="Mute">VOL</button>
+        <button id="fullscreen" type="button" aria-label="Fullscreen">FULL</button>
+      </nav>
+    </main>
+    <audio id="voiceover" preload="auto" src="assets/audio/voiceover.m4a"></audio>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+

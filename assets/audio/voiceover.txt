@@ -1,0 +1,14 @@
+Millimeter-wave radar can estimate human pose without cameras. But when it encounters just one unseen motion, like a left-hand wave, joint error can jump from about fifty to over one hundred and twenty millimeters.
+
+Collect more data? Not so fast. In today's largest datasets, removing seventy percent of the samples costs less than two percent accuracy. The real bottleneck is coverage, not volume.
+
+WiCompass turns large motion-capture corpora into an oracle for radar data collection. It learns a compact vocabulary of human motion, and maps the pose labels of existing radar datasets into this space.
+
+This reveals which motions are missing, and which samples are redundant.
+
+WiCompass then selects the most informative target poses. A participant mimics them for real radar capture, or a simulator generates the corresponding returns. The new samples close the coverage gaps, and the loop repeats.
+
+Across data budgets from two to forty thousand simulated samples, WiCompass reduces out-of-distribution error by twenty-five to thirty millimeters. Under the same eight-thousand-frame real-world budget, test error falls from one hundred twelve point nine, to one hundred five point seven millimeters.
+
+Stop collecting more of the same. Let WiCompass point to what your dataset needs next.
+
