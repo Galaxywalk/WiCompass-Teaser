@@ -43,3 +43,17 @@ The most valuable next additions are:
 
 Scene text and timing live in `app.js`; visual treatment lives in `styles.css`.
 
+## Research asset provenance
+
+- `assets/images/real_world_setup.png` is the annotated collection setup from the WiCompass paper source repository.
+- `assets/figures/data_scaling_simulation.svg` and `amass_uncovered_by_mmbody.svg` are SVG conversions of the paper's vector PDFs.
+- `assets/derived/mmbody_real_radar_case.png` is rendered from mmBody train sequence 11, frame 675 (real radar point cloud plus its 22-joint ground truth).
+- `assets/derived/wicompass_target_pose*.png` is rendered from the WiCompass `real_world_target` pose selection output.
+
+Raw `.npy`/`.npz` samples stay under ignored `tmp/data/` and are not published. To rebuild the derived assets:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-assets.txt
+.venv/bin/python scripts/build_real_assets.py
+```

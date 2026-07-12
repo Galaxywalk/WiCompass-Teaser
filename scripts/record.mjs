@@ -1,4 +1,4 @@
-import { mkdir, readdir, rename, stat } from "node:fs/promises";
+import { mkdir, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
 import { join } from "node:path";
@@ -20,17 +20,16 @@ const context = await browser.newContext({
   recordVideo: { dir: captureDir, size: { width: 1280, height: 720 } },
 });
 const page = await context.newPage();
+const video = page.video();
 await page.goto("http://127.0.0.1:4173/?render=1&autoplay=1", { waitUntil: "networkidle" });
 await page.waitForFunction(() => window.__WICOMPASS_READY__ === true);
 process.stdout.write("Recording the 86-second HTML timeline…\n");
 await page.waitForTimeout(DURATION_MS);
 await context.close();
+const capturedPath = await video.path();
 await browser.close();
 server.close();
 
-const [capturedName] = (await readdir(captureDir)).filter((name) => name.endsWith(".webm"));
-if (!capturedName) throw new Error("Playwright did not produce a WebM capture.");
-const capturedPath = join(captureDir, capturedName);
 const outputPath = join(outputDir, "WiCompass-MobiCom26-Teaser-draft.mp4");
 
 let hasAudio = false;

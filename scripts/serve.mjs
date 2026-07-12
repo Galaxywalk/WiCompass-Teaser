@@ -9,6 +9,7 @@ export function startServer(port = 4173) {
     ".js": "text/javascript; charset=utf-8",
     ".css": "text/css; charset=utf-8",
     ".svg": "image/svg+xml",
+    ".png": "image/png",
     ".m4a": "audio/mp4",
     ".mp3": "audio/mpeg",
   };
@@ -36,4 +37,3 @@ if (process.argv[1] === import.meta.filename) {
   await startServer();
   process.stdout.write("WiCompass teaser preview: http://127.0.0.1:4173\n");
 }
-

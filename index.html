@@ -123,11 +123,11 @@
             <h2>Turn coverage gaps into <em>radar samples.</em></h2>
           </div>
           <div class="loop-track">
-            <div class="loop-node target-screen"><b>01</b><div class="monitor"><svg><use href="#pose-lunge" /></svg></div><span>render target</span></div>
+            <div class="loop-node target-screen"><b>01</b><div class="monitor asset-monitor"><img src="assets/derived/wicompass_target_pose.png" alt="A target pose selected by WiCompass" /></div><span>render target</span></div>
             <div class="flow-arrow">→</div>
-            <div class="loop-node participant"><b>02</b><div class="person-stage"><svg><use href="#pose-lunge" /></svg></div><span>participant mimics</span></div>
+            <div class="loop-node participant"><b>02</b><div class="person-stage setup-photo"><img src="assets/images/real_world_setup.png" alt="Real-world WiCompass data collection setup" /></div><span>participant mimics</span></div>
             <div class="flow-arrow">→</div>
-            <div class="loop-node radar-capture"><b>03</b><div class="radar-box"><i></i><i></i><i></i><i></i></div><span>capture mmWave</span></div>
+            <div class="loop-node radar-capture"><b>03</b><div class="radar-visual"><img src="assets/derived/mmbody_real_radar_case.png" alt="Real mmWave point cloud with ground-truth pose" /></div><span>capture mmWave</span></div>
             <div class="flow-arrow">→</div>
             <div class="loop-node dataset"><b>04</b><div class="dataset-stack"><i></i><i></i><i></i></div><span>recompute coverage</span></div>
           </div>
@@ -144,7 +144,7 @@
               <span class="result-label">CONTROLLED SIMULATION · 2K–40K SAMPLES</span>
               <strong><span>25–30</span> <small>mm</small></strong>
               <p>lower out-of-distribution error</p>
-              <div class="micro-chart"><svg viewBox="0 0 360 90"><path class="baseline-line" d="M8 22 C95 24, 215 37, 352 49"/><path class="wicompass-line" d="M8 28 C95 39, 215 57, 352 80"/></svg><span>more data →</span></div>
+              <div class="paper-chart"><img src="assets/figures/data_scaling_simulation.svg" alt="Paper result: WiCompass versus mmBody data scaling" /><span>paper result · Figure 6</span></div>
             </div>
             <div class="result-card realworld">
               <span class="result-label">REAL WORLD · SAME 8K-FRAME BUDGET</span>
@@ -184,4 +184,3 @@
     <script type="module" src="app.js"></script>
   </body>
 </html>
-
