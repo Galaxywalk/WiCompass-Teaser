@@ -1,84 +1,82 @@
 # WiCompass — MobiCom '26 teaser
 
-An HTML-first motion-graphics prototype for the 90-second teaser of:
+An HTML-first, reproducible 89.5-second motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**.
 
-> **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**
+The repository is deliberately split into three layers:
 
-The current cut uses deterministic SVG, CSS, JavaScript animation, exact paper measurements, selected real-data assets, and a reproducible 89.5-second timeline so the full story can be reviewed before the narration is locked.
+- `content/` and the semantic scene markup in `index.html`: facts, copy, timing, project metadata, and experiment values;
+- `styles.css` + `styles/tokens.css`: presentation format, layout, typography, palette, and animation styling;
+- `src/`: reusable playback, chart, binding, and procedural-visual functions.
 
-The visual direction is a blackboard-style scientific presentation inspired by the picture-first animation principles of 3Blue1Brown: one visual claim per scene, graph-first composition, and consistent semantic colors. The locally bundled Source Sans 3 variable font supplies every typographic role; its license is in `assets/fonts/OFL-SourceSans3.txt`. The current system voice is only a timing placeholder. Final narration will use MiniMax Audio's `Gentle Teacher — Warm, Airy, Velvety` voice after the script and edit are locked.
+The render scripts under `scripts/` use the same browser runtime for individual frames, review stills, fast drafts, scene-only previews, and the final MP4. See [Architecture](docs/ARCHITECTURE.md) and [Editing workflow](docs/EDITING.md).
 
-The current ten-scene sequence includes a formal paper cover, an action-generalization split-gap animation, an mmBody-only progressive subset experiment, a technical VQ-VAE/tokenizer and directional-k-NN method scene, coverage-aware target selection, the instrumented real-world acquisition protocol, separate simulation and Figure 9(b) real-world result scenes, a closing statement, and a QR-code back cover.
-
-HTML contains the semantic story structure, `content/timeline.js` is the single source for scene timing, captions, review frames, and narration, `app.js` contains chart data and animation behavior, and `styles.css` owns the visual system. The presentation type scale is intentionally limited to five tokens: 12, 16, 24, 40, and 56 px.
-
-## Preview
+## Start the preview
 
 ```bash
 npm install
-npx playwright install chromium
 npm run dev
 ```
 
-Open <http://127.0.0.1:4173>. Use Space to play/pause, Left/Right to seek five seconds, and `F` to toggle fullscreen.
+Open <http://127.0.0.1:4173>. Use Space to play/pause, Left/Right to seek five seconds, and `F` for fullscreen.
 
-## Produce review stills
+## Fast iteration
+
+Validate content, assets, timing, type tokens, and audio:
+
+```bash
+npm run check
+```
+
+Render one deterministic frame:
+
+```bash
+npm run frame -- --scene method
+npm run frame -- --time 44.5
+```
+
+Render one scene at normal animation speed (usually 9–12 seconds instead of the full 90 seconds):
+
+```bash
+npm run record:draft -- --scene coverage
+```
+
+Generate a clean set of ten review stills:
 
 ```bash
 npm run stills
 ```
 
-This writes scene snapshots to `dist/stills/`.
+The current set is always written to `dist/stills/current/`, with a manifest, so old QA images cannot be mistaken for the latest version.
 
-## Record an MP4
-
-For a quick motion review, render the full timeline at 6× speed in about 15 seconds:
+## Record video
 
 ```bash
-npm run record:preview
+npm run record:preview  # 6× layout/motion review
+npm run record:draft    # 1×, fast encoder, no final-quality wait
+npm run record          # 1×, delivery-quality draft
 ```
 
-This writes `dist/WiCompass-MobiCom26-Teaser-preview.mp4` without audio. For the full-duration draft:
+The full recorder writes `dist/WiCompass-MobiCom26-Teaser-draft.mp4`. It muxes `assets/audio/voiceover.m4a` when present. Temporary browser captures are removed automatically; set `KEEP_CAPTURE=1` only when debugging the capture itself.
 
-```bash
-npm run record
-```
+## Narration
 
-The recorder plays the HTML timeline in Chromium, captures it, and uses FFmpeg to produce `dist/WiCompass-MobiCom26-Teaser-draft.mp4`. If `assets/audio/voiceover.m4a` exists, it is muxed into the video.
-
-## Rebuild the timing voice
-
-On macOS, the temporary system narration can be regenerated scene by scene:
+The locked final voice is MiniMax Audio's **Gentle Teacher — Warm, Airy, Velvety**. The checked-in audio is still the timing placeholder. Regenerate that placeholder on macOS with:
 
 ```bash
 npm run audio:placeholder
 ```
 
-This produces a synchronized 89.5-second placeholder with silent cover and back-cover segments. It is not the final voice; use the selected MiniMax `Gentle Teacher` voice after picture lock.
+Scene narration and durations live in `content/timeline.js`; `npm run check` rejects stale `voiceover.txt` or an audio file whose duration no longer matches the timeline.
 
-Regenerate the GitHub QR code with `npm run qr:github`.
+## Asset provenance
 
-## Replace the prototype assets
+- `assets/images/real_world_setup.png`: annotated acquisition setup from the paper source.
+- `assets/derived/mmbody_real_radar_case.png`: mmBody train sequence 11, frame 675, with 22-joint ground truth.
+- `assets/derived/smplx_pose_*.svg`: data-driven 22-joint SMPL-X poses generated by `scripts/build_real_assets.py`.
+- Native charts use the paper's experiment values stored in `content/chart-data.js`; screenshots of paper figures are not embedded.
+- Institution marks are official assets, including the PKU dark-background version and reverse UESTC emblem.
 
-Possible next additions are:
-
-1. real participant-mimics-target-pose footage;
-2. radar point cloud + ground truth + prediction overlays;
-3. additional qualitative cases selected from the experiment outputs;
-4. the locked MiniMax `Gentle Teacher` narration replacing the system timing voice.
-
-Scene text and timing live in `app.js`; visual treatment lives in `styles.css`.
-
-## Research asset provenance
-
-- `assets/images/real_world_setup.png` is the annotated collection setup from the WiCompass paper source repository.
-- The action split, mmBody subset, simulation scaling, and Figure 9(b) real-world results are redrawn as native black-background SVG charts in `app.js`, using the paper values and experiment logs rather than embedded screenshots.
-- `assets/derived/mmbody_real_radar_case.png` is rendered from mmBody train sequence 11, frame 675 (real radar point cloud plus its 22-joint ground truth).
-- `assets/derived/smplx_pose_*.svg` and `assets/derived/wicompass_target_pose*.png` are rendered from the WiCompass `real_world_target` 22-joint SMPL-X pose output without changing body proportions.
-- The cover uses official marks downloaded from the Peking University Visual Identity office, the UESTC website, the University of Pittsburgh brand resources, and MIT. The PKU mark is the official reverse version specified for dark backgrounds.
-- `assets/github-qr.png` encodes `https://github.com/Galaxywalk/WiCompass` with high error correction.
-
-Raw `.npy`/`.npz` samples stay under ignored `tmp/data/` and are not published. To rebuild the derived assets:
+Raw research arrays remain under ignored `tmp/data/`. Rebuild derived assets with:
 
 ```bash
 python3 -m venv .venv

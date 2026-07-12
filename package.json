@@ -5,10 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
+    "check": "node scripts/validate-content.mjs",
     "audio:placeholder": "node scripts/make-placeholder-voiceover.mjs",
     "qr:github": "qrcode -o assets/github-qr.png -w 640 -q 2 -e H -d 101010ff -l f4f3eeff https://github.com/Galaxywalk/WiCompass",
+    "frame": "node scripts/frame.mjs",
+    "prestills": "npm run check",
     "stills": "node scripts/stills.mjs",
+    "prerecord:preview": "npm run check",
     "record:preview": "PREVIEW_SPEED=6 node scripts/record.mjs",
+    "prerecord:draft": "npm run check",
+    "record:draft": "node scripts/record.mjs --draft",
+    "prerecord": "npm run check",
     "record": "node scripts/record.mjs"
   },
   "devDependencies": {

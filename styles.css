@@ -1,38 +1,4 @@
-@font-face {
-  font-family: "Source Sans 3 Local";
-  src: url("assets/fonts/SourceSans3-Variable.ttf") format("truetype-variations");
-  font-style: normal;
-  font-weight: 200 1000;
-  font-display: block;
-}
-
-:root {
-  --bg: #101010;
-  --panel: #161616;
-  --fg: #f4f3ee;
-  --muted: #aaa8a1;
-  --quiet: #72716c;
-  --blue: #58c4dd;
-  --green: #83c167;
-  --yellow: #f4d345;
-  --red: #fc6255;
-  --purple: #9a72ac;
-  --line: #343432;
-
-  /* Locked presentation scale: utility, body, deck, title, hero/data. */
-  --type-utility: 12px;
-  --type-body: 16px;
-  --type-deck: 24px;
-  --type-title: 40px;
-  --type-hero: 56px;
-
-  --p: 0;
-  --v: 0;
-  --data-reveal: 0;
-  color-scheme: dark;
-  font-family: "Source Sans 3 Local", "Helvetica Neue", Arial, sans-serif;
-  background: #070707;
-}
+@import url("styles/tokens.css");
 
 * { box-sizing: border-box; }
 

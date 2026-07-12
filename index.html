@@ -12,15 +12,10 @@
         <div class="paper-grid" aria-hidden="true"></div>
 
         <article class="scene scene-cover" data-scene="cover">
-          <div class="institution-logos" aria-label="Participating institutions">
-            <img class="logo-pku" src="assets/logos/pku-dark.png" alt="Peking University emblem" />
-            <img class="logo-uestc" src="assets/logos/uestc-emblem-reverse.png" alt="UESTC emblem" />
-            <img class="logo-pitt" src="assets/logos/pitt-shield.png" alt="University of Pittsburgh shield" />
-            <img class="logo-mit" src="assets/logos/mit.svg" alt="MIT mark" />
-          </div>
-          <p class="cover-conference">ACM MobiCom 2026 · Austin, Texas</p>
-          <h1><span>WiCompass</span>: Oracle-driven Data Scaling<br />for mmWave Human Pose Estimation</h1>
-          <p class="cover-authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao<br />Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</p>
+          <div class="institution-logos" data-project-logos aria-label="Participating institutions"></div>
+          <p class="cover-conference" data-project-conference></p>
+          <h1 data-project-title></h1>
+          <p class="cover-authors" data-project-authors></p>
         </article>
 
         <article class="scene slide scene-hook" data-scene="actions">
@@ -31,7 +26,7 @@
           <figure class="chart-frame action-chart">
             <figcaption>Joint error across 27 discrete actions</figcaption>
             <svg id="loo-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
-            <div class="chart-callout"><span>left-hand wave</span><strong>41.1 → 151.1 mm</strong></div>
+            <div class="chart-callout"><span>left-hand wave</span><strong data-fact="action-gap"></strong></div>
           </figure>
           <footer class="slide-note"><strong>Included vs. held out</strong><span>The red displacement is the generalization penalty, not a temporal trend. The gap appears across nearly every action.</span></footer>
         </article>
@@ -39,13 +34,13 @@
         <article class="scene slide scene-redundancy" data-scene="efficiency">
           <header class="slide-heading">
             <p class="eyebrow">Progressive subset test · mmBody</p>
-            <h2>Removing 70% of training frames barely changes error.</h2>
+            <h2 data-fact="efficiency-title"></h2>
           </header>
           <figure class="chart-frame efficiency-frame">
             <figcaption><span>MPJPE as the retained subset shrinks</span><strong><span id="data-used-number">100</span>% data kept</strong></figcaption>
             <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
           </figure>
-          <footer class="slide-note"><strong>Coverage, not volume</strong><span>From 100% down to 30% of mmBody, MPJPE remains close to 68 mm. Repeated poses add volume without expanding motion coverage.</span></footer>
+          <footer class="slide-note"><strong>Coverage, not volume</strong><span data-fact="efficiency-note"></span></footer>
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
@@ -153,7 +148,7 @@
             <figcaption>Held-out 40k-pose generalization benchmark</figcaption>
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
-          <footer class="slide-note"><strong>25–30 mm lower OOD MPJPE</strong><span>The gap persists from 2k to 40k simulated training samples under the same model and training configuration.</span></footer>
+          <footer class="slide-note"><strong data-fact="simulation-gap"></strong><span>The gap persists from 2k to 40k simulated training samples under the same model and training configuration.</span></footer>
         </article>
 
         <article class="scene slide scene-realworld" data-scene="realworld">
@@ -167,12 +162,12 @@
               <svg id="realworld-chart" class="science-chart" viewBox="0 0 820 360" role="img" aria-label="Training and testing MPJPE for recollection, WiCompass, and baseline data collection"></svg>
             </figure>
             <aside class="realworld-facts">
-              <div><strong>95.7 mm</strong><span>test-matched oracle</span></div>
-              <div><strong>105.7 mm</strong><span>WiCompass test MPJPE</span></div>
-              <div><strong>112.9 mm</strong><span>baseline test MPJPE</span></div>
+              <div><strong data-fact="oracle-test"></strong><span>test-matched oracle</span></div>
+              <div><strong data-fact="wicompass-test"></strong><span>WiCompass test MPJPE</span></div>
+              <div><strong data-fact="baseline-test"></strong><span>baseline test MPJPE</span></div>
             </aside>
           </div>
-          <footer class="slide-note"><strong>7.2 mm better than action-list collection</strong><span>Recollection is a test-matched oracle upper bound, not a deployable strategy; WiCompass moves toward it under the same 8k-frame budget.</span></footer>
+          <footer class="slide-note"><strong data-fact="realworld-improvement"></strong><span>Recollection is a test-matched oracle upper bound, not a deployable strategy; WiCompass moves toward it under the same 8k-frame budget.</span></footer>
         </article>
 
         <article class="scene scene-finale" data-scene="summary">
@@ -184,18 +179,13 @@
         <article class="scene scene-back" data-scene="back">
           <div class="back-copy">
             <p class="eyebrow">Paper · code · data collection tools</p>
-            <h2><span>WiCompass</span>: Oracle-driven Data Scaling<br />for mmWave Human Pose Estimation</h2>
-            <p class="back-authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao<br />Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</p>
-            <div class="back-logos" aria-label="Participating institutions">
-              <img class="logo-pku" src="assets/logos/pku-dark.png" alt="Peking University emblem" />
-              <img class="logo-uestc" src="assets/logos/uestc-emblem-reverse.png" alt="UESTC emblem" />
-              <img class="logo-pitt" src="assets/logos/pitt-shield.png" alt="University of Pittsburgh shield" />
-              <img class="logo-mit" src="assets/logos/mit.svg" alt="MIT mark" />
-            </div>
+            <h2 data-project-title></h2>
+            <p class="back-authors" data-project-authors></p>
+            <div class="back-logos" data-project-logos aria-label="Participating institutions"></div>
           </div>
           <div class="qr-panel">
             <img src="assets/github-qr.png" alt="QR code for the WiCompass GitHub repository" />
-            <strong>github.com/Galaxywalk/WiCompass</strong>
+            <strong data-project-repository></strong>
             <span>Code and updates</span>
           </div>
         </article>
