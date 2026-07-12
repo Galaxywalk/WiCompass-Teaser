@@ -3,165 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WiCompass — MobiCom '26 teaser</title>
+    <title>WiCompass — MobiCom 2026 teaser</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="app-shell">
       <section class="stage" id="stage" aria-label="WiCompass teaser video preview">
-        <svg class="svg-defs" aria-hidden="true">
-          <defs>
-            <symbol id="pose-standing" viewBox="0 0 120 210">
-              <g class="pose-lines">
-                <circle cx="60" cy="22" r="13" />
-                <path d="M60 36 L60 105 M60 54 L28 89 M60 54 L94 85 M60 104 L34 154 L27 199 M60 104 L86 154 L96 199" />
-                <circle cx="60" cy="54" r="4" /><circle cx="60" cy="104" r="4" />
-                <circle cx="28" cy="89" r="4" /><circle cx="94" cy="85" r="4" />
-                <circle cx="34" cy="154" r="4" /><circle cx="86" cy="154" r="4" />
-              </g>
-            </symbol>
-            <symbol id="pose-wave" viewBox="0 0 120 210">
-              <g class="pose-lines">
-                <circle cx="60" cy="22" r="13" />
-                <path d="M60 36 L60 105 M60 55 L25 70 L16 35 M60 55 L92 80 M60 104 L35 154 L28 199 M60 104 L84 154 L93 199" />
-                <circle cx="60" cy="55" r="4" /><circle cx="60" cy="104" r="4" />
-                <circle cx="25" cy="70" r="4" /><circle cx="16" cy="35" r="4" /><circle cx="92" cy="80" r="4" />
-                <circle cx="35" cy="154" r="4" /><circle cx="84" cy="154" r="4" />
-              </g>
-            </symbol>
-            <symbol id="pose-lunge" viewBox="0 0 160 210">
-              <g class="pose-lines">
-                <circle cx="72" cy="25" r="13" />
-                <path d="M70 39 L76 108 M72 58 L34 82 M72 58 L112 79 M76 108 L42 146 L18 191 M76 108 L115 138 L146 157" />
-                <circle cx="72" cy="58" r="4" /><circle cx="76" cy="108" r="4" />
-                <circle cx="34" cy="82" r="4" /><circle cx="112" cy="79" r="4" />
-                <circle cx="42" cy="146" r="4" /><circle cx="115" cy="138" r="4" />
-              </g>
-            </symbol>
-          </defs>
-        </svg>
-
         <div class="paper-grid" aria-hidden="true"></div>
-        <div class="radar-sweep" aria-hidden="true"></div>
-        <div class="grain" aria-hidden="true"></div>
 
-        <article class="scene scene-hook" data-scene="0">
-          <div class="hook-copy">
-            <p class="eyebrow">The unseen-motion problem</p>
-            <h1>Know 26 motions.<br />Miss the <em>27th.</em></h1>
-            <p class="thought">One ordinary wave can break a model that looked accurate.</p>
-            <div class="error-readout">
-              <span class="error-before">41.1 <small>mm</small></span>
-              <span class="error-arrow">→</span>
-              <span class="error-after"><strong id="error-number">41</strong> <small>mm</small></span>
+        <article class="scene scene-cover" data-scene="cover">
+          <div class="institution-logos" aria-label="Participating institutions">
+            <img class="logo-pku" src="assets/logos/pku-dark.png" alt="Peking University emblem" />
+            <img class="logo-uestc" src="assets/logos/uestc-emblem-reverse.png" alt="UESTC emblem" />
+            <img class="logo-pitt" src="assets/logos/pitt-shield.png" alt="University of Pittsburgh shield" />
+            <img class="logo-mit" src="assets/logos/mit.svg" alt="MIT mark" />
+          </div>
+          <p class="cover-conference">ACM MobiCom 2026 · Austin, Texas</p>
+          <h1><span>WiCompass</span>: Oracle-driven Data Scaling<br />for mmWave Human Pose Estimation</h1>
+          <p class="cover-authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao<br />Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</p>
+        </article>
+
+        <article class="scene slide scene-hook" data-scene="actions">
+          <header class="slide-heading">
+            <p class="eyebrow">Action generalization</p>
+            <h2>Holding out one action creates a large error gap.</h2>
+          </header>
+          <figure class="chart-frame action-chart">
+            <figcaption>Joint error across 27 discrete actions</figcaption>
+            <svg id="loo-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
+            <div class="chart-callout"><span>left-hand wave</span><strong>41.1 → 151.1 mm</strong></div>
+          </figure>
+          <footer class="slide-note"><strong>Included vs. held out</strong><span>The red displacement is the generalization penalty, not a temporal trend. The gap appears across nearly every action.</span></footer>
+        </article>
+
+        <article class="scene slide scene-redundancy" data-scene="efficiency">
+          <header class="slide-heading">
+            <p class="eyebrow">Progressive subset test · mmBody</p>
+            <h2>Removing 70% of training frames barely changes error.</h2>
+          </header>
+          <figure class="chart-frame efficiency-frame">
+            <figcaption><span>MPJPE as the retained subset shrinks</span><strong><span id="data-used-number">100</span>% data kept</strong></figcaption>
+            <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
+          </figure>
+          <footer class="slide-note"><strong>Coverage, not volume</strong><span>From 100% down to 30% of mmBody, MPJPE remains close to 68 mm. Repeated poses add volume without expanding motion coverage.</span></footer>
+        </article>
+
+        <article class="scene slide scene-method" data-scene="method">
+          <header class="slide-heading">
+            <p class="eyebrow">Universal pose tokenizer</p>
+            <h2>Compare motion datasets in one canonical pose space.</h2>
+          </header>
+          <div class="method-diagram" role="img" aria-label="AMASS and mmWave pose labels encoded by a frozen VQ-VAE into a shared latent pose space">
+            <section class="method-source source-amass">
+              <header><strong>AMASS</strong><span>8.9M MoCap pose frames</span></header>
+              <div class="smpl-pose-row">
+                <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X pose" />
+                <img src="assets/derived/smplx_pose_2.svg" alt="SMPL-X pose" />
+                <img src="assets/derived/smplx_pose_3.svg" alt="SMPL-X pose" />
+              </div>
+              <p>train the pose vocabulary</p>
+            </section>
+            <section class="method-source source-mmwave">
+              <header><strong>mmWave datasets</strong><span>3D pose labels</span></header>
+              <div class="radar-label-pair">
+                <img src="assets/derived/mmbody_real_radar_case.png" alt="Radar point cloud with 3D pose label" />
+                <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X pose label" />
+              </div>
+              <p>encode labels, not raw radar</p>
+            </section>
+            <div class="method-flow flow-input" aria-hidden="true">→</div>
+            <section class="tokenizer-block">
+              <strong>Frozen encoder E</strong>
+              <span>22 joints × 3 coordinates</span>
+              <div class="codebook" aria-label="64-entry vector-quantized codebook">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <span>K = 64 · T = 16</span>
+              <b>φ</b>
+            </section>
+            <div class="method-flow flow-output" aria-hidden="true">→</div>
+            <section class="latent-space">
+              <header>Shared pose latent space</header>
+              <div id="map-points" class="latent-points"></div>
+              <div class="knn-ring"><span>directional k-NN</span></div>
+              <p>AMASS coverage gaps → Φ<sub>G</sub></p>
+            </section>
+          </div>
+          <footer class="slide-note"><strong>No raw cross-modal alignment</strong><span>The same frozen encoder and codebook map MoCap and mmWave pose labels into comparable tokens; directional k-NN then reveals insufficient coverage.</span></footer>
+        </article>
+
+        <article class="scene slide scene-coverage" data-scene="coverage">
+          <header class="slide-heading">
+            <p class="eyebrow">Coverage-aware target selection</p>
+            <h2>Sample informative poses from under-covered regions.</h2>
+          </header>
+          <div class="coverage-layout">
+            <section class="coverage-map" aria-label="Pose-space coverage map">
+              <header><span>AMASS pose space</span><strong>insufficiently covered by mmWave</strong></header>
+              <div class="coverage-field" id="coverage-field"></div>
+              <div class="coverage-key"><span>covered</span><span>candidate gap</span></div>
+            </section>
+            <section class="selection-policy">
+              <header><strong>Capped-PPS</strong><span>w<sub>i</sub> = min(r<sub>i</sub><sup>(k)</sup>, Q<sub>95</sub>({r<sup>(k)</sup>}))</span></header>
+              <div class="selected-poses">
+                <img src="assets/derived/smplx_pose_1.svg" alt="Selected SMPL-X target pose" />
+                <img src="assets/derived/smplx_pose_2.svg" alt="Selected SMPL-X target pose" />
+                <img src="assets/derived/smplx_pose_3.svg" alt="Selected SMPL-X target pose" />
+              </div>
+            </section>
+          </div>
+          <footer class="slide-note"><strong>Prioritize sparser candidate poses</strong><span>Sampling probability grows with neighborhood radius; capping at the 95th-percentile radius limits the influence of extreme-distance candidates.</span></footer>
+        </article>
+
+        <article class="scene slide scene-capture" data-scene="acquisition">
+          <header class="slide-heading">
+            <p class="eyebrow">Real-world acquisition protocol</p>
+            <h2>Each selected pose becomes a synchronized labeled radar sample.</h2>
+          </header>
+          <ol class="capture-pipeline">
+            <li class="capture-target">
+              <header><span>1</span><strong>Decode target</strong></header>
+              <img src="assets/derived/smplx_pose_3.svg" alt="Target pose decoded from the selected latent token" />
+              <p>Render the selected 3D skeleton.</p>
+            </li>
+            <li class="capture-setup">
+              <header><span>2</span><strong>Synchronized capture</strong></header>
+              <img src="assets/images/real_world_setup.png" alt="WiCompass real-world radar and motion-capture setup" />
+              <p>79 GHz radar · four-camera MoCap ground truth</p>
+            </li>
+            <li class="capture-sample">
+              <header><span>3</span><strong>Append synchronized sample</strong></header>
+              <dl class="sample-record" aria-label="Synchronized sample schema">
+                <div><dt>radar return</dt><dd>R<sub>t</sub></dd></div>
+                <div><dt>pose label</dt><dd>x<sub>t</sub> ∈ ℝ<sup>22×3</sup></dd></div>
+                <div><dt>timestamp</dt><dd>t</dd></div>
+              </dl>
+              <p>Re-encode the new pose labels into Φ<sub>mmWave</sub>.</p>
+            </li>
+          </ol>
+          <footer class="slide-note"><strong>New labels → new coverage → next target</strong><span>The framework can re-encode each new batch and recompute coverage before selecting targets for the next round.</span></footer>
+        </article>
+
+        <article class="scene slide scene-simulation" data-scene="simulation">
+          <header class="slide-heading">
+            <p class="eyebrow">Controlled simulation · equal data budgets</p>
+            <h2>Coverage-aware sampling lowers OOD error at every scale.</h2>
+          </header>
+          <figure class="chart-frame simulation-frame">
+            <figcaption>Held-out 40k-pose generalization benchmark</figcaption>
+            <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
+          </figure>
+          <footer class="slide-note"><strong>25–30 mm lower OOD MPJPE</strong><span>The gap persists from 2k to 40k simulated training samples under the same model and training configuration.</span></footer>
+        </article>
+
+        <article class="scene slide scene-realworld" data-scene="realworld">
+          <header class="slide-heading">
+            <p class="eyebrow">Real-world validation · Figure 9(b)</p>
+            <h2>Training error is similar; held-out generalization is not.</h2>
+          </header>
+          <div class="realworld-layout">
+            <figure class="chart-frame realworld-frame">
+              <figcaption>8k training frames · 8k-frame held-out benchmark</figcaption>
+              <svg id="realworld-chart" class="science-chart" viewBox="0 0 820 360" role="img" aria-label="Training and testing MPJPE for recollection, WiCompass, and baseline data collection"></svg>
+            </figure>
+            <aside class="realworld-facts">
+              <div><strong>95.7 mm</strong><span>test-matched oracle</span></div>
+              <div><strong>105.7 mm</strong><span>WiCompass test MPJPE</span></div>
+              <div><strong>112.9 mm</strong><span>baseline test MPJPE</span></div>
+            </aside>
+          </div>
+          <footer class="slide-note"><strong>7.2 mm better than action-list collection</strong><span>Recollection is a test-matched oracle upper bound, not a deployable strategy; WiCompass moves toward it under the same 8k-frame budget.</span></footer>
+        </article>
+
+        <article class="scene scene-finale" data-scene="summary">
+          <p class="final-kicker">The scaling bottleneck is motion coverage.</p>
+          <h2>WiCompass identifies under-covered regions<br />of a radar dataset’s pose space.</h2>
+          <p class="final-summary">Universal pose tokens · directional coverage · coverage-aware acquisition</p>
+        </article>
+
+        <article class="scene scene-back" data-scene="back">
+          <div class="back-copy">
+            <p class="eyebrow">Paper · code · data collection tools</p>
+            <h2><span>WiCompass</span>: Oracle-driven Data Scaling<br />for mmWave Human Pose Estimation</h2>
+            <p class="back-authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao<br />Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</p>
+            <div class="back-logos" aria-label="Participating institutions">
+              <img class="logo-pku" src="assets/logos/pku-dark.png" alt="Peking University emblem" />
+              <img class="logo-uestc" src="assets/logos/uestc-emblem-reverse.png" alt="UESTC emblem" />
+              <img class="logo-pitt" src="assets/logos/pitt-shield.png" alt="University of Pittsburgh shield" />
+              <img class="logo-mit" src="assets/logos/mit.svg" alt="MIT mark" />
             </div>
           </div>
-          <div class="sensor-card chart-stage loo-stage">
-            <div class="card-label">Error for each held-out action</div>
-            <svg id="loo-chart" class="science-chart" viewBox="0 0 520 330" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
-            <div class="loo-callout"><span>left-hand wave</span><strong>41.1 → 151.1 <small>mm</small></strong></div>
-            <svg class="chart-pose"><use href="#pose-wave" /></svg>
-            <div class="sensor-meta"><span>27 actions</span><span>all included</span><span>leave one out</span></div>
+          <div class="qr-panel">
+            <img src="assets/github-qr.png" alt="QR code for the WiCompass GitHub repository" />
+            <strong>github.com/Galaxywalk/WiCompass</strong>
+            <span>Code and updates</span>
           </div>
-        </article>
-
-        <article class="scene scene-redundancy" data-scene="1">
-          <div class="statement-block">
-            <p class="eyebrow">Why not collect more?</p>
-            <h2>More frames<br /><em>≠</em> more motion.</h2>
-          </div>
-          <div class="redundancy-evidence">
-            <div class="duplicate-field" id="duplicate-field" aria-hidden="true"></div>
-            <div class="chart-title-row"><span>Keep less data</span><b>error barely moves</b></div>
-            <svg id="efficiency-chart" class="science-chart" viewBox="0 0 620 300" role="img" aria-label="Pose error versus percentage of training data used"></svg>
-          </div>
-          <div class="discard-meter">
-            <div class="discard-number"><span id="discard-number">0</span><sup>%</sup></div>
-            <div class="discard-label">of samples can disappear</div>
-            <div class="loss-chip">with &lt; 2% accuracy loss</div>
-          </div>
-        </article>
-
-        <article class="scene scene-oracle" data-scene="2">
-          <div class="oracle-copy">
-            <p class="eyebrow">The WiCompass idea</p>
-            <h2>Borrow a map<br />of <em>human motion.</em></h2>
-            <p class="supporting">AMASS supplies the vocabulary. Radar data shows which parts of it we already cover.</p>
-          </div>
-          <div class="motion-map">
-            <div class="map-ring ring-a"></div><div class="map-ring ring-b"></div><div class="map-ring ring-c"></div>
-            <div class="map-points" id="map-points"></div>
-            <div class="compass">
-              <div class="needle"><span></span></div>
-              <div class="compass-center">W</div>
-            </div>
-            <div class="map-tag tag-a">daily motion</div><div class="map-tag tag-b">exercise</div><div class="map-tag tag-c">rare pose</div>
-          </div>
-        </article>
-
-        <article class="scene scene-gaps" data-scene="3">
-          <div class="gaps-heading">
-            <p class="eyebrow">Now compare the two maps</p>
-            <h2>Covered.<br /><em>Missing.</em><br />Next.</h2>
-          </div>
-          <div class="coverage-panel">
-            <div class="coverage-field" id="coverage-field"></div>
-            <div class="coverage-legend"><span class="covered">already covered</span><span class="missing">collect next</span></div>
-          </div>
-          <div class="target-stack">
-            <div class="target-card"><span>target</span><svg><use href="#pose-lunge" /></svg></div>
-            <div class="target-card"><span>target</span><svg><use href="#pose-wave" /></svg></div>
-            <div class="target-card"><span>target</span><svg><use href="#pose-standing" /></svg></div>
-          </div>
-        </article>
-
-        <article class="scene scene-loop" data-scene="4">
-          <div class="loop-heading">
-            <p class="eyebrow">Close the loop</p>
-            <h2>Point. Mimic. Sense. <em>Repeat.</em></h2>
-          </div>
-          <div class="loop-track">
-            <div class="loop-node target-screen"><div class="monitor asset-monitor"><img src="assets/derived/wicompass_target_pose.png" alt="A target pose selected by WiCompass" /></div><span>show target</span></div>
-            <div class="flow-arrow">→</div>
-            <div class="loop-node participant"><div class="person-stage setup-photo"><img src="assets/images/real_world_setup.png" alt="Real-world WiCompass data collection setup" /></div><span>mimic pose</span></div>
-            <div class="flow-arrow">→</div>
-            <div class="loop-node radar-capture"><div class="radar-visual"><img src="assets/derived/mmbody_real_radar_case.png" alt="Real mmWave point cloud with ground-truth pose" /></div><span>sense with radar</span></div>
-            <div class="flow-arrow">→</div>
-            <div class="loop-node dataset"><div class="dataset-stack"><i></i><i></i><i></i></div><span>update map</span></div>
-          </div>
-          <div class="return-line"><span>the next target changes as the gaps close</span></div>
-        </article>
-
-        <article class="scene scene-results" data-scene="5">
-          <div class="results-heading">
-            <p class="eyebrow">Same budget. Better coverage.</p>
-            <h2><em>25–30 mm</em><br />lower error.</h2>
-          </div>
-          <div class="result-cards">
-            <div class="result-card simulation">
-              <span class="result-label">Simulation · from 2k to 40k samples</span>
-              <div class="paper-chart black-chart"><svg id="scaling-chart" class="science-chart" viewBox="0 0 420 176" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg><span>out-of-distribution MPJPE</span></div>
-            </div>
-            <div class="result-card realworld">
-              <span class="result-label">Real world · 8k frames each</span>
-              <div class="bar-row baseline-bar"><span>baseline</span><i></i><b>112.9</b></div>
-              <div class="bar-row compass-bar"><span>WiCompass</span><i></i><b>105.7</b></div>
-              <p>test MPJPE ↓</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="scene scene-finale" data-scene="6">
-          <div class="final-compass"><div class="final-ring"></div><div class="final-needle"></div></div>
-          <p class="final-kicker">Collect what is missing.</p>
-          <h2>Let <span>WiCompass</span> point to<br />what comes next.</h2>
-          <div class="paper-title">WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation</div>
-          <div class="authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao · Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</div>
-          <div class="final-links"><span>MobiCom 2026</span><span>github.com/Galaxywalk/WiCompass</span></div>
         </article>
 
         <footer class="caption-band">
-          <div class="scene-index" id="scene-index" aria-hidden="true">01 / 07</div>
+          <div class="scene-index" id="scene-index" aria-hidden="true">01 / 10</div>
           <div class="caption" id="caption"></div>
           <div class="timeline-mark"><span id="timeline-progress"></span></div>
         </footer>
@@ -170,8 +210,8 @@
       <nav class="controls" aria-label="Playback controls">
         <button id="restart" type="button" aria-label="Restart">↺</button>
         <button id="play" type="button" class="play-button" aria-label="Play">▶</button>
-        <input id="scrubber" type="range" min="0" max="86" step="0.01" value="0" aria-label="Timeline" />
-        <output id="timecode">00:00 / 01:26</output>
+        <input id="scrubber" type="range" min="0" max="0" step="0.01" value="0" aria-label="Timeline" />
+        <output id="timecode">00:00 / 01:30</output>
         <button id="mute" type="button" aria-label="Mute">VOL</button>
         <button id="fullscreen" type="button" aria-label="Fullscreen">FULL</button>
       </nav>

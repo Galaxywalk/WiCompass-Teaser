@@ -2,6 +2,7 @@ import { mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import playwright from "playwright";
 import { startServer } from "./serve.mjs";
+import { SCENES } from "../content/timeline.js";
 
 const { chromium } = playwright;
 const systemChrome = process.env.CHROME_PATH ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
@@ -13,11 +14,13 @@ await page.goto("http://127.0.0.1:4173/?render=1", { waitUntil: "networkidle" })
 await page.waitForFunction(() => window.__WICOMPASS_READY__ === true);
 await mkdir("dist/stills", { recursive: true });
 
-for (const [index, time] of [8, 19, 32, 46, 61, 76, 84].entries()) {
+for (const [index, scene] of SCENES.entries()) {
+  const time = scene.still ?? (scene.start + scene.end) / 2;
   await page.evaluate((value) => window.__setTime(value), time);
-  await page.screenshot({ path: `dist/stills/${String(index + 1).padStart(2, "0")}-${time}s.png` });
+  await page.waitForTimeout(80);
+  await page.screenshot({ path: `dist/stills/${String(index + 1).padStart(2, "0")}-${scene.id}-${time}s.png` });
 }
 
 await browser.close();
 server.close();
-process.stdout.write("Wrote seven review stills to dist/stills/.\n");
+process.stdout.write("Wrote ten review stills to dist/stills/.\n");

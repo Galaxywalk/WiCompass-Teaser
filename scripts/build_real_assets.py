@@ -47,6 +47,43 @@ def draw_skeleton(ax, joints, color="#ff705f", width=3.2, size=22):
     )
 
 
+def write_pose_svg(joints, output_path, color="#58c4dd"):
+    """Export the repository's 22-joint SMPL-X skeleton without changing its proportions."""
+    width, height, padding = 160, 240, 14
+    # The target poses face the radar along x, so y-z is the readable frontal projection.
+    projected = joints[:, [1, 2]].astype(float)
+    projected[:, 1] *= -1
+    minimum = projected.min(axis=0)
+    maximum = projected.max(axis=0)
+    extent = np.maximum(maximum - minimum, 1e-6)
+    scale = min((width - 2 * padding) / extent[0], (height - 2 * padding) / extent[1])
+    centered = (projected - (minimum + maximum) / 2) * scale
+    centered[:, 0] += width / 2
+    centered[:, 1] += height / 2
+
+    bones = "\n".join(
+        f'    <line x1="{centered[start, 0]:.2f}" y1="{centered[start, 1]:.2f}" '
+        f'x2="{centered[end, 0]:.2f}" y2="{centered[end, 1]:.2f}" />'
+        for start, end in CONNECTIONS
+    )
+    joints_svg = "\n".join(
+        f'    <circle cx="{x:.2f}" cy="{y:.2f}" r="2.35" />'
+        for x, y in centered
+    )
+    output_path.write_text(
+        f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-label="22-joint SMPL-X pose">
+  <g fill="none" stroke="{color}" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
+{bones}
+  </g>
+  <g fill="#101010" stroke="#f4f3ee" stroke-width="1.35">
+{joints_svg}
+  </g>
+</svg>
+''',
+        encoding="utf-8",
+    )
+
+
 def render_real_radar_case():
     radar = np.load(DATA / "mmbody_frame_675_radar.npy")
     joints = np.load(DATA / "mmbody_frame_675_mesh.npz")["joints"][:22]
@@ -106,6 +143,10 @@ def render_target_pose_strip():
     fig.subplots_adjust(0, 0, 1, 1)
     fig.savefig(OUTPUT / "wicompass_target_pose.png", transparent=True, bbox_inches="tight", pad_inches=0.01)
     plt.close(fig)
+
+    # These representative cases keep the exact SMPL-X joint geometry used by WiCompass.
+    for number, index in enumerate((0, 92, 145), start=1):
+        write_pose_svg(poses[index, :22], OUTPUT / f"smplx_pose_{number}.svg")
 
 
 def main():

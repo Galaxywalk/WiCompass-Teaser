@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
+    "audio:placeholder": "node scripts/make-placeholder-voiceover.mjs",
+    "qr:github": "qrcode -o assets/github-qr.png -w 640 -q 2 -e H -d 101010ff -l f4f3eeff https://github.com/Galaxywalk/WiCompass",
     "stills": "node scripts/stills.mjs",
+    "record:preview": "PREVIEW_SPEED=6 node scripts/record.mjs",
     "record": "node scripts/record.mjs"
   },
   "devDependencies": {
-    "playwright": "^1.54.1"
+    "playwright": "^1.54.1",
+    "qrcode": "^1.5.4"
   }
 }
-
