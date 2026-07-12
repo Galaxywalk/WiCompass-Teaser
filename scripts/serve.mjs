@@ -10,6 +10,7 @@ export function startServer(port = 4173) {
     ".css": "text/css; charset=utf-8",
     ".svg": "image/svg+xml",
     ".png": "image/png",
+    ".ttf": "font/ttf",
     ".m4a": "audio/mp4",
     ".mp3": "audio/mpeg",
   };

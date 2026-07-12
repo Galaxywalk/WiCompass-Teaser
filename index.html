@@ -45,50 +45,48 @@
         <div class="radar-sweep" aria-hidden="true"></div>
         <div class="grain" aria-hidden="true"></div>
 
-        <header class="stage-header">
-          <div class="mini-wordmark"><span>Wi</span>COMPASS</div>
-          <div class="header-rule"></div>
-          <div class="conference">MOBICOM '26 · AUSTIN</div>
-        </header>
-
         <article class="scene scene-hook" data-scene="0">
           <div class="hook-copy">
-            <p class="eyebrow">Privacy-preserving sensing meets an unseen motion</p>
-            <h1>One missing gesture.<br /><em>More than double</em> the error.</h1>
+            <p class="eyebrow">The unseen-motion problem</p>
+            <h1>Know 26 motions.<br />Miss the <em>27th.</em></h1>
+            <p class="thought">One ordinary wave can break a model that looked accurate.</p>
             <div class="error-readout">
-              <span class="error-before">≈ 50 <small>mm</small></span>
+              <span class="error-before">41.1 <small>mm</small></span>
               <span class="error-arrow">→</span>
-              <span class="error-after"><strong id="error-number">50</strong> <small>mm</small></span>
+              <span class="error-after"><strong id="error-number">41</strong> <small>mm</small></span>
             </div>
           </div>
-          <div class="sensor-card">
-            <div class="card-label">RADAR VIEW · LEFT-HAND WAVE</div>
-            <div class="point-cloud" id="point-cloud"></div>
-            <svg class="hero-pose good-pose"><use href="#pose-wave" /></svg>
-            <svg class="hero-pose bad-pose"><use href="#pose-wave" /></svg>
-            <div class="scan-line"></div>
-            <div class="sensor-meta"><span>79 GHz</span><span>NO CAMERA</span><span>OOD</span></div>
+          <div class="sensor-card chart-stage loo-stage">
+            <div class="card-label">Error for each held-out action</div>
+            <svg id="loo-chart" class="science-chart" viewBox="0 0 520 330" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
+            <div class="loo-callout"><span>left-hand wave</span><strong>41.1 → 151.1 <small>mm</small></strong></div>
+            <svg class="chart-pose"><use href="#pose-wave" /></svg>
+            <div class="sensor-meta"><span>27 actions</span><span>all included</span><span>leave one out</span></div>
           </div>
         </article>
 
         <article class="scene scene-redundancy" data-scene="1">
           <div class="statement-block">
-            <p class="eyebrow">The intuitive fix wastes the collection budget</p>
-            <h2>More data is not<br />the same as <em>more coverage.</em></h2>
+            <p class="eyebrow">Why not collect more?</p>
+            <h2>More frames<br /><em>≠</em> more motion.</h2>
           </div>
-          <div class="duplicate-field" id="duplicate-field" aria-hidden="true"></div>
+          <div class="redundancy-evidence">
+            <div class="duplicate-field" id="duplicate-field" aria-hidden="true"></div>
+            <div class="chart-title-row"><span>Keep less data</span><b>error barely moves</b></div>
+            <svg id="efficiency-chart" class="science-chart" viewBox="0 0 620 300" role="img" aria-label="Pose error versus percentage of training data used"></svg>
+          </div>
           <div class="discard-meter">
             <div class="discard-number"><span id="discard-number">0</span><sup>%</sup></div>
-            <div class="discard-label">of samples discarded</div>
-            <div class="loss-chip">&lt; 2% accuracy loss</div>
+            <div class="discard-label">of samples can disappear</div>
+            <div class="loss-chip">with &lt; 2% accuracy loss</div>
           </div>
         </article>
 
         <article class="scene scene-oracle" data-scene="2">
           <div class="oracle-copy">
-            <p class="eyebrow">WiCompass uses motion capture as an oracle</p>
-            <h2>Build a map of motion<br /><em>before collecting radar.</em></h2>
-            <p class="supporting">AMASS becomes a universal vocabulary of human pose — a reference for what the radar dataset has never seen.</p>
+            <p class="eyebrow">The WiCompass idea</p>
+            <h2>Borrow a map<br />of <em>human motion.</em></h2>
+            <p class="supporting">AMASS supplies the vocabulary. Radar data shows which parts of it we already cover.</p>
           </div>
           <div class="motion-map">
             <div class="map-ring ring-a"></div><div class="map-ring ring-b"></div><div class="map-ring ring-c"></div>
@@ -103,69 +101,67 @@
 
         <article class="scene scene-gaps" data-scene="3">
           <div class="gaps-heading">
-            <p class="eyebrow">Shared pose space · directional k-NN coverage</p>
-            <h2>Find what is <em>missing.</em><br />Ignore what repeats.</h2>
+            <p class="eyebrow">Now compare the two maps</p>
+            <h2>Covered.<br /><em>Missing.</em><br />Next.</h2>
           </div>
           <div class="coverage-panel">
             <div class="coverage-field" id="coverage-field"></div>
-            <div class="coverage-legend"><span class="covered">covered</span><span class="missing">collection target</span></div>
+            <div class="coverage-legend"><span class="covered">already covered</span><span class="missing">collect next</span></div>
           </div>
           <div class="target-stack">
-            <div class="target-card"><span>GAP 07</span><svg><use href="#pose-lunge" /></svg></div>
-            <div class="target-card"><span>GAP 19</span><svg><use href="#pose-wave" /></svg></div>
-            <div class="target-card"><span>GAP 31</span><svg><use href="#pose-standing" /></svg></div>
+            <div class="target-card"><span>target</span><svg><use href="#pose-lunge" /></svg></div>
+            <div class="target-card"><span>target</span><svg><use href="#pose-wave" /></svg></div>
+            <div class="target-card"><span>target</span><svg><use href="#pose-standing" /></svg></div>
           </div>
         </article>
 
         <article class="scene scene-loop" data-scene="4">
           <div class="loop-heading">
-            <p class="eyebrow">A concrete, closed-loop acquisition workflow</p>
-            <h2>Turn coverage gaps into <em>radar samples.</em></h2>
+            <p class="eyebrow">Close the loop</p>
+            <h2>Point. Mimic. Sense. <em>Repeat.</em></h2>
           </div>
           <div class="loop-track">
-            <div class="loop-node target-screen"><b>01</b><div class="monitor asset-monitor"><img src="assets/derived/wicompass_target_pose.png" alt="A target pose selected by WiCompass" /></div><span>render target</span></div>
+            <div class="loop-node target-screen"><div class="monitor asset-monitor"><img src="assets/derived/wicompass_target_pose.png" alt="A target pose selected by WiCompass" /></div><span>show target</span></div>
             <div class="flow-arrow">→</div>
-            <div class="loop-node participant"><b>02</b><div class="person-stage setup-photo"><img src="assets/images/real_world_setup.png" alt="Real-world WiCompass data collection setup" /></div><span>participant mimics</span></div>
+            <div class="loop-node participant"><div class="person-stage setup-photo"><img src="assets/images/real_world_setup.png" alt="Real-world WiCompass data collection setup" /></div><span>mimic pose</span></div>
             <div class="flow-arrow">→</div>
-            <div class="loop-node radar-capture"><b>03</b><div class="radar-visual"><img src="assets/derived/mmbody_real_radar_case.png" alt="Real mmWave point cloud with ground-truth pose" /></div><span>capture mmWave</span></div>
+            <div class="loop-node radar-capture"><div class="radar-visual"><img src="assets/derived/mmbody_real_radar_case.png" alt="Real mmWave point cloud with ground-truth pose" /></div><span>sense with radar</span></div>
             <div class="flow-arrow">→</div>
-            <div class="loop-node dataset"><b>04</b><div class="dataset-stack"><i></i><i></i><i></i></div><span>recompute coverage</span></div>
+            <div class="loop-node dataset"><div class="dataset-stack"><i></i><i></i><i></i></div><span>update map</span></div>
           </div>
-          <div class="return-line"><span>repeat until the informative gaps close</span></div>
+          <div class="return-line"><span>the next target changes as the gaps close</span></div>
         </article>
 
         <article class="scene scene-results" data-scene="5">
           <div class="results-heading">
-            <p class="eyebrow">Same budget · more informative samples</p>
-            <h2>Coverage-aware collection<br /><em>keeps scaling.</em></h2>
+            <p class="eyebrow">Same budget. Better coverage.</p>
+            <h2><em>25–30 mm</em><br />lower error.</h2>
           </div>
           <div class="result-cards">
             <div class="result-card simulation">
-              <span class="result-label">CONTROLLED SIMULATION · 2K–40K SAMPLES</span>
-              <strong><span>25–30</span> <small>mm</small></strong>
-              <p>lower out-of-distribution error</p>
-              <div class="paper-chart"><img src="assets/figures/data_scaling_simulation.svg" alt="Paper result: WiCompass versus mmBody data scaling" /><span>paper result · Figure 6</span></div>
+              <span class="result-label">Simulation · from 2k to 40k samples</span>
+              <div class="paper-chart black-chart"><svg id="scaling-chart" class="science-chart" viewBox="0 0 420 176" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg><span>out-of-distribution MPJPE</span></div>
             </div>
             <div class="result-card realworld">
-              <span class="result-label">REAL WORLD · SAME 8K-FRAME BUDGET</span>
+              <span class="result-label">Real world · 8k frames each</span>
               <div class="bar-row baseline-bar"><span>baseline</span><i></i><b>112.9</b></div>
               <div class="bar-row compass-bar"><span>WiCompass</span><i></i><b>105.7</b></div>
-              <p>test MPJPE, lower is better</p>
+              <p>test MPJPE ↓</p>
             </div>
           </div>
         </article>
 
         <article class="scene scene-finale" data-scene="6">
           <div class="final-compass"><div class="final-ring"></div><div class="final-needle"></div></div>
-          <p class="final-kicker">STOP COLLECTING MORE OF THE SAME.</p>
-          <h2>Let <span>WiCompass</span> point to<br />what your dataset needs next.</h2>
+          <p class="final-kicker">Collect what is missing.</p>
+          <h2>Let <span>WiCompass</span> point to<br />what comes next.</h2>
           <div class="paper-title">WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation</div>
           <div class="authors">Bo Liang · Chen Gong · Haobo Wang · Qirui Liu · Rungui Zhou · Fengzhi Shao · Yubo Wang · Wei Gao · Kaichen Zhou · Guolong Cui · Chenren Xu</div>
-          <div class="final-links"><span>MobiCom '26</span><span>github.com/Galaxywalk/WiCompass</span></div>
+          <div class="final-links"><span>MobiCom 2026</span><span>github.com/Galaxywalk/WiCompass</span></div>
         </article>
 
         <footer class="caption-band">
-          <div class="scene-index" id="scene-index">01 / 07</div>
+          <div class="scene-index" id="scene-index" aria-hidden="true">01 / 07</div>
           <div class="caption" id="caption"></div>
           <div class="timeline-mark"><span id="timeline-progress"></span></div>
         </footer>

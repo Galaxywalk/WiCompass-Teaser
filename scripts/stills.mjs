@@ -13,7 +13,7 @@ await page.goto("http://127.0.0.1:4173/?render=1", { waitUntil: "networkidle" })
 await page.waitForFunction(() => window.__WICOMPASS_READY__ === true);
 await mkdir("dist/stills", { recursive: true });
 
-for (const [index, time] of [4, 15, 27, 41, 56, 71, 83].entries()) {
+for (const [index, time] of [8, 19, 32, 46, 61, 76, 84].entries()) {
   await page.evaluate((value) => window.__setTime(value), time);
   await page.screenshot({ path: `dist/stills/${String(index + 1).padStart(2, "0")}-${time}s.png` });
 }

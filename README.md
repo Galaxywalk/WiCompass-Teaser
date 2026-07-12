@@ -4,7 +4,9 @@ An HTML-first motion-graphics prototype for the 90-second teaser of:
 
 > **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**
 
-The current cut is intentionally asset-light. It uses deterministic SVG, CSS, and JavaScript animation so that the full story can be reviewed before original radar footage and paper-quality plots are added.
+The current cut uses deterministic SVG, CSS, JavaScript animation, exact paper measurements, and selected real-data assets so the full story can be reviewed before the narration is locked.
+
+The visual direction is a blackboard-style science explainer inspired by the picture-first animation principles of 3Blue1Brown: one visual idea per scene, minimal framing, and consistent semantic colors. The locally bundled Nunito variable font supplies every typographic role; its license is in `assets/fonts/OFL.txt`. The current system voice is only a timing placeholder. Final narration will be generated with TTSMaker after the script and edit are locked.
 
 ## Preview
 
@@ -34,19 +36,19 @@ The recorder plays the HTML timeline in Chromium, captures it, and uses FFmpeg t
 
 ## Replace the prototype assets
 
-The most valuable next additions are:
+Possible next additions are:
 
 1. real participant-mimics-target-pose footage;
 2. radar point cloud + ground truth + prediction overlays;
-3. simplified vector exports of paper Figures 1, 2, 5, 6, and 9;
-4. a human-recorded narration replacing the system voice.
+3. additional qualitative cases selected from the experiment outputs;
+4. the locked TTSMaker narration replacing the system timing voice.
 
 Scene text and timing live in `app.js`; visual treatment lives in `styles.css`.
 
 ## Research asset provenance
 
 - `assets/images/real_world_setup.png` is the annotated collection setup from the WiCompass paper source repository.
-- `assets/figures/data_scaling_simulation.svg` and `amass_uncovered_by_mmbody.svg` are SVG conversions of the paper's vector PDFs.
+- Figures 1b, 1c, and 6 are redrawn as native black-background SVG charts in `app.js`, using exact values from the experiment logs rather than embedded paper screenshots.
 - `assets/derived/mmbody_real_radar_case.png` is rendered from mmBody train sequence 11, frame 675 (real radar point cloud plus its 22-joint ground truth).
 - `assets/derived/wicompass_target_pose*.png` is rendered from the WiCompass `real_world_target` pose selection output.
 
