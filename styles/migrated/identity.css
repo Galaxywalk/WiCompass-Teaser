@@ -14,7 +14,7 @@
   padding: 42px 64px 48px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: 82px minmax(0, 1fr) auto;
+  grid-template-rows: 114px minmax(0, 1fr) auto;
   column-gap: 40px;
   align-items: start;
   overflow: hidden;
@@ -58,16 +58,16 @@
 }
 
 .scene-cover .institution-logos img {
-  width: 88px;
-  height: 88px;
+  width: 114px;
+  height: 114px;
 }
 
 .scene-cover .institution-logos .logo-pitt {
-  width: 80px;
+  width: 104px;
 }
 
 .scene-cover .institution-logos .logo-mit {
-  width: 120px;
+  width: 156px;
 }
 
 .scene-cover .cover-conference {
