@@ -50,11 +50,11 @@
 }
 
 .scene-method .method-amass {
-  border-color: var(--yellow);
+  border-color: var(--green);
 }
 
 .scene-method .method-mmwave {
-  border-color: var(--blue);
+  border-color: var(--yellow);
 }
 
 .scene-method .method-pose-stream header {
@@ -97,11 +97,15 @@
 }
 
 .scene-method .method-pose-strip img {
-  filter: hue-rotate(218deg) saturate(1.18);
+  filter: hue-rotate(-95deg) saturate(0.9);
 }
 
 .scene-method .method-pose-strip img:nth-child(2) {
   transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2), 1)) * 8px)) scale(1.22);
+}
+
+.scene-method .method-label-record img {
+  filter: hue-rotate(218deg) saturate(1.18);
 }
 
 .scene-method .method-merge,
@@ -260,7 +264,12 @@
 }
 
 .scene-method .method-shared-latent .latent-points i.hot {
-  background: var(--blue);
+  width: 12px;
+  height: 12px;
+  border: 3px solid var(--yellow);
+  border-radius: 0;
+  background: transparent;
+  transform: rotate(45deg) scale(calc(0.25 + var(--p) * 0.75));
 }
 
 .scene-method .method-latent-key {
@@ -288,8 +297,10 @@
 }
 
 .scene-method .method-latent-key .key-mmwave::before {
-  border-color: var(--blue);
-  background: var(--blue);
+  border: 3px solid var(--yellow);
+  border-radius: 0;
+  background: transparent;
+  transform: rotate(45deg);
 }
 
 .scene-method .method-takeaway {
