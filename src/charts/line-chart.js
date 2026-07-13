@@ -1,5 +1,10 @@
 import { requiredSvg, svgElement } from "./svg.js";
 
+function evaluateFit(fit, value) {
+  if (fit.model !== "power") throw new Error(`Unsupported fit model: ${fit.model}`);
+  return fit.coefficient * (value * (fit.xMultiplier ?? 1)) ** fit.exponent;
+}
+
 export function renderLineChart(selector, config, root = document) {
   const svg = requiredSvg(selector, root);
   const { width, height } = svg.viewBox.baseVal;
@@ -11,7 +16,11 @@ export function renderLineChart(selector, config, root = document) {
   const xDomain = config.xScale === "log" ? xValues.map(Math.log) : xValues;
   const xMin = Math.min(...xDomain);
   const xMax = Math.max(...xDomain);
-  const x = (index) => padding.left + ((xDomain[index] - xMin) / (xMax - xMin)) * plotWidth;
+  const projectX = (value) => {
+    const domainValue = config.xScale === "log" ? Math.log(value) : value;
+    return padding.left + ((domainValue - xMin) / (xMax - xMin)) * plotWidth;
+  };
+  const x = (index) => projectX(xValues[index]);
   const y = (value) => padding.top + ((config.yMax - value) / (config.yMax - config.yMin)) * plotHeight;
 
   const grid = svgElement("g", { class: "chart-grid" });
@@ -65,17 +74,39 @@ export function renderLineChart(selector, config, root = document) {
     const offset = padding.left + seriesIndex * (config.legendStep ?? 142);
     const seriesClass = `series-${series.key}`;
     if (config.showLegend !== false) {
-      legend.append(svgElement("line", { x1: offset, x2: offset + 22, y1: 14, y2: 14, class: `legend-line ${seriesClass}` }));
+      if (series.fit && series.marker === "square") {
+        legend.append(svgElement("rect", { x: offset + 5, y: 8, width: 12, height: 12, class: `chart-legend-marker ${seriesClass}` }));
+      } else if (series.fit) {
+        legend.append(svgElement("circle", { cx: offset + 11, cy: 14, r: 6, class: `chart-legend-marker ${seriesClass}` }));
+      } else {
+        legend.append(svgElement("line", { x1: offset, x2: offset + 22, y1: 14, y2: 14, class: `legend-line ${seriesClass}` }));
+      }
       legend.append(svgElement("text", { x: offset + 29, y: 18 }, series.label));
     }
 
     const points = series.values.map((value, index) => [x(index), y(value)]);
     const isGapSeries = config.gapSeriesIndex === seriesIndex;
-    svg.append(svgElement("path", {
-      d: points.map(([pointX, pointY], index) => `${index === 0 ? "M" : "L"}${pointX.toFixed(2)},${pointY.toFixed(2)}`).join(" "),
-      class: `chart-line ${seriesClass} series-index-${seriesIndex}${isGapSeries ? " gap-series" : ""}`,
-      pathLength: 1,
-    }));
+    if (series.fit) {
+      const sampleCount = series.fit.samples ?? 64;
+      const fitPoints = Array.from({ length: sampleCount }, (_, index) => {
+        const ratio = index / (sampleCount - 1);
+        const domainValue = xMin + (xMax - xMin) * ratio;
+        const sourceValue = config.xScale === "log" ? Math.exp(domainValue) : domainValue;
+        return [projectX(sourceValue), y(evaluateFit(series.fit, sourceValue))];
+      });
+      svg.append(svgElement("path", {
+        d: fitPoints.map(([pointX, pointY], index) => `${index === 0 ? "M" : "L"}${pointX.toFixed(2)},${pointY.toFixed(2)}`).join(" "),
+        class: `chart-fit ${seriesClass} series-index-${seriesIndex}`,
+        "vector-effect": "non-scaling-stroke",
+      }));
+    }
+    if (series.connectPoints !== false) {
+      svg.append(svgElement("path", {
+        d: points.map(([pointX, pointY], index) => `${index === 0 ? "M" : "L"}${pointX.toFixed(2)},${pointY.toFixed(2)}`).join(" "),
+        class: `chart-line ${seriesClass} series-index-${seriesIndex}${isGapSeries ? " gap-series" : ""}`,
+        pathLength: 1,
+      }));
+    }
 
     points.forEach(([pointX, pointY], index) => {
       const important = config.highlight?.index === index;
@@ -98,7 +129,18 @@ export function renderLineChart(selector, config, root = document) {
         }));
         attributes.style = `--lift:${(sourceY - pointY).toFixed(2)}px;--i:${index}`;
       }
-      svg.append(svgElement("circle", attributes));
+      if (series.marker === "square") {
+        const radius = Number(attributes.r);
+        svg.append(svgElement("rect", {
+          x: pointX - radius,
+          y: pointY - radius,
+          width: radius * 2,
+          height: radius * 2,
+          class: attributes.class,
+        }));
+      } else {
+        svg.append(svgElement("circle", attributes));
+      }
     });
   });
   svg.append(legend);

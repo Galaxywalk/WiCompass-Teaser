@@ -325,6 +325,7 @@ h2 { font-size: var(--type-title); }
 
 .axis-label { fill: var(--quiet); font-weight: 700; }
 .chart-legend .legend-line { stroke-width: 4; stroke-linecap: round; }
+.chart-legend-marker { stroke-width: 2; }
 .chart-line {
   fill: none;
   stroke-width: 4;
@@ -332,6 +333,12 @@ h2 { font-size: var(--type-title); }
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: calc(1 - var(--p));
+}
+.chart-fit {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: butt;
+  stroke-dasharray: 11 8;
 }
 .chart-point { fill: var(--bg); stroke-width: 2; opacity: var(--p); }
 .chart-point.important { stroke-width: 4; }
@@ -569,8 +576,12 @@ h2 { font-size: var(--type-title); }
 /* Simulation and real-world evidence ------------------------------------ */
 
 .simulation-frame { height: 410px; }
-#scaling-chart .chart-line { stroke-dashoffset: calc(1 - clamp(0, calc(var(--p) * 1.9), 1)); }
+#scaling-chart .chart-fit { opacity: clamp(0, calc(var(--p) * 2.4), 1); }
 #scaling-chart .chart-point { opacity: clamp(0, calc(var(--p) * 1.9), 1); }
+#scaling-chart .chart-point.series-wicompass { fill: var(--green); }
+#scaling-chart .chart-point.series-baseline { fill: var(--yellow); }
+#scaling-chart .chart-legend-marker.series-wicompass { fill: var(--green); }
+#scaling-chart .chart-legend-marker.series-baseline { fill: var(--yellow); }
 
 .realworld-layout {
   width: 1080px;

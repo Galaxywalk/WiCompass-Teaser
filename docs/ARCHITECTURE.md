@@ -2,6 +2,8 @@
 
 The repository has three intentional layers. A change should normally touch only one.
 
+Visual decisions must follow [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md). The architecture describes where a decision belongs; the specification defines which decisions are allowed.
+
 ## Content
 
 - `index.html`: semantic scene structure and ordinary explanatory copy.
@@ -15,10 +17,10 @@ The repository has three intentional layers. A change should normally touch only
 
 ## Format
 
-- `styles/tokens.css`: palette, font face, and the locked five-size type scale.
+- `styles/tokens.css`: the currently implemented legacy palette, font face, and five-size type scale. The next format migration must replace these with the four locked tokens in `VIDEO_GENERATION_SPEC.md`.
 - `styles.css`: layout components, scene formats, and CSS timeline animation.
 
-JavaScript chart configs use semantic series names, while CSS owns their color and appearance. New content must use one of `--type-utility`, `--type-body`, `--type-deck`, `--type-title`, or `--type-hero`; `npm run check` enforces this.
+JavaScript chart configs use semantic series names, while CSS owns their color and appearance. Until the planned typography migration, `npm run check` continues to enforce the legacy token names so ad-hoc sizes cannot spread further. After migration it must enforce the specification's 96/56/36/26 px tokens and 24 px minimum.
 
 ## Functionality
 

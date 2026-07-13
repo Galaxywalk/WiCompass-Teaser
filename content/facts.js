@@ -9,7 +9,12 @@ const realworld = BAR_CHARTS.find((chart) => chart.selector === "#realworld-char
 const actionIndex = action.highlight.index;
 const actionIncluded = action.series.find(({ key }) => key === "included").values[actionIndex];
 const actionHeldout = action.series.find(({ key }) => key === "heldout").values[actionIndex];
-const scalingGaps = scaling.series[1].values.map((value, index) => value - scaling.series[0].values[index]);
+const evaluateFit = (fit, x) => fit.coefficient * (x * (fit.xMultiplier ?? 1)) ** fit.exponent;
+const scalingStart = scaling.xValues[0];
+const scalingEnd = scaling.xValues.at(-1);
+const scalingGaps = [scalingStart, scalingEnd].map((x) => (
+  evaluateFit(scaling.series[1].fit, x) - evaluateFit(scaling.series[0].fit, x)
+));
 const retainedStart = EFFICIENCY_READOUT_PERCENTAGES[0];
 const retainedEnd = EFFICIENCY_READOUT_PERCENTAGES.at(-1);
 const realworldRows = Object.fromEntries(realworld.groups.map((group) => [group.label, group.values]));

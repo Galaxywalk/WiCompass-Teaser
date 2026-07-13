@@ -1,5 +1,7 @@
 # Editing workflow
 
+Read [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md) before changing typography, hierarchy, figures, palette, or duration. It is the normative design contract; this file describes the mechanics of making a change.
+
 ## Change wording without changing design
 
 Edit the relevant scene in `index.html`. If the wording contains a measured result, add or update a derived value in `content/facts.js` and bind it with `data-fact`; do not copy a number from the chart into HTML.

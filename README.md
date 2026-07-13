@@ -8,7 +8,7 @@ The repository is deliberately split into three layers:
 - `styles.css` + `styles/tokens.css`: presentation format, layout, typography, palette, and animation styling;
 - `src/`: reusable playback, chart, binding, and procedural-visual functions.
 
-The render scripts under `scripts/` use the same browser runtime for individual frames, review stills, fast drafts, scene-only previews, and the final MP4. See [Architecture](docs/ARCHITECTURE.md) and [Editing workflow](docs/EDITING.md).
+The render scripts under `scripts/` use the same browser runtime for individual frames, review stills, fast drafts, scene-only previews, and the final MP4. See the normative [Video generation specification](docs/VIDEO_GENERATION_SPEC.md), [Architecture](docs/ARCHITECTURE.md), and [Editing workflow](docs/EDITING.md).
 
 ## Start the preview
 

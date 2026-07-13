@@ -46,6 +46,11 @@ for (const { selector, config } of LINE_CHARTS) {
   assert.equal(config.xValues?.length ?? lengths[0], lengths[0], `${selector}: x/series length mismatch`);
   assert.ok(config.xTicks.every(({ index }) => index >= 0 && index < lengths[0]), `${selector}: invalid x tick index`);
   if (config.xScale === "log") assert.ok(config.xValues.every((value) => value > 0), `${selector}: log x values must be positive`);
+  config.series.filter(({ fit }) => fit).forEach(({ fit }) => {
+    assert.equal(fit.model, "power", `${selector}: unsupported fit model`);
+    assert.ok(Number.isFinite(fit.coefficient) && fit.coefficient > 0, `${selector}: invalid fit coefficient`);
+    assert.ok(Number.isFinite(fit.exponent), `${selector}: invalid fit exponent`);
+  });
   const values = config.series.flatMap(({ values }) => values);
   assert.ok(Math.min(...values) >= config.yMin && Math.max(...values) <= config.yMax, `${selector}: data outside y domain`);
 }
