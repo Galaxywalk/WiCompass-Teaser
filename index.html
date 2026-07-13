@@ -56,8 +56,8 @@
 
         <article class="scene slide scene-method" data-scene="method">
           <header class="method-heading scene-heading">
-            <p class="method-kicker scene-kicker">Pose Representation</p>
-            <h2 class="scene-headline">One pose vocabulary makes datasets comparable.</h2>
+            <p class="method-kicker scene-kicker">Method Overview</p>
+            <h2 class="scene-headline">Scale data by coverage, not volume.</h2>
           </header>
           <div class="method-vocabulary" role="img" aria-label="A pose tokenizer trained on AMASS is frozen, then encodes both AMASS motion-capture poses and mmWave dataset pose labels into one shared latent pose space without aligning raw sensor signals">
             <section class="method-inputs" aria-label="Pose-label inputs">
@@ -107,7 +107,7 @@
             </section>
           </div>
           <footer class="scene-footer method-takeaway">
-            <span>We compare pose geometry without aligning raw radar signals.</span>
+            <span>The shared pose space compares dataset coverage without aligning raw radar signals.</span>
           </footer>
         </article>
 
@@ -200,9 +200,12 @@
         </article>
 
         <article class="scene scene-finale" data-scene="summary">
-          <p class="final-kicker scene-kicker">Vision</p>
-          <h2 class="scene-headline">Robust mmWave pose estimation starts<br />with the motions missing from radar data.</h2>
-          <p class="final-summary scene-support">Use inexpensive MoCap priors to guide costly RF collection.</p>
+          <p class="final-kicker scene-kicker">Takeaway</p>
+          <h2 class="scene-headline">Scale motion coverage,<br />not just frame count.</h2>
+          <div class="final-summary scene-support">
+            <p>Use MoCap priors to reveal which poses the radar dataset is missing.</p>
+            <p>Collect those poses first, then train on a more diverse motion distribution.</p>
+          </div>
         </article>
 
         <article class="scene scene-back" data-scene="back">

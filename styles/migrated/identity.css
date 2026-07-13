@@ -143,6 +143,13 @@
   padding-left: 18px;
   border-left: 4px solid var(--green);
   color: var(--muted);
+  display: grid;
+  gap: 12px;
+  max-width: 1080px;
+}
+
+.scene-finale .final-summary p {
+  margin: 0;
 }
 
 /* Back cover ------------------------------------------------------------- */

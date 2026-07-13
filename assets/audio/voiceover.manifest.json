@@ -2,78 +2,78 @@
   "engine": "Kokoro local_tts.py",
   "language": "a",
   "voice": "af_heart",
-  "speed": 1,
+  "speed": 1.25,
   "normalization": {
     "integratedLufs": -16,
     "truePeakDbtp": -1.5,
     "loudnessRange": 11
   },
-  "sourceHash": "4f60e0034663deca8056ecb5d87ad337d006b869ad61b62b84fbda81e046ed08",
+  "sourceHash": "27203eb01255e40752477008fb6d00f3bf8cb22dd030bf68dc4e93d1d455c633",
   "duration": 89.1,
-  "generatedAt": "2026-07-13T09:26:06.145Z",
+  "generatedAt": "2026-07-13T15:15:27.882Z",
   "scenes": [
     {
       "id": "cover",
-      "sceneDuration": 14.5,
-      "speechDuration": 13.75,
+      "sceneDuration": 9.5,
+      "speechDuration": 8.825,
       "leadIn": 0.25,
-      "tail": 0.5
+      "tail": 0.425
     },
     {
       "id": "actions",
-      "sceneDuration": 11.5,
-      "speechDuration": 10.85,
+      "sceneDuration": 13.8,
+      "speechDuration": 13.2,
+      "leadIn": 0.25,
+      "tail": 0.35
+    },
+    {
+      "id": "efficiency",
+      "sceneDuration": 7,
+      "speechDuration": 6.35,
       "leadIn": 0.25,
       "tail": 0.4
     },
     {
-      "id": "efficiency",
-      "sceneDuration": 8.5,
-      "speechDuration": 7.65,
-      "leadIn": 0.25,
-      "tail": 0.6
-    },
-    {
       "id": "method",
-      "sceneDuration": 10.5,
-      "speechDuration": 9.7,
+      "sceneDuration": 10.7,
+      "speechDuration": 9.775,
       "leadIn": 0.25,
-      "tail": 0.55
+      "tail": 0.675
     },
     {
       "id": "coverage",
-      "sceneDuration": 10,
-      "speechDuration": 9.275,
-      "leadIn": 0.25,
-      "tail": 0.475
-    },
-    {
-      "id": "simulation",
-      "sceneDuration": 8.5,
-      "speechDuration": 7.65,
-      "leadIn": 0.25,
-      "tail": 0.6
-    },
-    {
-      "id": "realworld",
-      "sceneDuration": 10.6,
-      "speechDuration": 9.975,
+      "sceneDuration": 10.1,
+      "speechDuration": 9.475,
       "leadIn": 0.25,
       "tail": 0.375
     },
     {
-      "id": "summary",
-      "sceneDuration": 9.5,
-      "speechDuration": 8.475,
+      "id": "simulation",
+      "sceneDuration": 9.78,
+      "speechDuration": 9.175,
       "leadIn": 0.25,
-      "tail": 0.775
+      "tail": 0.355
+    },
+    {
+      "id": "realworld",
+      "sceneDuration": 13,
+      "speechDuration": 12.325,
+      "leadIn": 0.25,
+      "tail": 0.425
+    },
+    {
+      "id": "summary",
+      "sceneDuration": 11.3,
+      "speechDuration": 10.675,
+      "leadIn": 0.25,
+      "tail": 0.375
     },
     {
       "id": "back",
-      "sceneDuration": 5.5,
-      "speechDuration": 3.2,
+      "sceneDuration": 3.92,
+      "speechDuration": 2.75,
       "leadIn": 0.25,
-      "tail": 2.05
+      "tail": 0.92
     }
   ]
 }

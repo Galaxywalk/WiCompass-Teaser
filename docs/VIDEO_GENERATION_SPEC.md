@@ -161,6 +161,8 @@ Production rules:
 - regenerate TTS after script changes rather than time-stretching stale audio;
 - do not synthesize final narration until wording and scene timing are approved.
 
+The repository generates the locked narration at Kokoro `1.25×` speed. This keeps an approximately 180–200-word conference script natural inside the 85–90-second cut while preserving short scene-boundary pauses. Override `KOKORO_SPEED` only after rechecking every scene boundary.
+
 The macOS placeholder generator may remain available for timing diagnostics, but its output is never the final voice.
 
 ## 6. Duration

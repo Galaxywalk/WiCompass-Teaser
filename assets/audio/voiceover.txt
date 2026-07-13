@@ -1,17 +1,17 @@
-From Peking University, UESTC, Pitt, and MIT: Wi-Compass, Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation. We use data coverage to choose which motions to collect.
+From Peking University, UESTC, Pitt, and MIT: Wi-Compass, Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation.
 
-Across actions, current models fail to generalize. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.
+Millimeter-wave human pose estimation enables privacy-preserving sensing, but current models fail on unseen actions. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.
 
-On mmBody, thirty percent of the data still yields sixty-eight millimeters. More data alone does not scale performance.
+However, blindly scaling up data does not help. On the mmBody benchmark, thirty percent performs almost the same.
 
-An A-MASS-trained pose tokenizer maps motion-capture poses and radar pose labels into one shared space, without aligning raw signals.
+Wi-Compass scales data by coverage, not volume. First, an A-MASS-trained pose tokenizer maps motion-capture poses and radar pose labels into one shared space.
 
-Directional coverage finds A-MASS poses missing from radar data. Capped sampling favors sparse gaps without letting outliers dominate.
+Within this shared space, coverage finds A-MASS poses missing from radar data. Capped sampling prioritizes sparse, plausible gaps without letting outliers dominate.
 
-From two thousand to forty thousand samples, the fitted scaling laws remain twenty-five to thirty millimeters apart.
+In simulation, Wi-Compass scales while the previous trace saturates, maintaining a twenty-five to thirty millimeter advantage from two thousand to forty thousand samples.
 
-Training errors match. On held-out poses, Wi-Compass reaches 105.7 millimeters, versus 112.9 from an action list.
+In real-world evaluation, Wi-Compass generalizes better. With similar training error, it reaches 105.7 millimeters on held-out poses, versus 112.9 for action-list collection.
 
-For robust millimeter-wave pose estimation, use motion-capture priors to find missing motions and guide radar collection.
+The takeaway: for millimeter-wave pose estimation, data value comes from motion coverage, not frame count. Use motion-capture priors to find missing motions, then collect those poses first.
 
 Scan to read the paper and explore Wi-Compass.
