@@ -24,8 +24,8 @@ const sceneDefinitions = [
     id: "method",
     duration: 10.7,
     stillOffset: 5.35,
-    caption: "WiCompass scales data by coverage, not volume. First, an AMASS-trained pose tokenizer maps MoCap poses and mmWave pose labels into one shared space.",
-    voiceover: "Wi-Compass scales data by coverage, not volume. First, an A-MASS-trained pose tokenizer maps motion-capture poses and radar pose labels into one shared space.",
+    caption: "WiCompass scales data more intelligently: a MoCap prior builds a shared pose space where mmWave pose labels can be compared and their coverage measured.",
+    voiceover: "Wi-Compass scales data more intelligently: a motion-capture prior builds a shared pose space where radar pose labels can be compared and their coverage measured.",
   },
   {
     id: "coverage",
@@ -52,8 +52,8 @@ const sceneDefinitions = [
     id: "summary",
     duration: 11.3,
     stillOffset: 5.65,
-    caption: "The takeaway: for mmWave pose estimation, data value comes from motion coverage, not frame count. Use MoCap priors to find missing motions, then collect those poses first.",
-    voiceover: "The takeaway: for millimeter-wave pose estimation, data value comes from motion coverage, not frame count. Use motion-capture priors to find missing motions, then collect those poses first.",
+    caption: "The takeaway is clear: prioritize data quality over scale, treat dataset coverage as measurable, and guide costly RF collection with inexpensive MoCap priors.",
+    voiceover: "The takeaway is clear: prioritize data quality over scale, treat dataset coverage as measurable, and guide costly RF collection with inexpensive motion-capture priors.",
   },
   {
     id: "back",

@@ -4,7 +4,7 @@ Millimeter-wave human pose estimation enables privacy-preserving sensing, but cu
 
 However, blindly scaling up data does not help. On the mmBody benchmark, thirty percent performs almost the same.
 
-Wi-Compass scales data by coverage, not volume. First, an A-MASS-trained pose tokenizer maps motion-capture poses and radar pose labels into one shared space.
+Wi-Compass scales data more intelligently: a motion-capture prior builds a shared pose space where radar pose labels can be compared and their coverage measured.
 
 Within this shared space, coverage finds A-MASS poses missing from radar data. Capped sampling prioritizes sparse, plausible gaps without letting outliers dominate.
 
@@ -12,6 +12,6 @@ In simulation, Wi-Compass scales while the previous trace saturates, maintaining
 
 In real-world evaluation, Wi-Compass generalizes better. With similar training error, it reaches 105.7 millimeters on held-out poses, versus 112.9 for action-list collection.
 
-The takeaway: for millimeter-wave pose estimation, data value comes from motion coverage, not frame count. Use motion-capture priors to find missing motions, then collect those poses first.
+The takeaway is clear: prioritize data quality over scale, treat dataset coverage as measurable, and guide costly RF collection with inexpensive motion-capture priors.
 
 Scan to read the paper and explore Wi-Compass.

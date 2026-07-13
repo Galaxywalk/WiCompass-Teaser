@@ -1,11 +1,12 @@
-/* Shared-pose-space method scene.
-   The figure explains representation; the following scene explains selection. */
+/* Compact shared-pose-space method scene.
+   The figure carries one idea: a MoCap prior gives both datasets a common
+   representation, so coverage becomes directly measurable. */
 
 .scene-method {
   inset: 0;
   padding: 32px 64px 24px;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 8px;
+  gap: 12px;
   align-items: stretch;
   font-family: "Inter Teaser", sans-serif;
 }
@@ -16,49 +17,36 @@
 
 .scene-method .method-kicker {
   margin: 0 0 4px;
-  display: flex;
-  gap: 24px;
-}
-
-.scene-method code {
-  font-family: "JetBrains Mono Teaser", monospace;
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-}
-
-.scene-method sub,
-.scene-method sup {
-  font-size: var(--spec-type-annotation);
-  line-height: 0;
 }
 
 .scene-method .method-vocabulary {
-  width: 1152px;
+  width: 920px;
+  height: 292px;
   min-height: 0;
   display: grid;
-  grid-template-columns: 306px 48px 330px 48px minmax(0, 1fr);
+  grid-template-columns: 208px 64px 200px 64px 336px;
   gap: 12px;
   align-items: center;
   justify-self: center;
+  align-self: center;
 }
 
-/* The two sources are deliberately one column: both are pose geometry. */
 .scene-method .method-inputs {
-  height: 100%;
+  height: 272px;
   min-height: 0;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .scene-method .method-pose-stream {
   position: relative;
   min-height: 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  padding: 10px 14px 8px 18px;
+  grid-template-rows: auto minmax(0, 1fr);
+  padding: 14px 16px;
   border-left: 4px solid;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.055), transparent 88%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.055), transparent 92%);
 }
 
 .scene-method .method-amass {
@@ -69,24 +57,9 @@
   border-color: var(--blue);
 }
 
-.scene-method .method-pose-stream::after {
-  content: "";
-  position: absolute;
-  right: -36px;
-  top: 50%;
-  width: 36px;
-  height: 2px;
-  background: var(--line);
-  transform: scaleX(clamp(0, calc(var(--p) * 2), 1));
-  transform-origin: left;
-}
-
 .scene-method .method-pose-stream header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-  font-size: var(--spec-type-annotation);
+  display: grid;
+  gap: 3px;
   line-height: 1;
 }
 
@@ -102,60 +75,30 @@
   font-weight: 520;
 }
 
-.scene-method .method-pose-stream p {
-  margin: 0;
-  font-size: var(--spec-type-annotation);
-  font-weight: 580;
-  line-height: 1;
-}
-
-.scene-method .method-amass p {
-  color: var(--yellow);
-}
-
-.scene-method .method-mmwave p {
-  color: var(--blue);
-}
-
-.scene-method .method-pose-strip {
-  min-height: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-}
-
-.scene-method .method-pose-strip img {
-  width: 58px;
-  height: 116px;
-  object-fit: contain;
-  filter: hue-rotate(218deg) saturate(1.18);
-  opacity: clamp(0, calc(var(--p) * 2), 1);
-  transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2), 1)) * 10px));
-}
-
+.scene-method .method-pose-strip,
 .scene-method .method-label-record {
   min-height: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 16px;
 }
 
+.scene-method .method-pose-strip img,
 .scene-method .method-label-record img {
-  width: 60px;
-  height: 116px;
+  width: 48px;
+  height: 76px;
   object-fit: contain;
   opacity: clamp(0, calc(var(--p) * 2), 1);
+  transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2), 1)) * 8px));
 }
 
-.scene-method .method-label-record code {
-  color: var(--blue);
-  white-space: nowrap;
+.scene-method .method-pose-strip img {
+  filter: hue-rotate(218deg) saturate(1.18);
 }
 
-/* Two input rails merge before the single frozen encoder. */
-.scene-method .method-merge {
+.scene-method .method-merge,
+.scene-method .method-forward {
   position: relative;
   width: 100%;
   height: 100%;
@@ -164,7 +107,7 @@
 .scene-method .method-merge::before {
   content: "";
   position: absolute;
-  left: 12px;
+  left: 16px;
   top: 25%;
   bottom: 25%;
   width: 2px;
@@ -176,7 +119,7 @@
 .scene-method .method-forward::after {
   content: "";
   position: absolute;
-  left: 12px;
+  left: 16px;
   right: 0;
   top: 50%;
   height: 2px;
@@ -185,15 +128,20 @@
   transform-origin: left;
 }
 
+.scene-method .method-forward::after {
+  left: 0;
+}
+
 .scene-method .method-merge span,
 .scene-method .method-forward span {
   position: absolute;
   left: 50%;
-  top: calc(50% - 34px);
+  top: calc(50% - 36px);
   color: var(--muted);
   font-size: var(--spec-type-annotation);
   font-weight: 560;
   line-height: 1;
+  white-space: nowrap;
   transform: translateX(-50%);
 }
 
@@ -211,13 +159,14 @@
 }
 
 .scene-method .method-tokenizer {
-  height: 350px;
+  width: 200px;
+  height: 210px;
   min-width: 0;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  gap: 16px;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
   align-self: center;
-  padding: 20px 20px 18px;
+  padding: 18px 14px 16px;
   border-top: 4px solid var(--green);
   border-bottom: 2px solid var(--line);
   background: rgba(255, 255, 255, 0.035);
@@ -226,13 +175,20 @@
 .scene-method .method-tokenizer header {
   display: grid;
   gap: 4px;
+  text-align: center;
+}
+
+.scene-method .method-tokenizer header span,
+.scene-method .method-shared-latent header span {
+  color: var(--muted);
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+  line-height: 1.05;
 }
 
 .scene-method .method-tokenizer header span {
   color: var(--yellow);
-  font-size: var(--spec-type-annotation);
   font-weight: 620;
-  line-height: 1;
 }
 
 .scene-method .method-tokenizer header strong,
@@ -246,90 +202,26 @@
 
 .scene-method .method-encoding {
   display: grid;
-  grid-template-columns: 1fr 60px 1fr;
-  align-items: center;
-  gap: 8px;
-}
-
-.scene-method .method-encoding code {
-  color: var(--muted);
-  text-align: center;
-  white-space: nowrap;
+  place-items: center;
 }
 
 .scene-method .method-encoding b {
-  width: 60px;
-  height: 60px;
+  width: 68px;
+  height: 68px;
   display: grid;
   place-items: center;
   color: var(--bg);
   background: var(--green);
+  font-family: "JetBrains Mono Teaser", monospace;
   font-size: var(--spec-type-explanation);
   font-weight: 780;
   line-height: 1;
 }
 
-.scene-method .method-codebook {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 5px;
-  align-items: end;
-  height: 54px;
-}
-
-.scene-method .method-codebook i {
-  height: 100%;
-  background: var(--green);
-  opacity: 0.3;
-  transform: scaleY(clamp(0.08, calc((var(--p) - 0.16) * 2.8), 1));
-  transform-origin: bottom;
-}
-
-.scene-method .method-codebook i:nth-child(2n) {
-  height: 72%;
-  opacity: 0.56;
-}
-
-.scene-method .method-codebook i:nth-child(3n) {
-  height: 44%;
-  opacity: 0.85;
-}
-
-.scene-method .method-tokenizer footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  padding-top: 8px;
-  border-top: 1px solid var(--line);
-}
-
-.scene-method .method-tokenizer footer code {
-  color: var(--green);
-}
-
-.scene-method .method-tokenizer footer span {
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  text-align: right;
-  line-height: 1.05;
-}
-
-.scene-method .method-forward {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.scene-method .method-forward::after {
-  left: 0;
-}
-
 .scene-method .method-shared-latent {
   position: relative;
-  width: 100%;
-  height: 400px;
+  width: 336px;
+  height: 272px;
   overflow: hidden;
   align-self: center;
   border-top: 4px solid var(--green);
@@ -344,21 +236,15 @@
   position: absolute;
   left: 18px;
   right: 18px;
-  top: 16px;
+  top: 14px;
   z-index: 3;
   display: grid;
   gap: 3px;
 }
 
-.scene-method .method-shared-latent header span {
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-}
-
 .scene-method .method-shared-latent .latent-points {
   position: absolute;
-  inset: 86px 18px 54px;
+  inset: 76px 18px 52px;
 }
 
 .scene-method .method-shared-latent .latent-points i {
@@ -385,7 +271,7 @@
   right: 18px;
   bottom: 12px;
   display: flex;
-  gap: 26px;
+  gap: 24px;
   color: var(--muted);
   font-size: var(--spec-type-annotation);
   font-weight: 560;
@@ -409,10 +295,6 @@
 
 .scene-method .method-takeaway {
   color: var(--muted);
-}
-
-.scene-method .method-takeaway span {
-  color: inherit;
 }
 
 .stage[data-scene="method"] .caption-band {
