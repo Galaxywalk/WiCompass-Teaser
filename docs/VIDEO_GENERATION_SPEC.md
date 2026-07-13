@@ -85,6 +85,18 @@ Priority order:
 
 Do not create competing headlines, parallel caption systems, multiple type scales, or several equally prominent callouts. A viewer should understand where to look within one second.
 
+### Result-scene template
+
+Evidence scenes must use the figure as the primary carrier of the conclusion:
+
+- place the measured difference or scientific claim directly inside the chart, adjacent to the marks that support it;
+- reserve the bottom `.experiment-condition` rail for at most three short fragments: dataset or environment, training or collection setup, and evaluation setup;
+- style the condition rail as muted Level 4 text so it remains legible but safely skippable;
+- do not repeat a result, interpretation, or headline in the condition rail;
+- do not add a separate readout column when the same values are already labeled in the figure.
+
+This is the default template for quantitative results: **claim in the figure, conditions in the footer**.
+
 ## 3. Figure language
 
 Use purpose-built **3D or vector figures**. Redraw paper charts and diagrams for the dark video canvas rather than inserting screenshots of PDF figures, slides, websites, or notebooks.
@@ -155,6 +167,7 @@ Before picture lock, confirm:
 - every visible text element maps to Levels 1–4;
 - no text is smaller than 24 px;
 - the teaser uses one consistent hierarchy and each frame has one focal point;
+- quantitative result scenes keep the claim in the figure and only experiment conditions in the footer;
 - all scientific figures are native 3D/vector redraws;
 - screenshots appear only as necessary real-world evidence;
 - the chromatic palette contains no more than four colors with stable meanings;

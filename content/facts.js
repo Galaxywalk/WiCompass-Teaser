@@ -2,7 +2,6 @@ import { BAR_CHARTS, EFFICIENCY_READOUT_PERCENTAGES, LINE_CHARTS } from "./chart
 
 const lineConfig = (selector) => LINE_CHARTS.find((chart) => chart.selector === selector).config;
 const action = lineConfig("#loo-chart");
-const efficiency = lineConfig("#efficiency-chart");
 const scaling = lineConfig("#scaling-chart");
 const realworld = BAR_CHARTS.find((chart) => chart.selector === "#realworld-chart").config;
 
@@ -24,7 +23,6 @@ const baselineTest = realworldRows.Baseline[1];
 export const FACTS = Object.freeze({
   "action-gap": `${actionIncluded.toFixed(1)} → ${actionHeldout.toFixed(1)} mm`,
   "efficiency-title": `Only ${retainedEnd}% of the data. Nearly the same error.`,
-  "efficiency-note": `≈${Math.round(efficiency.referenceLine.value)} mm at ${retainedEnd}% data`,
   "simulation-gap": `${Math.round(Math.min(...scalingGaps))}–${Math.floor(Math.max(...scalingGaps))} mm lower OOD MPJPE`,
   "oracle-test": `${realworldRows["Recollection oracle"][1].toFixed(1)} mm`,
   "wicompass-test": `${wicompassTest.toFixed(1)} mm`,

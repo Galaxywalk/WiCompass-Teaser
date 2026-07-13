@@ -158,6 +158,39 @@ export function renderLineChart(selector, config, root = document) {
   });
   svg.append(legend);
 
+  if (config.gapAnnotation) {
+    const {
+      xValue,
+      fromSeriesKey,
+      toSeriesKey,
+      label,
+      labelSide = "right",
+    } = config.gapAnnotation;
+    const fromSeries = config.series.find(({ key }) => key === fromSeriesKey);
+    const toSeries = config.series.find(({ key }) => key === toSeriesKey);
+    if (!fromSeries?.fit || !toSeries?.fit) {
+      throw new Error(`${selector}: gap annotation requires fitted source and target series`);
+    }
+    const gapX = projectX(xValue);
+    const fromY = y(evaluateFit(fromSeries.fit, xValue));
+    const toY = y(evaluateFit(toSeries.fit, xValue));
+    const top = Math.min(fromY, toY);
+    const bottom = Math.max(fromY, toY);
+    const labelOnLeft = labelSide === "left";
+    svg.append(svgElement("path", {
+      d: `M${gapX - 9},${top} H${gapX + 9} M${gapX},${top} V${bottom} M${gapX - 9},${bottom} H${gapX + 9}`,
+      class: "chart-gap-bracket",
+      pathLength: 1,
+      "vector-effect": "non-scaling-stroke",
+    }));
+    svg.append(svgElement("text", {
+      x: gapX + (labelOnLeft ? -18 : 18),
+      y: (top + bottom) / 2 + 5,
+      "text-anchor": labelOnLeft ? "end" : "start",
+      class: "chart-gap-label",
+    }, label));
+  }
+
   if (config.referenceLine) {
     const referenceY = y(config.referenceLine.value);
     svg.append(svgElement("line", {

@@ -42,8 +42,7 @@
   align-self: stretch;
 }
 
-.scene-hook .chart-frame figcaption,
-.scene-redundancy .chart-frame figcaption {
+.scene-hook .chart-frame figcaption {
   top: 0;
   color: var(--muted);
   font-family: "Inter Teaser", sans-serif;
@@ -66,22 +65,6 @@
   right: 0;
   left: auto;
   text-align: right;
-}
-
-.scene-redundancy .efficiency-frame figcaption {
-  right: 0;
-  left: 0;
-  align-items: baseline;
-  justify-content: flex-end;
-}
-
-.scene-redundancy .efficiency-frame figcaption strong {
-  color: var(--yellow);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-explanation);
-  font-weight: 740;
-  letter-spacing: -0.025em;
-  line-height: 1;
 }
 
 .scene-hook .chart-grid text,
@@ -193,9 +176,8 @@
   font-weight: 680;
 }
 
-/* Replace the legacy note-band treatment with one clear claim and one aid. */
-.scene-hook .slide-note,
-.scene-redundancy .slide-note {
+/* The action split keeps one explicit consequence beneath the chart. */
+.scene-hook .slide-note {
   min-height: 66px;
   gap: 24px;
   align-items: baseline;
@@ -204,8 +186,7 @@
   font-family: "Inter Teaser", sans-serif;
 }
 
-.scene-hook .slide-note strong,
-.scene-redundancy .slide-note strong {
+.scene-hook .slide-note strong {
   color: var(--fg);
   font-size: var(--spec-type-explanation);
   font-weight: 740;
@@ -213,8 +194,7 @@
   line-height: 1;
 }
 
-.scene-hook .slide-note span,
-.scene-redundancy .slide-note span {
+.scene-hook .slide-note span {
   color: var(--muted);
   font-size: var(--spec-type-annotation);
   font-weight: 520;

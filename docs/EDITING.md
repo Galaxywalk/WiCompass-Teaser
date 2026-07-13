@@ -19,6 +19,8 @@ npm run check
 npm run frame -- --scene realworld
 ```
 
+For quantitative evidence, put the conclusion in the chart configuration (`gapAnnotation` or `comparison`) and use the shared `.experiment-condition` footer only for concise setup metadata. Do not repeat chart values in an HTML side rail.
+
 ## Change visual format
 
 Edit `styles/tokens.css` for global design decisions, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for each scene family. Do not put colors, fonts, or pixel layout values in content or runtime modules. Keep `method` and `coverage` as one coherent mechanism sequence when revising them.

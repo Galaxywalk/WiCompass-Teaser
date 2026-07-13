@@ -300,6 +300,28 @@ h2 { font-size: var(--type-title); }
   font-weight: 680;
 }
 
+/* Shared evidence footer: optional setup metadata, never a repeated result. */
+.experiment-condition {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-top: 8px;
+  border-top: 2px solid var(--line);
+  color: var(--quiet);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+.experiment-condition span + span {
+  margin-left: 22px;
+  padding-left: 22px;
+  border-left: 1px solid var(--line);
+}
+
 .science-chart {
   display: block;
   width: 100%;
@@ -317,7 +339,9 @@ h2 { font-size: var(--type-title); }
 .reference-label,
 .fit-label,
 .bar-label,
-.bar-value {
+.bar-value,
+.chart-gap-label,
+.bar-comparison-label {
   fill: var(--muted);
   font-family: "Source Sans 3 Local", sans-serif;
   font-size: var(--type-utility);
@@ -579,43 +603,22 @@ h2 { font-size: var(--type-title); }
 #scaling-chart .chart-legend-marker.series-wicompass { fill: var(--green); }
 #scaling-chart .chart-legend-marker.series-baseline { fill: var(--yellow); }
 
-.simulation-takeaway {
-  display: flex;
-  gap: 22px;
-  align-items: baseline;
-  padding-top: 8px;
-  border-top: 2px solid var(--line);
+#scaling-chart .chart-gap-bracket {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.28) * 3), 1));
 }
-.simulation-takeaway strong {
-  color: var(--green);
-  font-size: var(--spec-type-explanation);
-  font-weight: 760;
-  letter-spacing: -0.025em;
-  line-height: 1;
-}
-.simulation-takeaway span {
-  color: var(--muted);
+#scaling-chart .chart-gap-label {
+  fill: var(--green);
+  font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-annotation);
-  font-weight: 520;
+  font-weight: 720;
+  opacity: clamp(0, calc((var(--p) - 0.3) * 6), 1);
 }
 
 .stage[data-scene="simulation"] .caption-band { display: none; }
-
-.realworld-layout {
-  width: 1080px;
-  height: 390px;
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 36px;
-  justify-self: center;
-}
-.realworld-frame { height: 390px; }
-.realworld-facts { display: grid; align-content: center; gap: 22px; }
-.realworld-facts div { display: grid; padding-left: 16px; border-left: 3px solid var(--line); }
-.realworld-facts div:nth-child(2) { border-color: var(--green); }
-.realworld-facts div:nth-child(3) { border-color: var(--yellow); }
-.realworld-facts strong { color: var(--fg); font-size: var(--type-deck); font-weight: 780; font-variant-numeric: tabular-nums; }
-.realworld-facts span { color: var(--muted); font-size: var(--type-utility); font-weight: 600; }
 
 .bar-training { fill: rgba(88, 196, 221, 0.48); stroke: var(--blue); stroke-width: 2; }
 .bar-testing { fill: rgba(244, 211, 69, 0.48); stroke: var(--yellow); stroke-width: 2; }

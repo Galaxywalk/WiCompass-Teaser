@@ -57,7 +57,7 @@ export const LINE_CHARTS = Object.freeze([
       xLabelBottom: 4,
       xTickY: 342,
       xTicks: [0, 2, 4, 6, 7].map((index) => ({ index, label: `${EFFICIENCY_PERCENTAGES[index]}%` })),
-      referenceLine: { value: 68.2, label: "≈68 mm plateau from 100% to 30%" },
+      referenceLine: { value: 68.2, label: "mean 68.2 mm" },
       series: [
         { key: "primary", label: "mmBody", values: [67.22, 68.94, 68.55, 66.40, 67.82, 69.53, 68.68, 68.55] },
       ],
@@ -85,6 +85,13 @@ export const LINE_CHARTS = Object.freeze([
       ],
       showLegend: false,
       pointRadius: 5,
+      gapAnnotation: {
+        xValue: 32,
+        fromSeriesKey: "baseline",
+        toSeriesKey: "wicompass",
+        label: "25–30 mm lower OOD MPJPE",
+        labelSide: "left",
+      },
       series: [
         {
           key: "wicompass",
@@ -127,15 +134,23 @@ export const BAR_CHARTS = Object.freeze([
   {
     selector: "#realworld-chart",
     config: {
-      padding: { left: 90, right: 18, top: 72, bottom: 64 },
+      padding: { left: 96, right: 24, top: 72, bottom: 64 },
       yMin: 0,
       yMax: 130,
       yTicks: [0, 30, 60, 90, 120],
-      yLabelX: 24,
-      legendY: 50,
-      legendStep: 215,
-      barLabelY: 348,
-      barWidth: 60,
+      yLabelX: 26,
+      legendY: 34,
+      legendStep: 230,
+      legendLabels: ["training split", "held-out benchmark"],
+      barLabelY: 354,
+      barWidth: 76,
+      barGap: 16,
+      comparison: {
+        groupA: 1,
+        groupB: 2,
+        seriesIndex: 1,
+        label: "7.2 mm lower",
+      },
       groups: [
         { label: "Recollection oracle", values: [49.6, 95.7] },
         { label: "WiCompass", values: [48.3, 105.7] },

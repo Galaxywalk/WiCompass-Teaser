@@ -44,10 +44,11 @@
             <h2 data-fact="efficiency-title"></h2>
           </header>
           <figure class="chart-frame efficiency-frame">
-            <figcaption><strong><span id="data-used-number">100</span>% data kept</strong></figcaption>
             <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
           </figure>
-          <footer class="slide-note"><strong data-fact="efficiency-note"></strong><span>Blindly expanding a dataset does not scale performance.</span></footer>
+          <footer class="experiment-condition" aria-label="Experiment conditions">
+            <span>mmBody</span><span>random 100% to 30% training subsets</span><span>original test split</span>
+          </footer>
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
@@ -179,7 +180,9 @@
           <figure class="chart-frame simulation-frame">
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
-          <footer class="simulation-takeaway"><strong data-fact="simulation-gap"></strong><span>across the same 2k–40k data budget</span></footer>
+          <footer class="experiment-condition" aria-label="Experiment conditions">
+            <span>RF Genesis simulation</span><span>2k to 40k training poses</span><span>fixed 40k-pose OOD test set</span>
+          </footer>
         </article>
 
         <article class="scene slide scene-realworld" data-scene="realworld">
@@ -187,18 +190,12 @@
             <p class="eyebrow">Evidence  Real-world deployment</p>
             <h2>Held-out poses reveal the real difference.</h2>
           </header>
-          <div class="realworld-layout">
-            <figure class="chart-frame realworld-frame">
-              <figcaption>8k training frames and an 8k-frame held-out benchmark</figcaption>
-              <svg id="realworld-chart" class="science-chart" viewBox="0 0 820 360" role="img" aria-label="Training and testing MPJPE for recollection, WiCompass, and baseline data collection"></svg>
-            </figure>
-            <aside class="realworld-facts">
-              <div><strong data-fact="oracle-test"></strong><span>test-matched oracle</span></div>
-              <div><strong data-fact="wicompass-test"></strong><span>WiCompass test MPJPE</span></div>
-              <div><strong data-fact="baseline-test"></strong><span>baseline test MPJPE</span></div>
-            </aside>
-          </div>
-          <footer class="slide-note"><strong data-fact="realworld-improvement"></strong><span>under the same 8k-frame budget</span></footer>
+          <figure class="chart-frame realworld-frame">
+            <svg id="realworld-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="Training and held-out MPJPE for recollection, WiCompass, and baseline data collection"></svg>
+          </figure>
+          <footer class="experiment-condition" aria-label="Experiment conditions">
+            <span>2 volunteers</span><span>8k training frames per strategy</span><span>fixed 8k-frame exercise benchmark</span>
+          </footer>
         </article>
 
         <article class="scene scene-finale" data-scene="summary">

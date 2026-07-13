@@ -2,7 +2,7 @@
 
 .scene-realworld {
   inset: 30px 64px 32px;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 10px;
   align-items: stretch;
   font-family: "Inter Teaser", sans-serif;
@@ -27,23 +27,11 @@
   line-height: 1.02;
 }
 
-.scene-realworld .slide-note,
 .stage[data-scene="realworld"] .caption-band {
   display: none;
 }
 
-/* Figure 9(b): the plot dominates; the three values form a quiet readout rail. */
-.scene-realworld .realworld-layout {
-  width: 1152px;
-  height: auto;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 272px;
-  gap: 34px;
-  align-self: stretch;
-  justify-self: center;
-}
-
+/* Figure 9(b): one full-width plot; the comparison lives on its bars. */
 .scene-realworld .realworld-frame {
   width: 100%;
   height: auto;
@@ -51,20 +39,12 @@
   align-self: stretch;
 }
 
-.scene-realworld .realworld-frame figcaption {
-  left: 0;
-  top: 0;
-  color: var(--fg);
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-  line-height: 1.1;
-}
-
 .scene-realworld .chart-grid text,
 .scene-realworld .chart-legend text,
 .scene-realworld .axis-label,
 .scene-realworld .bar-label,
-.scene-realworld .bar-value {
+.scene-realworld .bar-value,
+.scene-realworld .bar-comparison-label {
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-annotation);
   font-weight: 520;
@@ -90,6 +70,12 @@
   stroke: var(--green);
 }
 
+/* All six values are visible immediately; only the held-out comparison leads. */
+.scene-realworld .realworld-bar {
+  transform: none;
+  opacity: 0.22;
+}
+
 .scene-realworld .bar-training {
   fill: color-mix(in srgb, var(--yellow) 38%, transparent);
   stroke: var(--yellow);
@@ -109,46 +95,45 @@
 
 .scene-realworld .bar-value {
   font-weight: 700;
+  opacity: 0.3;
 }
 
-.scene-realworld .realworld-facts {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  align-content: stretch;
-  gap: 14px;
-  padding: 40px 0 26px;
+.scene-realworld .comparison-bar,
+.scene-realworld .comparison-value {
+  opacity: clamp(0.22, calc((var(--p) - 0.02) * 3), 1);
 }
 
-.scene-realworld .realworld-facts div {
-  display: grid;
-  align-content: center;
-  gap: 4px;
-  padding: 10px 0 10px 18px;
-  border-left: 4px solid var(--yellow);
+.scene-realworld .comparison-bar.group-1 {
+  fill: color-mix(in srgb, var(--green) 48%, transparent);
+  stroke: var(--green);
+  stroke-width: 4;
 }
 
-.scene-realworld .realworld-facts div:nth-child(2) {
-  border-color: var(--green);
+.scene-realworld .comparison-bar.group-2 {
+  fill: color-mix(in srgb, var(--red) 44%, transparent);
+  stroke: var(--red);
+  stroke-width: 4;
 }
 
-.scene-realworld .realworld-facts div:nth-child(3) {
-  border-color: var(--red);
+.scene-realworld .comparison-value.group-1 {
+  fill: var(--green);
 }
 
-.scene-realworld .realworld-facts strong {
-  color: var(--fg);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-explanation);
-  font-weight: 740;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.025em;
-  line-height: 1;
+.scene-realworld .comparison-value.group-2 {
+  fill: var(--red);
 }
 
-.scene-realworld .realworld-facts span {
-  color: var(--muted);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  line-height: 1.12;
+.scene-realworld .bar-comparison-bracket {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.22) * 3.2), 1));
+  opacity: 0.88;
+}
+
+.scene-realworld .bar-comparison-label {
+  fill: var(--fg);
+  font-weight: 720;
+  opacity: clamp(0, calc((var(--p) - 0.3) * 6), 1);
 }
