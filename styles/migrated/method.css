@@ -18,10 +18,6 @@
   margin: 0 0 4px;
   display: flex;
   gap: 24px;
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 620;
-  line-height: 1.05;
 }
 
 .scene-method h2 {

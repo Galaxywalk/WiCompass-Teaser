@@ -101,6 +101,18 @@ h2 { font-size: var(--type-title); }
   line-height: 1;
 }
 
+/* One chapter-label treatment across Question, Insight, Method, and Evidence. */
+.scene-kicker {
+  margin-top: 0;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-explanation);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
 .slide-note {
   width: 100%;
   min-height: 48px;
@@ -314,12 +326,6 @@ h2 { font-size: var(--type-title); }
   font-weight: 520;
   line-height: 1.08;
   white-space: nowrap;
-}
-
-.experiment-condition span + span {
-  margin-left: 22px;
-  padding-left: 22px;
-  border-left: 1px solid var(--line);
 }
 
 .science-chart {
@@ -558,10 +564,6 @@ h2 { font-size: var(--type-title); }
 .simulation-heading { align-self: start; }
 .simulation-kicker {
   margin-bottom: 2px;
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 650;
-  line-height: 1.1;
 }
 .scene-simulation h2 {
   font-size: var(--spec-type-section);
@@ -634,7 +636,7 @@ h2 { font-size: var(--type-title); }
   justify-items: start;
   padding: 110px;
 }
-.final-kicker { margin-bottom: 18px; color: var(--yellow); font-size: var(--type-deck); font-weight: 700; }
+.final-kicker { margin-bottom: 18px; }
 .scene-finale h2 { font-size: var(--type-hero); }
 .final-summary { margin-top: 28px; color: var(--muted); font-size: var(--type-body); font-weight: 600; }
 

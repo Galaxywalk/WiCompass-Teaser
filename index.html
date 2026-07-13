@@ -28,7 +28,7 @@
 
         <article class="scene slide scene-hook" data-scene="actions">
           <header class="slide-heading">
-            <p class="eyebrow">Question</p>
+            <p class="eyebrow scene-kicker">Question</p>
             <h2>Current models do not generalize across actions.</h2>
           </header>
           <figure class="chart-frame action-chart">
@@ -40,20 +40,20 @@
 
         <article class="scene slide scene-redundancy" data-scene="efficiency">
           <header class="slide-heading">
-            <p class="eyebrow">Insight</p>
+            <p class="eyebrow scene-kicker">Insight</p>
             <h2 data-fact="efficiency-title"></h2>
           </header>
           <figure class="chart-frame efficiency-frame">
             <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
           </figure>
           <footer class="experiment-condition" aria-label="Experiment conditions">
-            <span>mmBody</span><span>random 100% to 30% training subsets</span><span>original test split</span>
+            <span>On mmBody, random 100% to 30% training subsets are evaluated on the original test split.</span>
           </footer>
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
           <header class="method-heading">
-            <p class="method-kicker"><span>Method</span><span>Shared pose representation</span></p>
+            <p class="method-kicker scene-kicker"><span>Method</span><span>Shared pose representation</span></p>
             <h2>One pose vocabulary reveals coverage gaps.</h2>
           </header>
           <div class="method-vocabulary" role="img" aria-label="A pose tokenizer trained on AMASS is frozen, then encodes both AMASS motion-capture poses and mmWave dataset pose labels into one shared latent pose space without aligning raw sensor signals">
@@ -111,7 +111,7 @@
 
         <article class="scene slide scene-coverage" data-scene="coverage">
           <header class="coverage-spec-heading">
-            <p class="coverage-spec-kicker">Directional coverage  AMASS → mmWave</p>
+            <p class="coverage-spec-kicker scene-kicker">Directional coverage  AMASS → mmWave</p>
             <h2>Find the poses the radar dataset never saw.</h2>
           </header>
           <div class="coverage-spec-flow" role="img" aria-label="Directional nearest-neighbor coverage identifies AMASS poses outside the local support of the mmWave dataset, then capped probability-proportional-to-size sampling favors sparse gaps without allowing extreme outliers to dominate.">
@@ -174,32 +174,32 @@
 
         <article class="scene slide scene-simulation" data-scene="simulation">
           <header class="simulation-heading">
-            <p class="simulation-kicker">Evidence  Simulation</p>
-            <h2>Coverage-aware data keeps scaling.</h2>
+            <p class="simulation-kicker scene-kicker">Simulation Evaluation</p>
+            <h2>WiCompass keeps scaling.</h2>
           </header>
           <figure class="chart-frame simulation-frame">
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
           <footer class="experiment-condition" aria-label="Experiment conditions">
-            <span>RF Genesis simulation</span><span>2k to 40k training poses</span><span>fixed 40k-pose OOD test set</span>
+            <span>RF Genesis uses 2k to 40k training poses with a fixed 40k-pose OOD test set.</span>
           </footer>
         </article>
 
         <article class="scene slide scene-realworld" data-scene="realworld">
           <header class="slide-heading">
-            <p class="eyebrow">Evidence  Real-world deployment</p>
+            <p class="eyebrow scene-kicker">Real-world Evaluation</p>
             <h2>Held-out poses reveal the real difference.</h2>
           </header>
           <figure class="chart-frame realworld-frame">
             <svg id="realworld-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="Training and held-out MPJPE for recollection, WiCompass, and baseline data collection"></svg>
           </figure>
           <footer class="experiment-condition" aria-label="Experiment conditions">
-            <span>2 volunteers</span><span>8k training frames per strategy</span><span>fixed 8k-frame exercise benchmark</span>
+            <span>Two volunteers provide 8k training frames per strategy for a fixed 8k-frame exercise benchmark.</span>
           </footer>
         </article>
 
         <article class="scene scene-finale" data-scene="summary">
-          <p class="final-kicker">Vision</p>
+          <p class="final-kicker scene-kicker">Vision</p>
           <h2>Robust mmWave pose estimation starts<br />with the motions missing from radar data.</h2>
           <p class="final-summary">Use inexpensive MoCap priors to guide costly RF collection.</p>
         </article>

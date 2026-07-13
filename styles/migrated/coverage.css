@@ -16,11 +16,6 @@
 
 .coverage-spec-kicker {
   margin-bottom: 4px;
-  color: var(--yellow);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 640;
-  line-height: 1.05;
 }
 
 .scene-coverage h2 {

@@ -18,11 +18,6 @@
 .scene-hook .eyebrow,
 .scene-redundancy .eyebrow {
   margin-bottom: 4px;
-  color: var(--muted);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 620;
-  line-height: 1.05;
 }
 
 .scene-hook h2,

@@ -62,6 +62,8 @@ Example: `Radar observes only sparse reflections.`
 - Locked 720p token: **36 px**
 - Keep it short enough to read without competing with the figure
 
+The chapter label at the upper left of each content scene also uses the locked **36 px** Level 3 token through `.scene-kicker`. Keep its Inter weight, muted color, spacing, and line height identical across Question, Insight, Method, Evaluation, and Vision scenes. Change only the label text; do not create scene-specific kicker typography.
+
 ### Level 4 — Annotation
 
 Use for arrow labels, figure annotations, legends, axes, and short supporting labels.
@@ -90,8 +92,9 @@ Do not create competing headlines, parallel caption systems, multiple type scale
 Evidence scenes must use the figure as the primary carrier of the conclusion:
 
 - place the measured difference or scientific claim directly inside the chart, adjacent to the marks that support it;
-- reserve the bottom `.experiment-condition` rail for at most three short fragments: dataset or environment, training or collection setup, and evaluation setup;
+- reserve the bottom `.experiment-condition` rail for one short natural-language sentence covering only the essential dataset/environment and evaluation setup;
 - style the condition rail as muted Level 4 text so it remains legible but safely skippable;
+- do not split the condition sentence with vertical rules, pipes, badges, or metadata chips;
 - do not repeat a result, interpretation, or headline in the condition rail;
 - do not add a separate readout column when the same values are already labeled in the figure.
 

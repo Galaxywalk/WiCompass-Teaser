@@ -14,10 +14,6 @@
 
 .scene-realworld .eyebrow {
   margin-bottom: 4px;
-  color: var(--yellow);
-  font-size: var(--spec-type-annotation);
-  font-weight: 650;
-  line-height: 1.08;
 }
 
 .scene-realworld h2 {
