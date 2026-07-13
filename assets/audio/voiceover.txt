@@ -6,7 +6,7 @@ However, blindly scaling up data does not help. On the mmBody benchmark, thirty 
 
 Wi-Compass scales data more intelligently: a motion-capture prior builds a shared pose space where radar pose labels can be compared and their coverage measured.
 
-Within this shared space, coverage finds A-MASS poses missing from radar data. Capped sampling prioritizes sparse, plausible gaps without letting outliers dominate.
+Within this shared space, coverage finds A-MASS motions missing from radar data. Motions farther from millimeter-wave coverage receive higher collection priority.
 
 In simulation, Wi-Compass scales while the previous trace saturates, maintaining a twenty-five to thirty millimeter advantage from two thousand to forty thousand samples.
 

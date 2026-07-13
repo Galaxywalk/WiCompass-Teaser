@@ -31,8 +31,8 @@ const sceneDefinitions = [
     id: "coverage",
     duration: 10.1,
     stillOffset: 5.05,
-    caption: "Within this shared space, coverage finds AMASS poses missing from radar data. Capped sampling prioritizes sparse, plausible gaps without letting outliers dominate.",
-    voiceover: "Within this shared space, coverage finds A-MASS poses missing from radar data. Capped sampling prioritizes sparse, plausible gaps without letting outliers dominate.",
+    caption: "Within this shared space, coverage finds AMASS motions missing from radar data. Motions farther from mmWave coverage receive higher collection priority.",
+    voiceover: "Within this shared space, coverage finds A-MASS motions missing from radar data. Motions farther from millimeter-wave coverage receive higher collection priority.",
   },
   {
     id: "simulation",

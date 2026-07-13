@@ -8,9 +8,9 @@
     "truePeakDbtp": -1.5,
     "loudnessRange": 11
   },
-  "sourceHash": "39d0e4dd5c6579219d11a472a65baf68a47cfa3d1f9213549bb8cf3688bd9d71",
+  "sourceHash": "8fab868ebef9566f0cd66d989a9a7e533157a10a523a2f382b6e5782d7a317ef",
   "duration": 89.1,
-  "generatedAt": "2026-07-13T15:35:30.239Z",
+  "generatedAt": "2026-07-13T15:57:09.540Z",
   "scenes": [
     {
       "id": "cover",
@@ -43,9 +43,9 @@
     {
       "id": "coverage",
       "sceneDuration": 10.1,
-      "speechDuration": 9.475,
+      "speechDuration": 8.975,
       "leadIn": 0.25,
-      "tail": 0.375
+      "tail": 0.875
     },
     {
       "id": "simulation",

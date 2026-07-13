@@ -57,7 +57,7 @@
         <article class="scene slide scene-method" data-scene="method">
           <header class="method-heading scene-heading">
             <p class="method-kicker scene-kicker">Method</p>
-            <h2 class="scene-headline">MoCap priors build a shared pose space to measure mmWave coverage.</h2>
+            <h2 class="scene-headline">MoCap priors build a shared pose space to measure mmWave data coverage.</h2>
           </header>
           <div class="method-vocabulary" role="img" aria-label="A pose encoder trained on AMASS maps both motion-capture poses and mmWave dataset pose labels into one shared latent space where mmWave coverage can be measured">
             <section class="method-inputs" aria-label="Pose-label inputs">
@@ -106,12 +106,8 @@
             <p class="coverage-spec-kicker scene-kicker">Method</p>
             <h2 class="scene-headline">Find the poses the radar dataset never saw.</h2>
           </header>
-          <div class="coverage-spec-flow" role="img" aria-label="Directional nearest-neighbor coverage identifies AMASS poses outside the local support of the mmWave dataset, then capped probability-proportional-to-size sampling favors sparse gaps without allowing extreme outliers to dominate.">
+          <div class="coverage-spec-flow" role="img" aria-label="A shared pose-space map identifies AMASS motions not covered by mmWave data, then gives motions with larger coverage gaps higher collection priority.">
             <section class="coverage-directional">
-              <header class="coverage-block-heading">
-                <strong>AMASS defines each local radius</strong>
-                <code>k = 4</code>
-              </header>
               <div class="coverage-field-shell">
                 <div class="coverage-field" id="coverage-field"></div>
                 <div class="coverage-local-test" aria-hidden="true">
@@ -121,13 +117,9 @@
                   <span class="coverage-nearest"></span>
                 </div>
               </div>
-              <div class="coverage-decision">
-                <code>d(aᵢ, NN₁(aᵢ, ΦmmWave)) &gt; rᵢ⁽ᵏ⁾</code>
-                <strong>gap set ΦG</strong>
-              </div>
               <div class="coverage-spec-key">
-                <span class="key-amass">AMASS candidate</span>
-                <span class="key-mmwave">nearest mmWave</span>
+                <span class="key-amass">MoCap prior</span>
+                <span class="key-mmwave">mmWave coverage</span>
                 <span class="key-gap">uncovered</span>
               </div>
             </section>
@@ -136,29 +128,14 @@
 
             <section class="coverage-sampling">
               <header class="coverage-sampling-heading">
-                <strong>Prioritize sparse gaps</strong>
-                <code>wᵢ = min(rᵢ⁽⁴⁾,<br />Q₉₅({r⁽⁴⁾}))</code>
+                <strong>Larger coverage gap, higher priority</strong>
               </header>
-              <div class="coverage-weight-plot" aria-label="Sampling weight rises with gap radius and is capped at the 95th percentile">
-                <div class="coverage-cap"><span>Q₉₅ cap</span></div>
-                <div class="coverage-weight-bars" aria-hidden="true">
-                  <i style="--radius:0.24"></i>
-                  <i style="--radius:0.36"></i>
-                  <i style="--radius:0.48"></i>
-                  <i style="--radius:0.58"></i>
-                  <i style="--radius:0.65"></i>
-                  <i class="outlier" style="--radius:0.96"></i>
-                </div>
+              <div class="coverage-picked-poses" aria-label="Uncovered target poses receive increasing collection priority as their distance from mmWave coverage grows">
+                <figure style="--priority:0.35"><img src="assets/derived/smplx_pose_1.svg" alt="Target pose near the mmWave coverage boundary" /></figure>
+                <figure style="--priority:0.65"><img src="assets/derived/smplx_pose_2.svg" alt="Target pose with a medium coverage gap" /></figure>
+                <figure style="--priority:1"><img src="assets/derived/smplx_pose_3.svg" alt="Target pose far from mmWave coverage" /></figure>
               </div>
-              <div class="coverage-weight-axis"><span>dense</span><span>sparse</span><span>outlier</span></div>
-              <div class="coverage-picked-poses" aria-label="Selected sparse but plausible target poses">
-                <img src="assets/derived/smplx_pose_1.svg" alt="Selected SMPL-X target pose" />
-                <img src="assets/derived/smplx_pose_2.svg" alt="Selected SMPL-X target pose" />
-                <img src="assets/derived/smplx_pose_3.svg" alt="Selected SMPL-X target pose" />
-              </div>
-              <footer class="coverage-sampling-note">
-                <span>The Q₉₅ cap prevents extreme gaps from dominating.</span>
-              </footer>
+              <div class="coverage-priority-axis"><span>near coverage</span><i></i><span>far from mmWave data</span></div>
             </section>
           </div>
         </article>
