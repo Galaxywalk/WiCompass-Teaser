@@ -4,7 +4,7 @@ The repository has three intentional layers. A change should normally touch only
 
 Visual decisions must follow [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md). The architecture describes where a decision belongs; the specification defines which decisions are allowed.
 
-The current timeline has nine scenes and runs 86.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`, `coverage`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
+The current timeline has nine scenes and runs 89.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`, `coverage`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
 
 ## Content
 
@@ -23,7 +23,7 @@ The current timeline has nine scenes and runs 86.1 seconds. Its content order is
 - `styles.css`: shared shell, layout components, chart primitives, and CSS timeline animation.
 - `styles/migrated/`: focused presentation overrides for scene families already moved to the new system.
 
-JavaScript chart configs use semantic series names, while CSS owns their color and appearance. `cover`, `actions`, `efficiency`, `simulation`, `realworld`, `summary`, and `back` are migrated. `method` and `coverage` deliberately remain as the paired mechanism redesign still to complete. New scene work must use Inter, reserve JetBrains Mono for math/code, use only the four specification tokens, and keep all visible text at least 24 px.
+JavaScript chart configs use semantic series names, while CSS owns their color and appearance. All nine scenes are migrated. New scene work must use Inter, reserve JetBrains Mono for math/code, use only the four specification tokens, and keep all visible text at least 24 px.
 
 ## Functionality
 

@@ -52,6 +52,16 @@
   line-height: 1.1;
 }
 
+.scene-hook .chart-legend-marker.series-included {
+  fill: var(--green);
+  stroke: var(--green);
+}
+
+.scene-hook .chart-legend-marker.series-heldout {
+  fill: var(--red);
+  stroke: var(--red);
+}
+
 .scene-hook .chart-frame figcaption {
   right: 0;
   left: auto;

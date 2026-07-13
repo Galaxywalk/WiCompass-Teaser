@@ -3,11 +3,11 @@ import { PROJECT } from "../../content/project.js";
 function renderTitle(element) {
   const name = document.createElement("span");
   name.textContent = PROJECT.name;
-  const breakAfterName = element.closest(".scene-back") ? document.createElement("br") : " ";
+  const stacked = Boolean(element.closest(".scene-cover, .scene-back"));
+  const separator = stacked ? document.createElement("br") : ": ";
   element.replaceChildren(
     name,
-    ":",
-    breakAfterName,
+    separator,
     PROJECT.subtitleLines[0],
     document.createElement("br"),
     PROJECT.subtitleLines[1],

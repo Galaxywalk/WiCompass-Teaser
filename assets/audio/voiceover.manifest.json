@@ -8,51 +8,51 @@
     "truePeakDbtp": -1.5,
     "loudnessRange": 11
   },
-  "sourceHash": "ced177b9639fa8f53dc3ce867a2ba2d452b075f1d8afc8b6cac68983fb8210ac",
-  "duration": 86.1,
-  "generatedAt": "2026-07-13T06:40:02.568Z",
+  "sourceHash": "4f60e0034663deca8056ecb5d87ad337d006b869ad61b62b84fbda81e046ed08",
+  "duration": 89.1,
+  "generatedAt": "2026-07-13T09:26:06.145Z",
   "scenes": [
     {
       "id": "cover",
-      "sceneDuration": 9,
-      "speechDuration": 8.2,
+      "sceneDuration": 14.5,
+      "speechDuration": 13.75,
+      "leadIn": 0.25,
+      "tail": 0.5
+    },
+    {
+      "id": "actions",
+      "sceneDuration": 11.5,
+      "speechDuration": 10.85,
+      "leadIn": 0.25,
+      "tail": 0.4
+    },
+    {
+      "id": "efficiency",
+      "sceneDuration": 8.5,
+      "speechDuration": 7.65,
+      "leadIn": 0.25,
+      "tail": 0.6
+    },
+    {
+      "id": "method",
+      "sceneDuration": 10.5,
+      "speechDuration": 9.7,
       "leadIn": 0.25,
       "tail": 0.55
     },
     {
-      "id": "actions",
-      "sceneDuration": 10.5,
-      "speechDuration": 9.625,
-      "leadIn": 0.25,
-      "tail": 0.625
-    },
-    {
-      "id": "efficiency",
-      "sceneDuration": 9,
-      "speechDuration": 7.65,
-      "leadIn": 0.25,
-      "tail": 1.1
-    },
-    {
-      "id": "method",
-      "sceneDuration": 12,
-      "speechDuration": 10.675,
-      "leadIn": 0.25,
-      "tail": 1.075
-    },
-    {
       "id": "coverage",
-      "sceneDuration": 12,
-      "speechDuration": 11.45,
+      "sceneDuration": 10,
+      "speechDuration": 9.275,
       "leadIn": 0.25,
-      "tail": 0.3
+      "tail": 0.475
     },
     {
       "id": "simulation",
-      "sceneDuration": 10,
+      "sceneDuration": 8.5,
       "speechDuration": 7.65,
       "leadIn": 0.25,
-      "tail": 2.1
+      "tail": 0.6
     },
     {
       "id": "realworld",
@@ -63,17 +63,17 @@
     },
     {
       "id": "summary",
-      "sceneDuration": 5,
-      "speechDuration": 3.25,
+      "sceneDuration": 9.5,
+      "speechDuration": 8.475,
       "leadIn": 0.25,
-      "tail": 1.5
+      "tail": 0.775
     },
     {
       "id": "back",
-      "sceneDuration": 8,
-      "speechDuration": 7.05,
+      "sceneDuration": 5.5,
+      "speechDuration": 3.2,
       "leadIn": 0.25,
-      "tail": 0.7
+      "tail": 2.05
     }
   ]
 }

@@ -21,7 +21,7 @@ npm run frame -- --scene realworld
 
 ## Change visual format
 
-Edit `styles/tokens.css` for global design decisions, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for a migrated scene family. Do not put colors, fonts, or pixel layout values in content or runtime modules. `method` and `coverage` remain the only pending visual migrations; redesign them as one coherent mechanism sequence.
+Edit `styles/tokens.css` for global design decisions, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for each scene family. Do not put colors, fonts, or pixel layout values in content or runtime modules. Keep `method` and `coverage` as one coherent mechanism sequence when revising them.
 
 ## Add a scene
 

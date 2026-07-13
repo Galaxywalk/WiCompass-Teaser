@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/migrated/identity.css" />
     <link rel="stylesheet" href="styles/migrated/evidence.css" />
     <link rel="stylesheet" href="styles/migrated/deployment.css" />
+    <link rel="stylesheet" href="styles/migrated/method.css" />
+    <link rel="stylesheet" href="styles/migrated/coverage.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -15,19 +17,21 @@
         <div class="paper-grid" aria-hidden="true"></div>
 
         <article class="scene scene-cover" data-scene="cover">
+          <div class="cover-task-background" aria-hidden="true"></div>
           <div class="institution-logos" data-project-logos aria-label="Participating institutions"></div>
           <p class="cover-conference" data-project-conference></p>
-          <h1 data-project-title></h1>
+          <div class="cover-hero">
+            <h1 data-project-title></h1>
+          </div>
           <p class="cover-authors" data-project-authors></p>
         </article>
 
         <article class="scene slide scene-hook" data-scene="actions">
           <header class="slide-heading">
             <p class="eyebrow">Question</p>
-            <h2>Held-out actions expose a 110 mm gap.</h2>
+            <h2>Current models do not generalize across actions.</h2>
           </header>
           <figure class="chart-frame action-chart">
-            <figcaption>Joint error across 27 discrete actions</figcaption>
             <svg id="loo-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
             <div class="chart-callout"><span>left-hand wave</span><strong data-fact="action-gap"></strong></div>
           </figure>
@@ -47,70 +51,124 @@
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
-          <header class="slide-heading">
-            <p class="eyebrow">Universal pose tokenizer</p>
-            <h2>Compare motion datasets in one canonical pose space.</h2>
+          <header class="method-heading">
+            <p class="method-kicker"><span>Method</span><span>Shared pose representation</span></p>
+            <h2>One pose vocabulary reveals coverage gaps.</h2>
           </header>
-          <div class="method-diagram" role="img" aria-label="AMASS and mmWave pose labels encoded by a frozen VQ-VAE into a shared latent pose space">
-            <section class="method-source source-amass">
-              <header><strong>AMASS</strong><span>8.9M MoCap pose frames</span></header>
-              <div class="smpl-pose-row">
-                <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X pose" />
-                <img src="assets/derived/smplx_pose_2.svg" alt="SMPL-X pose" />
-                <img src="assets/derived/smplx_pose_3.svg" alt="SMPL-X pose" />
+          <div class="method-vocabulary" role="img" aria-label="A pose tokenizer trained on AMASS is frozen, then encodes both AMASS motion-capture poses and mmWave dataset pose labels into one shared latent pose space without aligning raw sensor signals">
+            <section class="method-inputs" aria-label="Pose-label inputs">
+              <div class="method-pose-stream method-amass">
+                <header><strong>AMASS</strong><span>MoCap poses</span></header>
+                <div class="method-pose-strip">
+                  <img src="assets/derived/smplx_pose_1.svg" alt="AMASS SMPL-X pose" />
+                  <img src="assets/derived/smplx_pose_2.svg" alt="AMASS SMPL-X pose" />
+                  <img src="assets/derived/smplx_pose_3.svg" alt="AMASS SMPL-X pose" />
+                </div>
+                <p>trains the pose vocabulary</p>
               </div>
-              <p>train the pose vocabulary</p>
-            </section>
-            <section class="method-source source-mmwave">
-              <header><strong>mmWave datasets</strong><span>3D pose labels</span></header>
-              <div class="radar-label-pair">
-                <img src="assets/derived/mmbody_real_radar_case.png" alt="Radar point cloud with 3D pose label" />
-                <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X pose label" />
+              <div class="method-pose-stream method-mmwave">
+                <header><strong>mmWave datasets</strong><span>3D pose labels</span></header>
+                <div class="method-label-record">
+                  <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X representation of a mmWave dataset pose label" />
+                  <code>&theta;<sub>mm</sub> &isin; &#8477;<sup>22&times;3</sup></code>
+                </div>
+                <p>labels only  no raw radar</p>
               </div>
-              <p>encode labels, not raw radar</p>
             </section>
-            <div class="method-flow flow-input" aria-hidden="true">→</div>
-            <section class="tokenizer-block">
-              <strong>Frozen encoder E</strong>
-              <span>22 joints × 3 coordinates</span>
-              <div class="codebook" aria-label="64-entry vector-quantized codebook">
+
+            <div class="method-merge" aria-hidden="true"><span>encode</span></div>
+
+            <section class="method-tokenizer" aria-label="Frozen AMASS pose tokenizer">
+              <header><span>trained once on AMASS</span><strong>Frozen pose tokenizer</strong></header>
+              <div class="method-encoding">
+                <code>&theta;[22&times;3]</code>
+                <b>E</b>
+                <code>z<sub>q</sub>[16]</code>
+              </div>
+              <div class="method-codebook" aria-label="64-entry vector-quantized pose codebook">
                 <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
               </div>
-              <span>K = 64 · T = 16</span>
-              <b>φ</b>
+              <footer><code>K=64</code><span>same codebook</span></footer>
             </section>
-            <div class="method-flow flow-output" aria-hidden="true">→</div>
-            <section class="latent-space">
-              <header>Shared pose latent space</header>
+
+            <div class="method-forward" aria-hidden="true"><span>tokens</span></div>
+
+            <section class="method-shared-latent" aria-label="Shared pose latent space">
+              <header><strong>Shared latent space</strong><span>comparable pose tokens</span></header>
               <div id="map-points" class="latent-points"></div>
-              <div class="knn-ring"><span>directional k-NN</span></div>
-              <p>AMASS coverage gaps → Φ<sub>G</sub></p>
+              <footer class="method-latent-key">
+                <span class="key-amass">AMASS</span>
+                <span class="key-mmwave">mmWave labels</span>
+              </footer>
             </section>
           </div>
-          <footer class="slide-note"><strong>No raw cross-modal alignment</strong><span>The same frozen encoder and codebook map MoCap and mmWave pose labels into comparable tokens; directional k-NN then reveals insufficient coverage.</span></footer>
+          <footer class="method-takeaway">
+            <strong>Pose geometry is the bridge.</strong>
+            <span>No raw-signal cross-modal alignment.</span>
+          </footer>
         </article>
 
         <article class="scene slide scene-coverage" data-scene="coverage">
-          <header class="slide-heading">
-            <p class="eyebrow">Coverage-aware target selection</p>
-            <h2>Sample informative poses from under-covered regions.</h2>
+          <header class="coverage-spec-heading">
+            <p class="coverage-spec-kicker">Directional coverage  AMASS → mmWave</p>
+            <h2>Find the poses the radar dataset never saw.</h2>
           </header>
-          <div class="coverage-layout">
-            <section class="coverage-map" aria-label="Pose-space coverage map">
-              <header><span>AMASS pose space</span><strong>insufficiently covered by mmWave</strong></header>
-              <div class="coverage-field" id="coverage-field"></div>
-              <div class="coverage-key"><span>covered</span><span>candidate gap</span></div>
+          <div class="coverage-spec-flow" role="img" aria-label="Directional nearest-neighbor coverage identifies AMASS poses outside the local support of the mmWave dataset, then capped probability-proportional-to-size sampling favors sparse gaps without allowing extreme outliers to dominate.">
+            <section class="coverage-directional">
+              <header class="coverage-block-heading">
+                <strong>AMASS defines each local radius</strong>
+                <code>k = 4</code>
+              </header>
+              <div class="coverage-field-shell">
+                <div class="coverage-field" id="coverage-field"></div>
+                <div class="coverage-local-test" aria-hidden="true">
+                  <span class="coverage-radius"></span>
+                  <span class="coverage-candidate"></span>
+                  <span class="coverage-distance"></span>
+                  <span class="coverage-nearest"></span>
+                </div>
+              </div>
+              <div class="coverage-decision">
+                <code>d(aᵢ, NN₁(aᵢ, ΦmmWave)) &gt; rᵢ⁽ᵏ⁾</code>
+                <strong>gap set ΦG</strong>
+              </div>
+              <div class="coverage-spec-key">
+                <span class="key-amass">AMASS candidate</span>
+                <span class="key-mmwave">nearest mmWave</span>
+                <span class="key-gap">uncovered</span>
+              </div>
             </section>
-            <section class="selection-policy">
-              <header><strong>Capped-PPS</strong><span>w<sub>i</sub> = min(r<sub>i</sub><sup>(k)</sup>, Q<sub>95</sub>({r<sup>(k)</sup>}))</span></header>
-              <div class="selected-poses">
+
+            <div class="coverage-spec-arrow" aria-hidden="true">→</div>
+
+            <section class="coverage-sampling">
+              <header class="coverage-sampling-heading">
+                <strong>Prioritize sparse gaps</strong>
+                <code>wᵢ = min(rᵢ⁽⁴⁾,<br />Q₉₅({r⁽⁴⁾}))</code>
+              </header>
+              <div class="coverage-weight-plot" aria-label="Sampling weight rises with gap radius and is capped at the 95th percentile">
+                <div class="coverage-cap"><span>Q₉₅ cap</span></div>
+                <div class="coverage-weight-bars" aria-hidden="true">
+                  <i style="--radius:0.24"></i>
+                  <i style="--radius:0.36"></i>
+                  <i style="--radius:0.48"></i>
+                  <i style="--radius:0.58"></i>
+                  <i style="--radius:0.65"></i>
+                  <i class="outlier" style="--radius:0.96"></i>
+                </div>
+              </div>
+              <div class="coverage-weight-axis"><span>dense</span><span>sparse</span><span>outlier</span></div>
+              <div class="coverage-picked-poses" aria-label="Selected sparse but plausible target poses">
                 <img src="assets/derived/smplx_pose_1.svg" alt="Selected SMPL-X target pose" />
                 <img src="assets/derived/smplx_pose_2.svg" alt="Selected SMPL-X target pose" />
                 <img src="assets/derived/smplx_pose_3.svg" alt="Selected SMPL-X target pose" />
               </div>
+              <footer class="coverage-sampling-note">
+                <strong>larger radius → more likely</strong>
+                <span>top 5% cannot dominate</span>
+              </footer>
             </section>
           </div>
-          <footer class="slide-note"><strong>Prioritize sparser candidate poses</strong><span>Sampling probability grows with neighborhood radius; capping at the 95th-percentile radius limits the influence of extreme-distance candidates.</span></footer>
         </article>
 
         <article class="scene slide scene-simulation" data-scene="simulation">
@@ -145,8 +203,8 @@
 
         <article class="scene scene-finale" data-scene="summary">
           <p class="final-kicker">Vision</p>
-          <h2>Scale motion coverage,<br />not repeated frames.</h2>
-          <p class="final-summary">Shared pose tokens reveal missing motion and guide the next samples.</p>
+          <h2>Robust mmWave pose estimation starts<br />with the motions missing from radar data.</h2>
+          <p class="final-summary">Use inexpensive MoCap priors to guide costly RF collection.</p>
         </article>
 
         <article class="scene scene-back" data-scene="back">
@@ -163,7 +221,7 @@
         </article>
 
         <footer class="caption-band">
-          <div class="scene-index" id="scene-index" aria-hidden="true">01 / 10</div>
+          <div class="scene-index" id="scene-index" aria-hidden="true">01 / 09</div>
           <div class="caption" id="caption"></div>
           <div class="timeline-mark"><span id="timeline-progress"></span></div>
         </footer>

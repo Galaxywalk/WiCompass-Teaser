@@ -19,6 +19,7 @@ export const LINE_CHARTS = Object.freeze([
       xTickY: 342,
       legendY: 26,
       legendStep: 236,
+      legendMarker: "point",
       xTicks: [
         { index: 0, label: "A01" },
         { index: 8, label: "A09" },
