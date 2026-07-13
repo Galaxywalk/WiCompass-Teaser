@@ -3,7 +3,18 @@ import { PROJECT } from "../../content/project.js";
 function renderTitle(element) {
   const name = document.createElement("span");
   name.textContent = PROJECT.name;
-  const stacked = Boolean(element.closest(".scene-cover, .scene-back"));
+  const backCover = Boolean(element.closest(".scene-back"));
+  if (backCover) {
+    element.replaceChildren(
+      name,
+      document.createElement("br"),
+      `${PROJECT.subtitleLines[0]} for`,
+      document.createElement("br"),
+      PROJECT.subtitleLines[1].replace(/^for /, ""),
+    );
+    return;
+  }
+  const stacked = Boolean(element.closest(".scene-cover"));
   const separator = stacked ? document.createElement("br") : ": ";
   element.replaceChildren(
     name,
@@ -42,7 +53,9 @@ export function renderProjectMetadata(root = document) {
     element.textContent = PROJECT.conference;
   });
   root.querySelectorAll("[data-project-repository]").forEach((element) => {
-    element.textContent = PROJECT.repository;
+    element.textContent = element.closest(".scene-back")
+      ? PROJECT.repository.replace(/^github\.com\//, "")
+      : PROJECT.repository;
   });
   root.querySelectorAll("[data-project-logos]").forEach(renderLogos);
 }

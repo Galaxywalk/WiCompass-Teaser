@@ -64,6 +64,16 @@ Example: `Radar observes only sparse reflections.`
 
 The chapter label at the upper left of each content scene also uses the locked **36 px** Level 3 token through `.scene-kicker`. Keep its Inter weight, muted color, spacing, and line height identical across Question, Insight, Method, Evaluation, and Vision scenes. Change only the label text; do not create scene-specific kicker typography.
 
+Every narrative scene uses the same semantic classes:
+
+- `.scene-heading` for the upper-left heading block;
+- `.scene-kicker` for the 36 px chapter label;
+- `.scene-headline` for the single 56 px claim;
+- `.scene-footer` for one 26 px contextual sentence when a footer is necessary;
+- `.scene-support` for an optional 36 px supporting statement in a thesis/vision scene.
+
+These roles are implemented in `styles/migrated/typography.css`, which is loaded after scene-specific styles and is authoritative for typography. Do not override them inside an individual scene stylesheet. Cover and back-cover identity typography are the only exceptions.
+
 ### Level 4 — Annotation
 
 Use for arrow labels, figure annotations, legends, axes, and short supporting labels.
@@ -112,6 +122,8 @@ Screenshots are prohibited except when a real-world photograph or real-world cap
 - do not style the photograph like a generic screenshot card.
 
 Observed data and fitted trends must remain visually distinct. For example, scaling-law plots use experimental markers plus fitted curves/lines, not a polyline connecting noisy observations.
+
+Figure-internal prose, block headings, legends, axes, formulas, and annotations use Level 4 at 26 px. Do not create an additional 36 px subheading system inside a figure. Large encoder/math glyphs may use Level 3 as visual marks, but not as prose labels.
 
 ## 4. Color system
 
@@ -169,6 +181,7 @@ Before picture lock, confirm:
 - JetBrains Mono is used only for math/code;
 - every visible text element maps to Levels 1–4;
 - no text is smaller than 24 px;
+- every narrative scene uses the shared heading/headline/footer classes rather than local typography overrides;
 - the teaser uses one consistent hierarchy and each frame has one focal point;
 - quantitative result scenes keep the claim in the figure and only experiment conditions in the footer;
 - all scientific figures are native 3D/vector redraws;

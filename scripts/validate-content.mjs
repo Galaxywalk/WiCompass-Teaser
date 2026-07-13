@@ -38,6 +38,10 @@ SCENES.forEach((scene) => {
 const html = await readFile("index.html", "utf8");
 const domIds = [...html.matchAll(/data-scene="([^"]+)"/g)].map((match) => match[1]);
 assert.deepEqual(domIds, ids, "Scene DOM IDs and order must exactly match the timeline");
+assert.equal((html.match(/class="[^"]*scene-kicker[^"]*"/g) ?? []).length, 7, "Every narrative scene needs one shared scene-kicker");
+assert.equal((html.match(/class="[^"]*scene-headline[^"]*"/g) ?? []).length, 7, "Every narrative scene needs one shared scene-headline");
+assert.equal((html.match(/class="[^"]*scene-footer[^"]*"/g) ?? []).length, 5, "Expected five single-sentence narrative footers");
+assert.doesNotMatch(html, /class="[^"]*scene-footer[^"]*"[^>]*>(?:(?!<\/footer>)[\s\S])*?<strong>/, "Scene footers must not introduce a second emphasized headline");
 
 for (const { selector, config } of LINE_CHARTS) {
   assert.ok(config.series.length > 0, `${selector}: missing series`);
@@ -76,6 +80,7 @@ for (const path of new Set(assetPaths)) assert.ok((await stat(path)).isFile(), `
 const cssFiles = files.filter((path) => extname(path) === ".css");
 for (const path of cssFiles) {
   const css = await readFile(path, "utf8");
+  assert.doesNotMatch(css, /Source Sans/, `${path}: Inter is the only prose font`);
   for (const match of css.matchAll(/font-size:\s*([^;]+);/g)) {
     assert.match(match[1], /^var\(--(?:type-(utility|body|deck|title|hero)|spec-type-(hero|section|explanation|annotation))\)$/, `${path}: font-size must use the locked type scale (${match[1]})`);
   }

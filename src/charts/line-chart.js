@@ -61,12 +61,14 @@ export function renderLineChart(selector, config, root = document) {
       height: plotHeight,
       class: "chart-highlight",
     }));
-    svg.append(svgElement("text", {
-      x: highlightX,
-      y: padding.top - 10,
-      "text-anchor": "middle",
-      class: "chart-highlight-label",
-    }, config.highlight.label));
+    if (config.highlight.label) {
+      svg.append(svgElement("text", {
+        x: highlightX,
+        y: padding.top - 10,
+        "text-anchor": "middle",
+        class: "chart-highlight-label",
+      }, config.highlight.label));
+    }
   }
 
   const legend = svgElement("g", { class: "chart-legend" });
@@ -202,7 +204,7 @@ export function renderLineChart(selector, config, root = document) {
       pathLength: 1,
     }));
     svg.append(svgElement("text", {
-      x: width - padding.right - 4,
+      x: width - padding.right - 12,
       y: referenceY - 9,
       "text-anchor": "end",
       class: "reference-label",

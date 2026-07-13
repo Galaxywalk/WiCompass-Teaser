@@ -1,7 +1,7 @@
 /* Real-world evidence styling. Scientific values stay in content/. */
 
 .scene-realworld {
-  inset: 30px 64px 32px;
+  inset: 32px 64px;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 10px;
   align-items: stretch;
@@ -14,13 +14,6 @@
 
 .scene-realworld .eyebrow {
   margin-bottom: 4px;
-}
-
-.scene-realworld h2 {
-  font-size: var(--spec-type-section);
-  font-weight: 720;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
 }
 
 .stage[data-scene="realworld"] .caption-band {
@@ -69,7 +62,7 @@
 /* All six values are visible immediately; only the held-out comparison leads. */
 .scene-realworld .realworld-bar {
   transform: none;
-  opacity: 0.22;
+  opacity: 0.3;
 }
 
 .scene-realworld .bar-training {
@@ -91,7 +84,7 @@
 
 .scene-realworld .bar-value {
   font-weight: 700;
-  opacity: 0.3;
+  opacity: 0.45;
 }
 
 .scene-realworld .comparison-bar,

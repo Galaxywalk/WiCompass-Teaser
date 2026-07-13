@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/migrated/deployment.css" />
     <link rel="stylesheet" href="styles/migrated/method.css" />
     <link rel="stylesheet" href="styles/migrated/coverage.css" />
+    <link rel="stylesheet" href="styles/migrated/typography.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -27,34 +28,36 @@
         </article>
 
         <article class="scene slide scene-hook" data-scene="actions">
-          <header class="slide-heading">
+          <header class="slide-heading scene-heading">
             <p class="eyebrow scene-kicker">Question</p>
-            <h2>Current models do not generalize across actions.</h2>
+            <h2 class="scene-headline">Current mmWave pose models do not generalize across actions.</h2>
           </header>
           <figure class="chart-frame action-chart">
             <svg id="loo-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
-            <div class="chart-callout"><span>left-hand wave</span><strong data-fact="action-gap"></strong></div>
+            <div class="chart-callout"><span>left-hand wave held out</span><strong data-fact="action-gap"></strong></div>
           </figure>
-          <footer class="slide-note"><strong>110 mm generalization penalty</strong><span>when left-hand wave is absent from training</span></footer>
+          <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
+            <span>We train on 26 MMFi actions and test on the held-out action.</span>
+          </footer>
         </article>
 
         <article class="scene slide scene-redundancy" data-scene="efficiency">
-          <header class="slide-heading">
+          <header class="slide-heading scene-heading">
             <p class="eyebrow scene-kicker">Insight</p>
-            <h2 data-fact="efficiency-title"></h2>
+            <h2 class="scene-headline" data-fact="efficiency-title"></h2>
           </header>
           <figure class="chart-frame efficiency-frame">
             <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
           </figure>
-          <footer class="experiment-condition" aria-label="Experiment conditions">
-            <span>On mmBody, random 100% to 30% training subsets are evaluated on the original test split.</span>
+          <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
+            <span>On mmBody, we evaluate random training subsets on the original test split.</span>
           </footer>
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
-          <header class="method-heading">
-            <p class="method-kicker scene-kicker"><span>Method</span><span>Shared pose representation</span></p>
-            <h2>One pose vocabulary reveals coverage gaps.</h2>
+          <header class="method-heading scene-heading">
+            <p class="method-kicker scene-kicker">Pose Representation</p>
+            <h2 class="scene-headline">One pose vocabulary makes datasets comparable.</h2>
           </header>
           <div class="method-vocabulary" role="img" aria-label="A pose tokenizer trained on AMASS is frozen, then encodes both AMASS motion-capture poses and mmWave dataset pose labels into one shared latent pose space without aligning raw sensor signals">
             <section class="method-inputs" aria-label="Pose-label inputs">
@@ -73,7 +76,7 @@
                   <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X representation of a mmWave dataset pose label" />
                   <code>&theta;<sub>mm</sub> &isin; &#8477;<sup>22&times;3</sup></code>
                 </div>
-                <p>labels only  no raw radar</p>
+                <p>pose labels only</p>
               </div>
             </section>
 
@@ -89,13 +92,13 @@
               <div class="method-codebook" aria-label="64-entry vector-quantized pose codebook">
                 <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
               </div>
-              <footer><code>K=64</code><span>same codebook</span></footer>
+              <footer><code>K=64</code><span>shared codebook</span></footer>
             </section>
 
             <div class="method-forward" aria-hidden="true"><span>tokens</span></div>
 
             <section class="method-shared-latent" aria-label="Shared pose latent space">
-              <header><strong>Shared latent space</strong><span>comparable pose tokens</span></header>
+              <header><strong>Shared latent space</strong></header>
               <div id="map-points" class="latent-points"></div>
               <footer class="method-latent-key">
                 <span class="key-amass">AMASS</span>
@@ -103,16 +106,15 @@
               </footer>
             </section>
           </div>
-          <footer class="method-takeaway">
-            <strong>Pose geometry is the bridge.</strong>
-            <span>No raw-signal cross-modal alignment.</span>
+          <footer class="scene-footer method-takeaway">
+            <span>We compare pose geometry without aligning raw radar signals.</span>
           </footer>
         </article>
 
         <article class="scene slide scene-coverage" data-scene="coverage">
-          <header class="coverage-spec-heading">
-            <p class="coverage-spec-kicker scene-kicker">Directional coverage  AMASS → mmWave</p>
-            <h2>Find the poses the radar dataset never saw.</h2>
+          <header class="coverage-spec-heading scene-heading">
+            <p class="coverage-spec-kicker scene-kicker">Coverage Mapping</p>
+            <h2 class="scene-headline">Find the poses the radar dataset never saw.</h2>
           </header>
           <div class="coverage-spec-flow" role="img" aria-label="Directional nearest-neighbor coverage identifies AMASS poses outside the local support of the mmWave dataset, then capped probability-proportional-to-size sampling favors sparse gaps without allowing extreme outliers to dominate.">
             <section class="coverage-directional">
@@ -140,7 +142,7 @@
               </div>
             </section>
 
-            <div class="coverage-spec-arrow" aria-hidden="true">→</div>
+            <div class="coverage-spec-arrow" aria-hidden="true"></div>
 
             <section class="coverage-sampling">
               <header class="coverage-sampling-heading">
@@ -165,43 +167,42 @@
                 <img src="assets/derived/smplx_pose_3.svg" alt="Selected SMPL-X target pose" />
               </div>
               <footer class="coverage-sampling-note">
-                <strong>larger radius → more likely</strong>
-                <span>top 5% cannot dominate</span>
+                <span>The Q₉₅ cap prevents extreme gaps from dominating.</span>
               </footer>
             </section>
           </div>
         </article>
 
         <article class="scene slide scene-simulation" data-scene="simulation">
-          <header class="simulation-heading">
+          <header class="simulation-heading scene-heading">
             <p class="simulation-kicker scene-kicker">Simulation Evaluation</p>
-            <h2>WiCompass keeps scaling.</h2>
+            <h2 class="scene-headline">WiCompass keeps scaling.</h2>
           </header>
           <figure class="chart-frame simulation-frame">
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
-          <footer class="experiment-condition" aria-label="Experiment conditions">
+          <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
             <span>We use RF Genesis to generate 2k–40k training poses for the mmBody trace and WiCompass.</span>
           </footer>
         </article>
 
         <article class="scene slide scene-realworld" data-scene="realworld">
-          <header class="slide-heading">
+          <header class="slide-heading scene-heading">
             <p class="eyebrow scene-kicker">Real-world Evaluation</p>
-            <h2>Held-out poses reveal the real difference.</h2>
+            <h2 class="scene-headline">WiCompass generalizes better to held-out poses.</h2>
           </header>
           <figure class="chart-frame realworld-frame">
             <svg id="realworld-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="Training and held-out MPJPE for recollection, WiCompass, and baseline data collection"></svg>
           </figure>
-          <footer class="experiment-condition" aria-label="Experiment conditions">
-            <span>Two volunteers provide 8k training frames per strategy for a fixed 8k-frame exercise benchmark.</span>
+          <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
+            <span>Each strategy uses 8k training frames and the same held-out 8k-frame exercise benchmark.</span>
           </footer>
         </article>
 
         <article class="scene scene-finale" data-scene="summary">
           <p class="final-kicker scene-kicker">Vision</p>
-          <h2>Robust mmWave pose estimation starts<br />with the motions missing from radar data.</h2>
-          <p class="final-summary">Use inexpensive MoCap priors to guide costly RF collection.</p>
+          <h2 class="scene-headline">Robust mmWave pose estimation starts<br />with the motions missing from radar data.</h2>
+          <p class="final-summary scene-support">Use inexpensive MoCap priors to guide costly RF collection.</p>
         </article>
 
         <article class="scene scene-back" data-scene="back">
@@ -213,7 +214,6 @@
           <div class="qr-panel">
             <img src="assets/github-qr.png" alt="QR code for the WiCompass GitHub repository" />
             <strong data-project-repository></strong>
-            <span>Code and updates</span>
           </div>
         </article>
 

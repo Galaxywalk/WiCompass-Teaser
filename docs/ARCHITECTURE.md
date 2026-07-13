@@ -6,6 +6,8 @@ Visual decisions must follow [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md
 
 The current timeline has nine scenes and runs 89.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`, `coverage`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
 
+Narrative typography is centralized in `styles/migrated/typography.css`. Scene styles own geometry and scientific figure presentation, but may not redefine `.scene-kicker`, `.scene-headline`, `.scene-footer`, or `.scene-support`. Cover and back-cover identity typography remains in `styles/migrated/identity.css`.
+
 ## Content
 
 - `index.html`: semantic scene structure and ordinary explanatory copy.

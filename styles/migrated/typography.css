@@ -1,0 +1,105 @@
+/* Shared typography contract for every narrative scene.
+   Identity scenes keep their explicit cover/back title treatment. */
+
+.scene-heading {
+  width: 100%;
+  align-self: start;
+}
+
+.scene-kicker {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-explanation);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.scene .scene-headline {
+  color: var(--fg);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-section);
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.scene .scene-footer {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 2px solid var(--line);
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+.scene .scene-footer :is(strong, span) {
+  color: inherit;
+  font: inherit;
+}
+
+.scene-finale .scene-support {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-explanation);
+  font-weight: 620;
+  line-height: 1.16;
+}
+
+.scene .science-chart text,
+.scene .chart-frame figcaption {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+}
+
+.scene .science-chart :is(.axis-label, .fit-label) {
+  font-weight: 600;
+}
+
+.scene .science-chart .fit-label,
+.scene code {
+  font-family: "JetBrains Mono Teaser", monospace;
+  font-size: var(--spec-type-annotation);
+}
+
+.scene .science-chart :is(.chart-highlight-label, .chart-gap-label, .bar-comparison-label, .reference-label) {
+  font-weight: 700;
+}
+
+.scene-hook .chart-callout :is(span, strong) {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  line-height: 1.08;
+}
+
+.scene-hook .chart-callout strong {
+  font-weight: 700;
+}
+
+.scene-method :is(.method-tokenizer, .method-shared-latent) > header > strong {
+  font-size: var(--spec-type-annotation);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.scene-method .method-encoding b {
+  font-family: "JetBrains Mono Teaser", monospace;
+}
+
+.coverage-sampling-note,
+.coverage-sampling-note span {
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+  line-height: 1.08;
+}

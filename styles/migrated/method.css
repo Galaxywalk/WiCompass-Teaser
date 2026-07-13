@@ -3,7 +3,7 @@
 
 .scene-method {
   inset: 0;
-  padding: 28px 64px 24px;
+  padding: 32px 64px 24px;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 8px;
   align-items: stretch;
@@ -18,14 +18,6 @@
   margin: 0 0 4px;
   display: flex;
   gap: 24px;
-}
-
-.scene-method h2 {
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-section);
-  font-weight: 720;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
 }
 
 .scene-method code {
@@ -246,10 +238,10 @@
 .scene-method .method-tokenizer header strong,
 .scene-method .method-shared-latent header strong {
   color: var(--fg);
-  font-size: var(--spec-type-explanation);
-  font-weight: 720;
-  letter-spacing: -0.025em;
-  line-height: 1.02;
+  font-size: var(--spec-type-annotation);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.08;
 }
 
 .scene-method .method-encoding {
@@ -416,26 +408,11 @@
 }
 
 .scene-method .method-takeaway {
-  display: flex;
-  gap: 24px;
-  align-items: baseline;
-  padding-top: 8px;
-  border-top: 2px solid var(--line);
-}
-
-.scene-method .method-takeaway strong {
-  color: var(--fg);
-  font-size: var(--spec-type-explanation);
-  font-weight: 740;
-  letter-spacing: -0.025em;
-  line-height: 1;
+  color: var(--muted);
 }
 
 .scene-method .method-takeaway span {
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  line-height: 1.1;
+  color: inherit;
 }
 
 .stage[data-scene="method"] .caption-band {

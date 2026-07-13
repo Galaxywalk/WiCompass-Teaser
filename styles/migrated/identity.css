@@ -136,12 +136,6 @@
 
 .scene-finale h2 {
   max-width: 1090px;
-  color: var(--fg);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-section);
-  font-weight: 730;
-  letter-spacing: -0.045em;
-  line-height: 1.04;
 }
 
 .scene-finale .final-summary {
@@ -149,11 +143,6 @@
   padding-left: 18px;
   border-left: 4px solid var(--green);
   color: var(--muted);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  letter-spacing: -0.012em;
-  line-height: 1.25;
 }
 
 /* Back cover ------------------------------------------------------------- */
@@ -186,7 +175,7 @@
 }
 
 .scene-back h2 {
-  max-width: 800px;
+  max-width: none;
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-section);
   font-weight: 720;
@@ -240,7 +229,7 @@
 }
 
 .scene-back .qr-panel strong {
-  max-width: 286px;
+  max-width: none;
   margin-top: 16px;
   color: var(--fg);
   font-family: "Inter Teaser", sans-serif;
@@ -248,7 +237,8 @@
   font-weight: 680;
   letter-spacing: -0.02em;
   line-height: 1.12;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 .scene-back .qr-panel span {

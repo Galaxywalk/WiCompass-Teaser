@@ -21,11 +21,11 @@ npm run frame -- --scene realworld
 
 For quantitative evidence, put the conclusion in the chart configuration (`gapAnnotation` or `comparison`) and use the shared `.experiment-condition` footer only for concise setup metadata. Do not repeat chart values in an HTML side rail.
 
-Every content-scene chapter label uses `.scene-kicker`; change its wording in HTML but keep its shared 36 px presentation intact. Write `.experiment-condition` as one short sentence rather than a sequence of pipe-separated fragments.
+Every content scene uses `.scene-heading`, `.scene-kicker`, and `.scene-headline`. Necessary bottom context uses `.scene-footer`; quantitative setup also carries `.experiment-condition`. Change wording in HTML, but keep the shared presentation in `styles/migrated/typography.css` intact. Write every footer as one short sentence rather than a sequence of pipe-separated fragments or a repeated result.
 
 ## Change visual format
 
-Edit `styles/tokens.css` for global design decisions, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for each scene family. Do not put colors, fonts, or pixel layout values in content or runtime modules. Keep `method` and `coverage` as one coherent mechanism sequence when revising them.
+Edit `styles/tokens.css` for global design decisions, `styles/migrated/typography.css` for shared text roles, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for scene-specific geometry. Do not put colors, fonts, or pixel layout values in content or runtime modules. Keep `method` and `coverage` as one coherent mechanism sequence when revising them.
 
 ## Add a scene
 
@@ -36,6 +36,8 @@ Edit `styles/tokens.css` for global design decisions, `styles.css` for shared la
 5. Run `npm run check`, render the new scene with `npm run frame -- --scene new-id`, then run `npm run stills`.
 
 The validator rejects duplicate IDs, order drift, review frames outside their scene, total duration over 90 seconds, malformed chart data, missing assets, unauthorized font sizes, stale narration text, and audio/timeline duration mismatch.
+
+Run `npm run audit:typography` after changing text or scene CSS. It renders every review frame in Chromium and rejects visible text outside the locked 26 / 36 / 56 / 96 px scale, non-Inter/JetBrains fonts, and canvas overflow.
 
 Adding a scene is exceptional: first check whether its point can replace secondary copy in the existing Question → Insight → Mechanism → Evidence → Vision structure while keeping the cut in the 82–87 second working range.
 

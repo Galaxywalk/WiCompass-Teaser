@@ -23,11 +23,6 @@
 .scene-hook h2,
 .scene-redundancy h2 {
   max-width: 1160px;
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-section);
-  font-weight: 720;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
 }
 
 .scene-hook .chart-frame,
@@ -143,9 +138,8 @@
 .scene-hook .chart-callout strong {
   color: var(--red);
   font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-explanation);
-  font-weight: 760;
-  letter-spacing: -0.025em;
+  font-size: var(--spec-type-annotation);
+  font-weight: 700;
 }
 
 #efficiency-chart .series-primary {
@@ -169,31 +163,6 @@
 #efficiency-chart .reference-label {
   fill: var(--yellow);
   font-weight: 680;
-}
-
-/* The action split keeps one explicit consequence beneath the chart. */
-.scene-hook .slide-note {
-  min-height: 66px;
-  gap: 24px;
-  align-items: baseline;
-  padding-top: 8px;
-  border-top: 2px solid var(--line);
-  font-family: "Inter Teaser", sans-serif;
-}
-
-.scene-hook .slide-note strong {
-  color: var(--fg);
-  font-size: var(--spec-type-explanation);
-  font-weight: 740;
-  letter-spacing: -0.025em;
-  line-height: 1;
-}
-
-.scene-hook .slide-note span {
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  line-height: 1.16;
 }
 
 .stage[data-scene="actions"] .caption-band,

@@ -26,7 +26,7 @@ export const LINE_CHARTS = Object.freeze([
         { index: 16, label: "A17" },
         { index: 26, label: "A27" },
       ],
-      highlight: { index: 16, label: "LEFT WAVE" },
+      highlight: { index: 16 },
       gapSeriesIndex: 1,
       gapFromSeriesIndex: 0,
       series: [
