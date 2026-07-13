@@ -57,12 +57,15 @@ export const LINE_CHARTS = Object.freeze([
   {
     selector: "#scaling-chart",
     config: {
-      padding: { left: 58, right: 18, top: 48, bottom: 42 },
+      padding: { left: 96, right: 24, top: 54, bottom: 64 },
       yMin: 148,
       yMax: 184,
       yTicks: [150, 165, 180],
       yLabel: "OOD MPJPE (mm)",
-      xLabel: "training samples",
+      yLabelX: 26,
+      xLabel: "training samples (log scale)",
+      xLabelBottom: 4,
+      xTickY: 342,
       xValues: [2, 4, 8, 16, 24, 32, 40],
       xScale: "log",
       xTicks: [
@@ -71,8 +74,8 @@ export const LINE_CHARTS = Object.freeze([
         { index: 4, label: "24k" },
         { index: 6, label: "40k" },
       ],
-      legendStep: 132,
-      pointRadius: 4,
+      showLegend: false,
+      pointRadius: 5,
       series: [
         {
           key: "wicompass",
@@ -80,7 +83,15 @@ export const LINE_CHARTS = Object.freeze([
           values: [155.73, 153.93, 152.28, 151.29, 150.64, 150.86, 150.16],
           connectPoints: false,
           marker: "circle",
-          fit: { model: "power", coefficient: 169.57, exponent: -0.0116, xMultiplier: 1000 },
+          fit: {
+            model: "power",
+            coefficient: 169.57,
+            exponent: -0.0116,
+            xMultiplier: 1000,
+            label: "WiCompass  E(D)=169.57 D^-0.0116",
+            labelRatio: 0.46,
+            labelDy: -16,
+          },
         },
         {
           key: "baseline",
@@ -88,7 +99,15 @@ export const LINE_CHARTS = Object.freeze([
           values: [180.66, 180.59, 181.14, 181.46, 178.37, 180.92, 180.82],
           connectPoints: false,
           marker: "square",
-          fit: { model: "power", coefficient: 181.86, exponent: -0.0008, xMultiplier: 1000 },
+          fit: {
+            model: "power",
+            coefficient: 181.86,
+            exponent: -0.0008,
+            xMultiplier: 1000,
+            label: "mmBody trace  E(D)=181.86 D^-0.0008",
+            labelRatio: 0.42,
+            labelDy: -16,
+          },
         },
       ],
     },

@@ -30,15 +30,15 @@ export function renderLineChart(selector, config, root = document) {
   });
   config.xTicks.forEach(({ index, label }) => {
     grid.append(svgElement("line", { x1: x(index), x2: x(index), y1: padding.top, y2: height - padding.bottom, class: "vertical" }));
-    grid.append(svgElement("text", { x: x(index), y: height - 10, "text-anchor": "middle" }, label));
+    grid.append(svgElement("text", { x: x(index), y: config.xTickY ?? height - 10, "text-anchor": "middle" }, label));
   });
   svg.append(grid);
 
   if (config.yLabel) {
     svg.append(svgElement("text", {
-      x: 13,
+      x: config.yLabelX ?? 13,
       y: height / 2,
-      transform: `rotate(-90 13 ${height / 2})`,
+      transform: `rotate(-90 ${config.yLabelX ?? 13} ${height / 2})`,
       "text-anchor": "middle",
       class: "axis-label",
     }, config.yLabel));
@@ -46,7 +46,7 @@ export function renderLineChart(selector, config, root = document) {
   if (config.xLabel) {
     svg.append(svgElement("text", {
       x: padding.left + plotWidth / 2,
-      y: height - 1,
+      y: height - (config.xLabelBottom ?? 1),
       "text-anchor": "middle",
       class: "axis-label",
     }, config.xLabel));
@@ -99,6 +99,16 @@ export function renderLineChart(selector, config, root = document) {
         class: `chart-fit ${seriesClass} series-index-${seriesIndex}`,
         "vector-effect": "non-scaling-stroke",
       }));
+      if (series.fit.label) {
+        const labelRatio = series.fit.labelRatio ?? 0.5;
+        const labelDomainValue = xMin + (xMax - xMin) * labelRatio;
+        const labelSourceValue = config.xScale === "log" ? Math.exp(labelDomainValue) : labelDomainValue;
+        svg.append(svgElement("text", {
+          x: projectX(labelSourceValue),
+          y: y(evaluateFit(series.fit, labelSourceValue)) + (series.fit.labelDy ?? -12),
+          class: `fit-label ${seriesClass}`,
+        }, series.fit.label));
+      }
     }
     if (series.connectPoints !== false) {
       svg.append(svgElement("path", {

@@ -60,13 +60,21 @@ The full recorder writes `dist/WiCompass-MobiCom26-Teaser-draft.mp4`. It muxes `
 
 ## Narration
 
-The locked final voice is MiniMax Audio's **Gentle Teacher — Warm, Airy, Velvety**. The checked-in audio is still the timing placeholder. Regenerate that placeholder on macOS with:
+Final narration uses the user's local Kokoro TTS installation:
+
+```bash
+cd ~/Github/kokoro
+./.venv/bin/python local_tts.py 'Hello from local Kokoro TTS.' \
+  --lang a --output outputs/english.wav
+```
+
+Replace the example sentence with the locked English script and preserve the WAV as the narration master. The video recorder consumes `assets/audio/voiceover.m4a`, which should be derived from that WAV. The checked-in audio is still the timing placeholder; regenerate the placeholder on macOS with:
 
 ```bash
 npm run audio:placeholder
 ```
 
-Scene narration and durations live in `content/timeline.js`; `npm run check` rejects stale `voiceover.txt` or an audio file whose duration no longer matches the timeline.
+Scene narration and durations live in `content/timeline.js`; `npm run check` rejects stale `voiceover.txt` or an audio file whose duration no longer matches the timeline. The placeholder generator is for timing diagnostics only and is not a final TTS backend.
 
 ## Asset provenance
 

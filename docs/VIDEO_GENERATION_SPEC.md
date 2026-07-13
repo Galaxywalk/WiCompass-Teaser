@@ -95,7 +95,31 @@ Each chromatic color must keep one semantic role throughout the video—for exam
 
 Do not assign a new accent color merely because a new scene was added. Prefer shape, position, line style, or motion before adding color.
 
-## 5. Duration
+## 5. Narration and TTS
+
+Use the user's local **Kokoro TTS** installation as the default and only narration backend unless the user explicitly changes this decision. Do not return to MiniMax, browser TTS, macOS `say`, or another cloud service for final narration.
+
+The canonical invocation is:
+
+```bash
+cd ~/Github/kokoro
+./.venv/bin/python local_tts.py 'Hello from local Kokoro TTS.' \
+  --lang a --output outputs/english.wav
+```
+
+Production rules:
+
+- replace the example sentence with the locked English narration;
+- use `--lang a` for the English teaser;
+- preserve the generated WAV as the narration master;
+- derive AAC/M4A from the WAV only when the HTML recorder needs `assets/audio/voiceover.m4a`;
+- keep narration text synchronized with `content/timeline.js` and `assets/audio/voiceover.txt`;
+- regenerate TTS after script changes rather than time-stretching stale audio;
+- do not synthesize final narration until wording and scene timing are approved.
+
+The macOS placeholder generator may remain available for timing diagnostics, but its output is never the final voice.
+
+## 6. Duration
 
 Target a final running time of **approximately 85 seconds**.
 
@@ -105,7 +129,7 @@ Target a final running time of **approximately 85 seconds**.
 
 When the cut becomes too long, remove secondary explanation before speeding up narration or shrinking text.
 
-## 6. Compliance checklist
+## 7. Compliance checklist
 
 Before picture lock, confirm:
 
@@ -117,8 +141,10 @@ Before picture lock, confirm:
 - all scientific figures are native 3D/vector redraws;
 - screenshots appear only as necessary real-world evidence;
 - the chromatic palette contains no more than four colors with stable meanings;
+- final narration was generated locally with Kokoro using `--lang a`;
+- the Kokoro WAV master and the muxed M4A match the locked narration script;
 - the final duration is near 85 seconds and never exceeds 90 seconds.
 
 ## Current migration status
 
-The July 13 working cut predates this specification: it still uses Source Sans 3, includes sub-24 px text, uses five chromatic accents, and runs 89.5 seconds. Its current validator therefore checks the legacy token system, not compliance with this new specification. Treat the next typography/layout pass as a deliberate migration to Inter, JetBrains Mono, the four locked size tokens, a maximum four-color palette, and an approximately 85-second cut. Do not weaken the specification to match the legacy cut.
+The redesigned `simulation` scene is the first reference implementation of this specification. The remaining July 13 scenes still use the legacy Source Sans 3 system, include sub-24 px text, use five chromatic accents across the full cut, and retain the 89.5-second timeline. The validator currently accepts both the legacy tokens and the four new tokens during this staged migration. Migrate the remaining scenes to Inter, JetBrains Mono, the four locked sizes, a maximum four-color palette, and an approximately 85-second cut. Do not weaken the specification to match the legacy scenes.

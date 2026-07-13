@@ -76,7 +76,7 @@ const cssFiles = files.filter((path) => extname(path) === ".css");
 for (const path of cssFiles) {
   const css = await readFile(path, "utf8");
   for (const match of css.matchAll(/font-size:\s*([^;]+);/g)) {
-    assert.match(match[1], /^var\(--type-(utility|body|deck|title|hero)\)$/, `${path}: font-size must use the locked type scale (${match[1]})`);
+    assert.match(match[1], /^var\(--(?:type-(utility|body|deck|title|hero)|spec-type-(hero|section|explanation|annotation))\)$/, `${path}: font-size must use the locked type scale (${match[1]})`);
   }
 }
 

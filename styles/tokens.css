@@ -8,6 +8,22 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: "Inter Teaser";
+  src: url("../assets/fonts/InterVariable.ttf") format("truetype-variations");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Teaser";
+  src: url("../assets/fonts/JetBrainsMono-Variable.ttf") format("truetype-variations");
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: block;
+}
+
 :root {
   --bg: #101010;
   --panel: #161616;
@@ -27,6 +43,12 @@
   --type-deck: 24px;
   --type-title: 40px;
   --type-hero: 56px;
+
+  /* New four-level 720p specification. Scenes migrate to these as redesigned. */
+  --spec-type-hero: 96px;
+  --spec-type-section: 56px;
+  --spec-type-explanation: 36px;
+  --spec-type-annotation: 26px;
 
   --p: 0;
   --v: 0;

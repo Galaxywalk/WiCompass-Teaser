@@ -46,4 +46,4 @@ writeFileSync(concatList, rendered.map((path) => `file '${path.replaceAll("'", "
 run("ffmpeg", ["-y", "-f", "concat", "-safe", "0", "-i", concatList, "-t", String(DURATION), "-ar", "48000", "-ac", "2", "-c:a", "aac", "-b:a", "160k", output]);
 
 writeFileSync("assets/audio/voiceover.txt", segments.filter((segment) => segment.text).map((segment) => segment.text).join("\n\n") + "\n");
-process.stdout.write(`Placeholder voiceover written to ${output}. Final narration should use the selected MiniMax Gentle Teacher voice after picture lock.\n`);
+process.stdout.write(`Placeholder voiceover written to ${output}. Final narration must be generated with the user's local Kokoro TTS after picture lock.\n`);

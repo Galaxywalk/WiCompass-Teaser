@@ -6,7 +6,7 @@ Read [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md) before changing typogr
 
 Edit the relevant scene in `index.html`. If the wording contains a measured result, add or update a derived value in `content/facts.js` and bind it with `data-fact`; do not copy a number from the chart into HTML.
 
-Edit captions, narration, durations, or review-frame times in `content/timeline.js`. Then rebuild the placeholder audio (or replace it with the selected MiniMax Gentle Teacher export) before `npm run check` can pass.
+Edit captions, narration, durations, or review-frame times in `content/timeline.js`. During timing work, the placeholder audio may be rebuilt. After script and picture lock, generate the final English WAV with the local Kokoro command in `VIDEO_GENERATION_SPEC.md`, derive `assets/audio/voiceover.m4a`, and run `npm run check`.
 
 ## Change paper data
 

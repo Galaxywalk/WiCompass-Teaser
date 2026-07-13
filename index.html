@@ -140,15 +140,15 @@
         </article>
 
         <article class="scene slide scene-simulation" data-scene="simulation">
-          <header class="slide-heading">
-            <p class="eyebrow">Controlled simulation · equal data budgets</p>
-            <h2>Coverage-aware sampling lowers OOD error at every scale.</h2>
+          <header class="simulation-heading">
+            <p class="simulation-kicker">Scaling-law results</p>
+            <h2>Coverage-aware data keeps scaling.</h2>
           </header>
           <figure class="chart-frame simulation-frame">
-            <figcaption>Power-law fits · held-out 40k-pose benchmark</figcaption>
+            <figcaption><span>Same model</span><span>Same budget</span><span>Held-out 40k-pose benchmark</span></figcaption>
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
-          <footer class="slide-note"><strong data-fact="simulation-gap"></strong><span>The gap persists from 2k to 40k simulated training samples under the same model and training configuration.</span></footer>
+          <footer class="simulation-takeaway"><strong data-fact="simulation-gap"></strong><span>across the same 2k–40k data budget</span></footer>
         </article>
 
         <article class="scene slide scene-realworld" data-scene="realworld">

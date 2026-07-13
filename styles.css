@@ -315,6 +315,7 @@ h2 { font-size: var(--type-title); }
 .annotation-label,
 .axis-label,
 .reference-label,
+.fit-label,
 .bar-label,
 .bar-value {
   fill: var(--muted);
@@ -575,13 +576,91 @@ h2 { font-size: var(--type-title); }
 
 /* Simulation and real-world evidence ------------------------------------ */
 
-.simulation-frame { height: 410px; }
-#scaling-chart .chart-fit { opacity: clamp(0, calc(var(--p) * 2.4), 1); }
-#scaling-chart .chart-point { opacity: clamp(0, calc(var(--p) * 1.9), 1); }
+.scene-simulation {
+  inset: 0;
+  padding: 34px 64px 32px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  font-family: "Inter Teaser", sans-serif;
+}
+
+.simulation-heading { align-self: start; }
+.simulation-kicker {
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: var(--spec-type-annotation);
+  font-weight: 650;
+  line-height: 1.1;
+}
+.scene-simulation h2 {
+  font-size: var(--spec-type-section);
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.simulation-frame {
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
+}
+.simulation-frame figcaption {
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: 32px;
+  font-size: var(--spec-type-annotation);
+  font-weight: 560;
+}
+.scene-simulation .chart-grid text,
+.scene-simulation .axis-label {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+}
+.scene-simulation .axis-label { font-weight: 600; }
+.scene-simulation .chart-grid line { stroke: #3a3a37; }
+.scene-simulation .chart-grid line.vertical { stroke: #282826; }
+#scaling-chart .chart-fit {
+  stroke-width: 5;
+  stroke-dasharray: 13 10;
+  opacity: clamp(0, calc(var(--p) * 2.4), 1);
+}
+#scaling-chart .fit-label {
+  font-family: "JetBrains Mono Teaser", monospace;
+  font-size: var(--spec-type-annotation);
+  font-weight: 560;
+  opacity: clamp(0, calc((var(--p) - 0.2) * 3.2), 1);
+}
+#scaling-chart .fit-label.series-wicompass { fill: var(--green); }
+#scaling-chart .fit-label.series-baseline { fill: var(--yellow); }
+#scaling-chart .chart-point { opacity: clamp(0, calc(var(--p) * 1.9), 1); stroke-width: 0; }
 #scaling-chart .chart-point.series-wicompass { fill: var(--green); }
 #scaling-chart .chart-point.series-baseline { fill: var(--yellow); }
 #scaling-chart .chart-legend-marker.series-wicompass { fill: var(--green); }
 #scaling-chart .chart-legend-marker.series-baseline { fill: var(--yellow); }
+
+.simulation-takeaway {
+  display: flex;
+  gap: 22px;
+  align-items: baseline;
+  padding-top: 8px;
+  border-top: 2px solid var(--line);
+}
+.simulation-takeaway strong {
+  color: var(--green);
+  font-size: var(--spec-type-explanation);
+  font-weight: 760;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.simulation-takeaway span {
+  color: var(--muted);
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+}
+
+.stage[data-scene="simulation"] .caption-band { display: none; }
 
 .realworld-layout {
   width: 1080px;
