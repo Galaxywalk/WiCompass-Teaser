@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WiCompass — MobiCom 2026 teaser</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/migrated/identity.css" />
+    <link rel="stylesheet" href="styles/migrated/evidence.css" />
+    <link rel="stylesheet" href="styles/migrated/deployment.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -20,27 +23,27 @@
 
         <article class="scene slide scene-hook" data-scene="actions">
           <header class="slide-heading">
-            <p class="eyebrow">Action generalization</p>
-            <h2>Holding out one action creates a large error gap.</h2>
+            <p class="eyebrow">Question</p>
+            <h2>Held-out actions expose a 110 mm gap.</h2>
           </header>
           <figure class="chart-frame action-chart">
             <figcaption>Joint error across 27 discrete actions</figcaption>
             <svg id="loo-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
             <div class="chart-callout"><span>left-hand wave</span><strong data-fact="action-gap"></strong></div>
           </figure>
-          <footer class="slide-note"><strong>Included vs. held out</strong><span>The red displacement is the generalization penalty, not a temporal trend. The gap appears across nearly every action.</span></footer>
+          <footer class="slide-note"><strong>110 mm generalization penalty</strong><span>when left-hand wave is absent from training</span></footer>
         </article>
 
         <article class="scene slide scene-redundancy" data-scene="efficiency">
           <header class="slide-heading">
-            <p class="eyebrow">Progressive subset test · mmBody</p>
+            <p class="eyebrow">Insight</p>
             <h2 data-fact="efficiency-title"></h2>
           </header>
           <figure class="chart-frame efficiency-frame">
             <figcaption><span>MPJPE as the retained subset shrinks</span><strong><span id="data-used-number">100</span>% data kept</strong></figcaption>
             <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
           </figure>
-          <footer class="slide-note"><strong>Coverage, not volume</strong><span data-fact="efficiency-note"></span></footer>
+          <footer class="slide-note"><strong data-fact="efficiency-note"></strong><span>Repeated poses add volume, not coverage.</span></footer>
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
@@ -110,38 +113,9 @@
           <footer class="slide-note"><strong>Prioritize sparser candidate poses</strong><span>Sampling probability grows with neighborhood radius; capping at the 95th-percentile radius limits the influence of extreme-distance candidates.</span></footer>
         </article>
 
-        <article class="scene slide scene-capture" data-scene="acquisition">
-          <header class="slide-heading">
-            <p class="eyebrow">Real-world acquisition protocol</p>
-            <h2>Each selected pose becomes a synchronized labeled radar sample.</h2>
-          </header>
-          <ol class="capture-pipeline">
-            <li class="capture-target">
-              <header><span>1</span><strong>Decode target</strong></header>
-              <img src="assets/derived/smplx_pose_3.svg" alt="Target pose decoded from the selected latent token" />
-              <p>Render the selected 3D skeleton.</p>
-            </li>
-            <li class="capture-setup">
-              <header><span>2</span><strong>Synchronized capture</strong></header>
-              <img src="assets/images/real_world_setup.png" alt="WiCompass real-world radar and motion-capture setup" />
-              <p>79 GHz radar · four-camera MoCap ground truth</p>
-            </li>
-            <li class="capture-sample">
-              <header><span>3</span><strong>Append synchronized sample</strong></header>
-              <dl class="sample-record" aria-label="Synchronized sample schema">
-                <div><dt>radar return</dt><dd>R<sub>t</sub></dd></div>
-                <div><dt>pose label</dt><dd>x<sub>t</sub> ∈ ℝ<sup>22×3</sup></dd></div>
-                <div><dt>timestamp</dt><dd>t</dd></div>
-              </dl>
-              <p>Re-encode the new pose labels into Φ<sub>mmWave</sub>.</p>
-            </li>
-          </ol>
-          <footer class="slide-note"><strong>New labels → new coverage → next target</strong><span>The framework can re-encode each new batch and recompute coverage before selecting targets for the next round.</span></footer>
-        </article>
-
         <article class="scene slide scene-simulation" data-scene="simulation">
           <header class="simulation-heading">
-            <p class="simulation-kicker">Scaling-law results</p>
+            <p class="simulation-kicker">Evidence  Simulation</p>
             <h2>Coverage-aware data keeps scaling.</h2>
           </header>
           <figure class="chart-frame simulation-frame">
@@ -153,12 +127,12 @@
 
         <article class="scene slide scene-realworld" data-scene="realworld">
           <header class="slide-heading">
-            <p class="eyebrow">Real-world validation · Figure 9(b)</p>
-            <h2>Training error is similar; held-out generalization is not.</h2>
+            <p class="eyebrow">Evidence  Real-world deployment</p>
+            <h2>Held-out poses reveal the real difference.</h2>
           </header>
           <div class="realworld-layout">
             <figure class="chart-frame realworld-frame">
-              <figcaption>8k training frames · 8k-frame held-out benchmark</figcaption>
+              <figcaption>8k training frames and an 8k-frame held-out benchmark</figcaption>
               <svg id="realworld-chart" class="science-chart" viewBox="0 0 820 360" role="img" aria-label="Training and testing MPJPE for recollection, WiCompass, and baseline data collection"></svg>
             </figure>
             <aside class="realworld-facts">
@@ -167,18 +141,18 @@
               <div><strong data-fact="baseline-test"></strong><span>baseline test MPJPE</span></div>
             </aside>
           </div>
-          <footer class="slide-note"><strong data-fact="realworld-improvement"></strong><span>Recollection is a test-matched oracle upper bound, not a deployable strategy; WiCompass moves toward it under the same 8k-frame budget.</span></footer>
+          <footer class="slide-note"><strong data-fact="realworld-improvement"></strong><span>under the same 8k-frame budget</span></footer>
         </article>
 
         <article class="scene scene-finale" data-scene="summary">
-          <p class="final-kicker">The scaling bottleneck is motion coverage.</p>
-          <h2>WiCompass identifies under-covered regions<br />of a radar dataset’s pose space.</h2>
-          <p class="final-summary">Universal pose tokens · directional coverage · coverage-aware acquisition</p>
+          <p class="final-kicker">Vision</p>
+          <h2>Scale motion coverage,<br />not repeated frames.</h2>
+          <p class="final-summary">Shared pose tokens reveal missing motion and guide the next samples.</p>
         </article>
 
         <article class="scene scene-back" data-scene="back">
           <div class="back-copy">
-            <p class="eyebrow">Paper · code · data collection tools</p>
+            <p class="eyebrow">Paper, code, and data collection tools</p>
             <h2 data-project-title></h2>
             <p class="back-authors" data-project-authors></p>
             <div class="back-logos" data-project-logos aria-label="Participating institutions"></div>

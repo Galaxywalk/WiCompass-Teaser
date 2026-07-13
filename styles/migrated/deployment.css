@@ -1,0 +1,154 @@
+/* Real-world evidence styling. Scientific values stay in content/. */
+
+.scene-realworld {
+  inset: 30px 64px 32px;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+  font-family: "Inter Teaser", sans-serif;
+}
+
+.scene-realworld .slide-heading {
+  align-self: start;
+}
+
+.scene-realworld .eyebrow {
+  margin-bottom: 4px;
+  color: var(--yellow);
+  font-size: var(--spec-type-annotation);
+  font-weight: 650;
+  line-height: 1.08;
+}
+
+.scene-realworld h2 {
+  font-size: var(--spec-type-section);
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.scene-realworld .slide-note,
+.stage[data-scene="realworld"] .caption-band {
+  display: none;
+}
+
+/* Figure 9(b): the plot dominates; the three values form a quiet readout rail. */
+.scene-realworld .realworld-layout {
+  width: 1152px;
+  height: auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 272px;
+  gap: 34px;
+  align-self: stretch;
+  justify-self: center;
+}
+
+.scene-realworld .realworld-frame {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.scene-realworld .realworld-frame figcaption {
+  left: 0;
+  top: 0;
+  color: var(--fg);
+  font-size: var(--spec-type-annotation);
+  font-weight: 560;
+  line-height: 1.1;
+}
+
+.scene-realworld .chart-grid text,
+.scene-realworld .chart-legend text,
+.scene-realworld .axis-label,
+.scene-realworld .bar-label,
+.scene-realworld .bar-value {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+}
+
+.scene-realworld .axis-label {
+  font-weight: 600;
+}
+
+.scene-realworld .chart-grid line {
+  stroke: #3a3a37;
+}
+
+.scene-realworld .chart-legend .legend-line {
+  stroke-width: 5;
+}
+
+.scene-realworld .chart-legend .series-training {
+  stroke: var(--yellow);
+}
+
+.scene-realworld .chart-legend .series-testing {
+  stroke: var(--green);
+}
+
+.scene-realworld .bar-training {
+  fill: color-mix(in srgb, var(--yellow) 38%, transparent);
+  stroke: var(--yellow);
+  stroke-width: 3;
+}
+
+.scene-realworld .bar-testing {
+  fill: color-mix(in srgb, var(--green) 40%, transparent);
+  stroke: var(--green);
+  stroke-width: 3;
+}
+
+.scene-realworld .bar-value,
+.scene-realworld .bar-label {
+  fill: var(--fg);
+}
+
+.scene-realworld .bar-value {
+  font-weight: 700;
+}
+
+.scene-realworld .realworld-facts {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  align-content: stretch;
+  gap: 14px;
+  padding: 40px 0 26px;
+}
+
+.scene-realworld .realworld-facts div {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 10px 0 10px 18px;
+  border-left: 4px solid var(--yellow);
+}
+
+.scene-realworld .realworld-facts div:nth-child(2) {
+  border-color: var(--green);
+}
+
+.scene-realworld .realworld-facts div:nth-child(3) {
+  border-color: var(--red);
+}
+
+.scene-realworld .realworld-facts strong {
+  color: var(--fg);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-explanation);
+  font-weight: 740;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.scene-realworld .realworld-facts span {
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+  line-height: 1.12;
+}

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { extname, join } from "node:path";
 import { BAR_CHARTS, LINE_CHARTS } from "../content/chart-data.js";
@@ -82,7 +83,50 @@ for (const path of cssFiles) {
 
 const expectedVoiceover = `${SCENES.map(({ voiceover }) => voiceover).filter(Boolean).join("\n\n")}\n`;
 assert.equal(await readFile("assets/audio/voiceover.txt", "utf8"), expectedVoiceover, "voiceover.txt is stale");
-const audioDuration = probeDuration("assets/audio/voiceover.m4a");
-assert.ok(Math.abs(audioDuration - DURATION) < 0.1, `Audio is ${audioDuration}s but timeline is ${DURATION}s`);
 
-process.stdout.write(`Validated ${SCENES.length} scenes, ${DURATION}s timeline, ${LINE_CHARTS.length + BAR_CHARTS.length} charts, locked typography, assets, and audio.\n`);
+const manifestPath = "assets/audio/voiceover.manifest.json";
+const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+assert.equal(manifest.engine, "Kokoro local_tts.py", `${manifestPath}: unexpected TTS engine`);
+assert.equal(manifest.language, "a", `${manifestPath}: Kokoro language must be American English (a)`);
+assert.equal(manifest.voice, "af_heart", `${manifestPath}: unexpected Kokoro voice`);
+assert.ok(Number.isFinite(manifest.speed) && manifest.speed > 0, `${manifestPath}: speed must be positive`);
+assert.deepEqual(
+  manifest.normalization,
+  { integratedLufs: -16, truePeakDbtp: -1.5, loudnessRange: 11 },
+  `${manifestPath}: narration loudness target is stale`,
+);
+
+const expectedSourceHash = createHash("sha256")
+  .update(JSON.stringify(SCENES.map(({ id, duration, voiceover }) => ({ id, duration, voiceover }))))
+  .digest("hex");
+assert.equal(manifest.sourceHash, expectedSourceHash, `${manifestPath}: sourceHash does not match content/timeline.js`);
+assert.equal(manifest.duration, DURATION, `${manifestPath}: duration does not match the timeline`);
+assert.ok(Array.isArray(manifest.scenes), `${manifestPath}: scenes must be an array`);
+assert.equal(manifest.scenes.length, SCENES.length, `${manifestPath}: scene count does not match the timeline`);
+
+manifest.scenes.forEach((audioScene, index) => {
+  const timelineScene = SCENES[index];
+  assert.equal(audioScene.id, timelineScene.id, `${manifestPath}: scene ${index + 1} ID/order mismatch`);
+  assert.equal(audioScene.sceneDuration, timelineScene.duration, `${manifestPath}: ${timelineScene.id} duration mismatch`);
+  assert.ok(Number.isFinite(audioScene.speechDuration) && audioScene.speechDuration >= 0, `${manifestPath}: ${timelineScene.id} has invalid speechDuration`);
+  assert.ok(Number.isFinite(audioScene.leadIn) && audioScene.leadIn >= 0, `${manifestPath}: ${timelineScene.id} has invalid leadIn`);
+  if (timelineScene.voiceover) {
+    assert.ok(audioScene.speechDuration > 0, `${manifestPath}: ${timelineScene.id} is missing generated speech`);
+    assert.ok(Number.isFinite(audioScene.tail) && audioScene.tail >= 0, `${manifestPath}: ${timelineScene.id} has invalid tail`);
+    const composedDuration = audioScene.leadIn + audioScene.speechDuration + audioScene.tail;
+    assert.ok(Math.abs(composedDuration - timelineScene.duration) < 0.01, `${manifestPath}: ${timelineScene.id} segment timing does not fill its scene`);
+  } else {
+    assert.equal(audioScene.speechDuration, 0, `${manifestPath}: silent scene ${timelineScene.id} contains speech`);
+  }
+});
+
+const audioPaths = ["assets/audio/voiceover.wav", "assets/audio/voiceover.m4a"];
+const audioDurations = audioPaths.map((path) => ({ path, duration: probeDuration(path) }));
+for (const { path, duration } of audioDurations) {
+  assert.ok(Number.isFinite(duration) && duration > 0, `${path}: invalid media duration`);
+  assert.ok(Math.abs(duration - manifest.duration) < 0.1, `${path} is ${duration}s but the Kokoro manifest is ${manifest.duration}s`);
+  assert.ok(Math.abs(duration - DURATION) < 0.1, `${path} is ${duration}s but the timeline is ${DURATION}s`);
+}
+assert.ok(Math.abs(audioDurations[0].duration - audioDurations[1].duration) < 0.1, "Kokoro WAV and M4A durations differ");
+
+process.stdout.write(`Validated ${SCENES.length} scenes, ${DURATION}s timeline, ${LINE_CHARTS.length + BAR_CHARTS.length} charts, locked typography, assets, and Kokoro audio manifest.\n`);

@@ -1,19 +1,24 @@
 // Scientific values and chart semantics live here, separate from SVG rendering.
 // Values are transcribed from the paper's experiment logs.
 
-export const EFFICIENCY_PERCENTAGES = Object.freeze([100, 90, 80, 70, 60, 50, 40, 30, 20, 10]);
-export const EFFICIENCY_READOUT_PERCENTAGES = Object.freeze(EFFICIENCY_PERCENTAGES.slice(0, 8));
+export const EFFICIENCY_PERCENTAGES = Object.freeze([100, 90, 80, 70, 60, 50, 40, 30]);
+export const EFFICIENCY_READOUT_PERCENTAGES = EFFICIENCY_PERCENTAGES;
 
 export const LINE_CHARTS = Object.freeze([
   {
     selector: "#loo-chart",
     config: {
-      padding: { left: 58, right: 18, top: 48, bottom: 42 },
+      padding: { left: 96, right: 24, top: 60, bottom: 64 },
       yMin: 20,
       yMax: 190,
       yTicks: [60, 100, 140, 180],
       yLabel: "MPJPE (mm)",
+      yLabelX: 26,
       xLabel: "held-out action",
+      xLabelBottom: 4,
+      xTickY: 342,
+      legendY: 26,
+      legendStep: 236,
       xTicks: [
         { index: 0, label: "A01" },
         { index: 8, label: "A09" },
@@ -40,17 +45,20 @@ export const LINE_CHARTS = Object.freeze([
   {
     selector: "#efficiency-chart",
     config: {
-      padding: { left: 58, right: 18, top: 48, bottom: 42 },
+      padding: { left: 96, right: 24, top: 54, bottom: 64 },
       yMin: 0,
       yMax: 90,
       yTicks: [0, 20, 40, 60, 80],
       showLegend: false,
       yLabel: "MPJPE (mm)",
+      yLabelX: 26,
       xLabel: "training data kept",
-      xTicks: [0, 2, 4, 6, 7, 9].map((index) => ({ index, label: `${EFFICIENCY_PERCENTAGES[index]}%` })),
+      xLabelBottom: 4,
+      xTickY: 342,
+      xTicks: [0, 2, 4, 6, 7].map((index) => ({ index, label: `${EFFICIENCY_PERCENTAGES[index]}%` })),
       referenceLine: { value: 68.2, label: "≈68 mm plateau from 100% to 30%" },
       series: [
-        { key: "primary", label: "mmBody", values: [67.22, 68.94, 68.55, 66.40, 67.82, 69.53, 68.68, 68.55, 69.00, 71.10] },
+        { key: "primary", label: "mmBody", values: [67.22, 68.94, 68.55, 66.40, 67.82, 69.53, 68.68, 68.55] },
       ],
     },
   },
@@ -118,9 +126,15 @@ export const BAR_CHARTS = Object.freeze([
   {
     selector: "#realworld-chart",
     config: {
+      padding: { left: 90, right: 18, top: 72, bottom: 64 },
       yMin: 0,
       yMax: 130,
       yTicks: [0, 30, 60, 90, 120],
+      yLabelX: 24,
+      legendY: 50,
+      legendStep: 215,
+      barLabelY: 348,
+      barWidth: 60,
       groups: [
         { label: "Recollection oracle", values: [49.6, 95.7] },
         { label: "WiCompass", values: [48.3, 105.7] },

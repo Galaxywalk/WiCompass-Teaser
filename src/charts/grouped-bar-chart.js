@@ -14,19 +14,21 @@ export function renderGroupedBarChart(selector, config, root = document) {
     grid.append(svgElement("text", { x: padding.left - 9, y: y(tick) + 4, "text-anchor": "end" }, tick));
   });
   svg.append(grid);
+  const yLabelX = config.yLabelX ?? 13;
   svg.append(svgElement("text", {
-    x: 13,
+    x: yLabelX,
     y: height / 2,
-    transform: `rotate(-90 13 ${height / 2})`,
+    transform: `rotate(-90 ${yLabelX} ${height / 2})`,
     "text-anchor": "middle",
     class: "axis-label",
   }, config.yLabel ?? "MPJPE (mm)"));
 
   const legend = svgElement("g", { class: "chart-legend" });
+  const legendY = config.legendY ?? 15;
   [["training MPJPE", "training"], ["testing MPJPE", "testing"]].forEach(([label, key], index) => {
-    const offset = padding.left + index * 190;
-    legend.append(svgElement("line", { x1: offset, x2: offset + 22, y1: 15, y2: 15, class: `legend-line series-${key}` }));
-    legend.append(svgElement("text", { x: offset + 30, y: 19 }, label));
+    const offset = padding.left + index * (config.legendStep ?? 190);
+    legend.append(svgElement("line", { x1: offset, x2: offset + 22, y1: legendY, y2: legendY, class: `legend-line series-${key}` }));
+    legend.append(svgElement("text", { x: offset + 30, y: legendY + 4 }, label));
   });
   svg.append(legend);
 
@@ -55,7 +57,7 @@ export function renderGroupedBarChart(selector, config, root = document) {
     });
     svg.append(svgElement("text", {
       x: center,
-      y: height - 14,
+      y: config.barLabelY ?? height - 14,
       "text-anchor": "middle",
       class: "bar-label",
     }, group.label));

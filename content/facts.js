@@ -23,8 +23,8 @@ const baselineTest = realworldRows.Baseline[1];
 
 export const FACTS = Object.freeze({
   "action-gap": `${actionIncluded.toFixed(1)} → ${actionHeldout.toFixed(1)} mm`,
-  "efficiency-title": `Removing ${retainedStart - retainedEnd}% of training frames barely changes error.`,
-  "efficiency-note": `From ${retainedStart}% down to ${retainedEnd}% of mmBody, MPJPE remains close to ${Math.round(efficiency.referenceLine.value)} mm. Repeated poses add volume without expanding motion coverage.`,
+  "efficiency-title": `Only ${retainedEnd}% of the data. Nearly the same error.`,
+  "efficiency-note": `≈${Math.round(efficiency.referenceLine.value)} mm at ${retainedEnd}% data`,
   "simulation-gap": `${Math.round(Math.min(...scalingGaps))}–${Math.floor(Math.max(...scalingGaps))} mm lower OOD MPJPE`,
   "oracle-test": `${realworldRows["Recollection oracle"][1].toFixed(1)} mm`,
   "wicompass-test": `${wicompassTest.toFixed(1)} mm`,

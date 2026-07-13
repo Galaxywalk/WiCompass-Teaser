@@ -72,16 +72,17 @@ export function renderLineChart(selector, config, root = document) {
   const legend = svgElement("g", { class: "chart-legend" });
   config.series.forEach((series, seriesIndex) => {
     const offset = padding.left + seriesIndex * (config.legendStep ?? 142);
+    const legendY = config.legendY ?? 14;
     const seriesClass = `series-${series.key}`;
     if (config.showLegend !== false) {
       if (series.fit && series.marker === "square") {
-        legend.append(svgElement("rect", { x: offset + 5, y: 8, width: 12, height: 12, class: `chart-legend-marker ${seriesClass}` }));
+        legend.append(svgElement("rect", { x: offset + 5, y: legendY - 6, width: 12, height: 12, class: `chart-legend-marker ${seriesClass}` }));
       } else if (series.fit) {
-        legend.append(svgElement("circle", { cx: offset + 11, cy: 14, r: 6, class: `chart-legend-marker ${seriesClass}` }));
+        legend.append(svgElement("circle", { cx: offset + 11, cy: legendY, r: 6, class: `chart-legend-marker ${seriesClass}` }));
       } else {
-        legend.append(svgElement("line", { x1: offset, x2: offset + 22, y1: 14, y2: 14, class: `legend-line ${seriesClass}` }));
+        legend.append(svgElement("line", { x1: offset, x2: offset + 22, y1: legendY, y2: legendY, class: `legend-line ${seriesClass}` }));
       }
-      legend.append(svgElement("text", { x: offset + 29, y: 18 }, series.label));
+      legend.append(svgElement("text", { x: offset + 29, y: legendY + 4 }, series.label));
     }
 
     const points = series.values.map((value, index) => [x(index), y(value)]);

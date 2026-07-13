@@ -6,6 +6,22 @@ The pixel sizes below assume the current 1280×720 render canvas. If the canvas 
 
 For 1280×720 production, use four locked tokens: **96 px / 56 px / 36 px / 26 px**. The ranges below define the permitted calibration range for each level, not permission to choose a new size for every element. Recalibrate a level only as a global system change.
 
+## Narrative structure
+
+The current cut contains nine scenes and follows one scientific argument:
+
+| Narrative role | Scene IDs | Purpose |
+| --- | --- | --- |
+| Opening identity | `cover` | Establish the paper, authors, institutions, and venue. |
+| **Question** | `actions` | Show that conventional action splits hide a severe held-out-action gap. |
+| **Insight** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
+| **Mechanism** | `method`, `coverage` | Explain the common pose representation and selection of under-covered regions. |
+| **Evidence** | `simulation`, `realworld` | Test the claim in fitted scaling laws and real-world deployment. |
+| **Vision** | `summary` | Leave the viewer with the principle: scale motion coverage, not repeated frames. |
+| Closing identity | `back` | Provide paper identity and a repository QR code. |
+
+Do not add a scene unless the new information cannot be absorbed into this structure without creating a second focal point. Preserve the Question → Insight → Mechanism → Evidence → Vision order.
+
 ## 1. Typography
 
 Use exactly two font roles:
@@ -97,7 +113,7 @@ Do not assign a new accent color merely because a new scene was added. Prefer sh
 
 ## 5. Narration and TTS
 
-Use the user's local **Kokoro TTS** installation as the default and only narration backend unless the user explicitly changes this decision. Do not return to MiniMax, browser TTS, macOS `say`, or another cloud service for final narration.
+Use the user's local **Kokoro TTS** installation as the default and only narration backend unless the user explicitly changes this decision. Do not use browser TTS, macOS `say`, or a cloud service for final narration.
 
 The canonical invocation is:
 
@@ -112,6 +128,7 @@ Production rules:
 - replace the example sentence with the locked English narration;
 - use `--lang a` for the English teaser;
 - preserve the generated WAV as the narration master;
+- normalize the master to -16 LUFS integrated loudness with a -1.5 dBTP ceiling;
 - derive AAC/M4A from the WAV only when the HTML recorder needs `assets/audio/voiceover.m4a`;
 - keep narration text synchronized with `content/timeline.js` and `assets/audio/voiceover.txt`;
 - regenerate TTS after script changes rather than time-stretching stale audio;
@@ -147,4 +164,6 @@ Before picture lock, confirm:
 
 ## Current migration status
 
-The redesigned `simulation` scene is the first reference implementation of this specification. The remaining July 13 scenes still use the legacy Source Sans 3 system, include sub-24 px text, use five chromatic accents across the full cut, and retain the 89.5-second timeline. The validator currently accepts both the legacy tokens and the four new tokens during this staged migration. Migrate the remaining scenes to Inter, JetBrains Mono, the four locked sizes, a maximum four-color palette, and an approximately 85-second cut. Do not weaken the specification to match the legacy scenes.
+The current nine-scene cut is 82.6 seconds. `cover`, `actions`, `efficiency`, `simulation`, `realworld`, `summary`, and `back` follow the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above.
+
+`method` and `coverage` are the only scenes still awaiting a dedicated redesign. They are intentionally held back so the shared-pose-space and coverage-selection mechanisms can be solved together rather than cosmetically restyled. The validator may continue to tolerate their legacy presentation during this focused migration, but new work must not copy that legacy formatting.

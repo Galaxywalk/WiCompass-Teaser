@@ -3,7 +3,15 @@ import { PROJECT } from "../../content/project.js";
 function renderTitle(element) {
   const name = document.createElement("span");
   name.textContent = PROJECT.name;
-  element.replaceChildren(name, `: ${PROJECT.subtitleLines[0]}`, document.createElement("br"), PROJECT.subtitleLines[1]);
+  const breakAfterName = element.closest(".scene-back") ? document.createElement("br") : " ";
+  element.replaceChildren(
+    name,
+    ":",
+    breakAfterName,
+    PROJECT.subtitleLines[0],
+    document.createElement("br"),
+    PROJECT.subtitleLines[1],
+  );
 }
 
 function renderLogos(element) {
@@ -18,10 +26,17 @@ function renderLogos(element) {
   element.replaceChildren(fragment);
 }
 
+function renderLines(element, lines) {
+  const nodes = lines.flatMap((line, index) => index === 0
+    ? [line]
+    : [document.createElement("br"), line]);
+  element.replaceChildren(...nodes);
+}
+
 export function renderProjectMetadata(root = document) {
   root.querySelectorAll("[data-project-title]").forEach(renderTitle);
   root.querySelectorAll("[data-project-authors]").forEach((element) => {
-    element.replaceChildren(PROJECT.authorLines[0], document.createElement("br"), PROJECT.authorLines[1]);
+    renderLines(element, PROJECT.authorLines);
   });
   root.querySelectorAll("[data-project-conference]").forEach((element) => {
     element.textContent = PROJECT.conference;

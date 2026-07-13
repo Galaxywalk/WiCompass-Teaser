@@ -1,15 +1,13 @@
-With all twenty-seven actions included in training, errors remain low. Leaving each action out produces a large generalization penalty. Left-hand wave rises from 41.1 to 151.1 millimeters.
+Include an action, and error stays low. Hold it out, and left-hand wave jumps from 41.1 to 151.1 millimeters.
 
-On mmBody, reducing the retained training subset from one hundred percent to thirty percent keeps error near sixty-eight millimeters. Much of the dataset is redundant.
+On mmBody, keeping thirty percent of the frames leaves error near sixty-eight millimeters. More data is not more coverage.
 
-Wi-Compass trains a discrete pose tokenizer on A-MASS. Its frozen encoder and codebook map both motion-capture and millimeter-wave pose labels into one latent space, without aligning raw sensor signals.
+Wi-Compass trains a pose tokenizer on A-MASS. The frozen encoder maps motion-capture and millimeter-wave pose labels into one shared latent space.
 
-Directional k-nearest-neighbor coverage identifies A-MASS poses insufficiently covered by the millimeter-wave dataset. Capped P P S favors sparser candidates while limiting the influence of extreme distances.
+Directional nearest-neighbor coverage finds A-MASS poses missing from the radar dataset. Capped sampling prioritizes sparse regions without chasing extreme outliers.
 
-A selected latent pose is decoded and displayed during synchronized radar and motion-capture recording. The framework can re-encode each new batch and recompute coverage for the next round.
+With the same model and budget, fitted scaling laws remain twenty-five to thirty millimeters apart from two thousand to forty thousand samples.
 
-Under equal simulated data budgets, Wi-Compass reduces out-of-distribution error by twenty-five to thirty millimeters from two thousand to forty thousand training samples.
+Training errors match. On held-out poses, Wi-Compass reaches 105.7 millimeters, versus 112.9 from an action list.
 
-In the real-world experiment, all strategies fit their training sets similarly. Wi-Compass reaches 105.7 millimeters on the held-out benchmark, compared with 112.9 for action-list collection.
-
-Wi-Compass represents motion in a common pose space, measures what is insufficiently covered, and acquires those poses next.
+Scale motion coverage, not repeated frames.

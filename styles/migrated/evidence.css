@@ -1,0 +1,216 @@
+/* Actions + efficiency migration to the 720p teaser specification.
+   This file is presentation-only: scientific values and copy stay in content/. */
+
+.stage[data-scene="actions"] .scene-hook,
+.stage[data-scene="efficiency"] .scene-redundancy {
+  inset: 0;
+  padding: 32px 64px 26px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  font-family: "Inter Teaser", sans-serif;
+}
+
+.scene-hook .slide-heading,
+.scene-redundancy .slide-heading {
+  align-self: start;
+}
+
+.scene-hook .eyebrow,
+.scene-redundancy .eyebrow {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 620;
+  line-height: 1.05;
+}
+
+.scene-hook h2,
+.scene-redundancy h2 {
+  max-width: 1160px;
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-section);
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.scene-hook .chart-frame,
+.scene-redundancy .chart-frame {
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.scene-hook .chart-frame figcaption,
+.scene-redundancy .chart-frame figcaption {
+  top: 0;
+  color: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 560;
+  line-height: 1.1;
+}
+
+.scene-hook .chart-frame figcaption {
+  right: 0;
+  left: auto;
+  text-align: right;
+}
+
+.scene-redundancy .efficiency-frame figcaption {
+  right: 0;
+  left: 0;
+  align-items: baseline;
+}
+
+.scene-redundancy .efficiency-frame figcaption strong {
+  color: var(--yellow);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-explanation);
+  font-weight: 740;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.scene-hook .chart-grid text,
+.scene-hook .chart-legend text,
+.scene-hook .chart-highlight-label,
+.scene-hook .axis-label,
+.scene-redundancy .chart-grid text,
+.scene-redundancy .axis-label,
+.scene-redundancy .reference-label {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+}
+
+.scene-hook .axis-label,
+.scene-redundancy .axis-label {
+  fill: var(--muted);
+  font-weight: 600;
+}
+
+.scene-hook .chart-grid line,
+.scene-redundancy .chart-grid line {
+  stroke: #3a3a37;
+}
+
+.scene-hook .chart-grid line.vertical,
+.scene-redundancy .chart-grid line.vertical {
+  stroke: #282826;
+}
+
+/* Actions encode two dataset splits, not a temporal trajectory. */
+#loo-chart .series-included {
+  stroke: var(--green);
+}
+
+#loo-chart .series-heldout,
+#loo-chart .gap-stem {
+  stroke: var(--red);
+}
+
+#loo-chart .chart-point {
+  fill: var(--bg);
+  stroke-width: 3;
+}
+
+#loo-chart .chart-point.important {
+  stroke-width: 6;
+}
+
+#loo-chart .gap-stem {
+  stroke-width: 3;
+  stroke-dasharray: 7 7;
+}
+
+#loo-chart .chart-highlight {
+  fill: rgba(252, 98, 85, 0.09);
+}
+
+#loo-chart .chart-highlight-label {
+  fill: var(--red);
+  font-weight: 760;
+}
+
+.scene-hook .chart-callout {
+  top: 58px;
+  right: 18px;
+  gap: 2px;
+  padding: 8px 0 8px 15px;
+  color: var(--muted);
+  border-left: 4px solid var(--red);
+  background: transparent;
+  opacity: clamp(0, calc((var(--p) - 0.12) * 6), 1);
+}
+
+.scene-hook .chart-callout span {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 560;
+}
+
+.scene-hook .chart-callout strong {
+  color: var(--red);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-explanation);
+  font-weight: 760;
+  letter-spacing: -0.025em;
+}
+
+#efficiency-chart .series-primary {
+  stroke: var(--green);
+}
+
+#efficiency-chart .chart-line {
+  stroke-width: 5;
+}
+
+#efficiency-chart .chart-point {
+  fill: var(--bg);
+  stroke-width: 4;
+}
+
+#efficiency-chart .efficiency-reference {
+  stroke: var(--yellow);
+  stroke-width: 3;
+}
+
+#efficiency-chart .reference-label {
+  fill: var(--yellow);
+  font-weight: 680;
+}
+
+/* Replace the legacy note-band treatment with one clear claim and one aid. */
+.scene-hook .slide-note,
+.scene-redundancy .slide-note {
+  min-height: 66px;
+  gap: 24px;
+  align-items: baseline;
+  padding-top: 8px;
+  border-top: 2px solid var(--line);
+  font-family: "Inter Teaser", sans-serif;
+}
+
+.scene-hook .slide-note strong,
+.scene-redundancy .slide-note strong {
+  color: var(--fg);
+  font-size: var(--spec-type-explanation);
+  font-weight: 740;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.scene-hook .slide-note span,
+.scene-redundancy .slide-note span {
+  color: var(--muted);
+  font-size: var(--spec-type-annotation);
+  font-weight: 520;
+  line-height: 1.16;
+}
+
+.stage[data-scene="actions"] .caption-band,
+.stage[data-scene="efficiency"] .caption-band {
+  display: none;
+}
