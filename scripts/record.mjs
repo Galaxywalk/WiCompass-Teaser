@@ -60,7 +60,7 @@ const outputName = requestedScene
     ? "WiCompass-MobiCom26-Teaser-preview.mp4"
     : isDraft
       ? "WiCompass-MobiCom26-Teaser-fast-draft.mp4"
-      : "WiCompass-MobiCom26-Teaser-draft.mp4";
+      : "WiCompass-MobiCom26-Teaser.mp4";
 const outputPath = join(outputDir, outputName);
 
 let hasAudio = false;

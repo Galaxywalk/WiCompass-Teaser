@@ -158,15 +158,6 @@
   min-width: 0;
 }
 
-.scene-back .eyebrow {
-  margin-bottom: 18px;
-  color: var(--yellow);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 620;
-  line-height: 1.05;
-}
-
 .scene-back h2 {
   max-width: none;
   font-family: "Inter Teaser", sans-serif;
@@ -232,19 +223,4 @@
   line-height: 1.12;
   overflow-wrap: normal;
   white-space: nowrap;
-}
-
-.scene-back .qr-panel span {
-  margin-top: 6px;
-  color: var(--muted);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 500;
-  line-height: 1;
-}
-
-.stage[data-scene="cover"] .caption-band,
-.stage[data-scene="summary"] .caption-band,
-.stage[data-scene="back"] .caption-band {
-  display: none;
 }

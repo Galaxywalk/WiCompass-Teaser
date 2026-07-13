@@ -8,9 +8,9 @@
     "truePeakDbtp": -1.5,
     "loudnessRange": 11
   },
-  "sourceHash": "8fab868ebef9566f0cd66d989a9a7e533157a10a523a2f382b6e5782d7a317ef",
-  "duration": 89.1,
-  "generatedAt": "2026-07-13T16:57:09.888Z",
+  "sourceHash": "8ba7ffbb504c9f030e23641ffa49690b4562620da13690d2daedc42a8db663e4",
+  "duration": 84.1,
+  "generatedAt": "2026-07-13T17:56:34.668Z",
   "scenes": [
     {
       "id": "cover",
@@ -29,51 +29,44 @@
     {
       "id": "efficiency",
       "sceneDuration": 7,
-      "speechDuration": 6.35,
+      "speechDuration": 5.7,
       "leadIn": 0.25,
-      "tail": 0.4
+      "tail": 1.05
     },
     {
       "id": "method",
-      "sceneDuration": 10.7,
-      "speechDuration": 8.95,
+      "sceneDuration": 15.8,
+      "speechDuration": 14.875,
       "leadIn": 0.25,
-      "tail": 1.5
-    },
-    {
-      "id": "coverage",
-      "sceneDuration": 10.1,
-      "speechDuration": 8.975,
-      "leadIn": 0.25,
-      "tail": 0.875
+      "tail": 0.675
     },
     {
       "id": "simulation",
       "sceneDuration": 9.78,
-      "speechDuration": 9.175,
+      "speechDuration": 8.85,
       "leadIn": 0.25,
-      "tail": 0.355
+      "tail": 0.68
     },
     {
       "id": "realworld",
       "sceneDuration": 13,
-      "speechDuration": 12.325,
+      "speechDuration": 10.475,
       "leadIn": 0.25,
-      "tail": 0.425
+      "tail": 2.275
     },
     {
       "id": "summary",
       "sceneDuration": 11.3,
-      "speechDuration": 9.85,
+      "speechDuration": 10.275,
       "leadIn": 0.25,
-      "tail": 1.2
+      "tail": 0.775
     },
     {
       "id": "back",
       "sceneDuration": 3.92,
-      "speechDuration": 2.75,
+      "speechDuration": 2.675,
       "leadIn": 0.25,
-      "tail": 0.92
+      "tail": 0.995
     }
   ]
 }

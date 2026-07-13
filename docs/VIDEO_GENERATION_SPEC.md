@@ -8,14 +8,14 @@ For 1280×720 production, use four locked tokens: **96 px / 56 px / 36 px / 26 p
 
 ## Narrative structure
 
-The current cut contains nine scenes and follows one scientific argument:
+The current cut contains eight scenes and follows one scientific argument:
 
 | Narrative role | Scene IDs | Purpose |
 | --- | --- | --- |
 | Opening identity | `cover` | Establish the paper, authors, institutions, and venue. |
 | **Question** | `actions` | Show that conventional action splits hide a severe held-out-action gap. |
 | **Insight** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
-| **Mechanism** | `method`, `coverage` | Explain the common pose representation and selection of under-covered regions. |
+| **Mechanism** | `method` | Explain the shared pose representation, directional coverage test, and selection of under-covered regions in one continuous map. |
 | **Evidence** | `simulation`, `realworld` | Test the claim in fitted scaling laws and real-world deployment. |
 | **Vision** | `summary` | Leave the viewer with the principle: scale motion coverage, not repeated frames. |
 | Closing identity | `back` | Provide paper identity and a repository QR code. |
@@ -30,6 +30,17 @@ Use exactly two font roles:
 - **Math/code font: JetBrains Mono.** Use it only for equations, mathematical symbols that need a monospaced treatment, tensor shapes, code, and structured sample records.
 
 Do not introduce additional display, body, handwritten, or decorative typefaces.
+
+### Capitalization and technical names
+
+Preserve the canonical spelling of project, modality, dataset, and metric names everywhere on screen:
+
+- `WiCompass`, `mmWave`, `MoCap`, `AMASS`, `MMFi`, `mmBody`, `MPJPE`, and `OOD`;
+- scene kickers use Title Case, including `Simulation Evaluation` and `Real-World Evaluation`;
+- headlines, annotations, legends, axes, and footer sentences use sentence case;
+- the paper title keeps its official capitalization: `WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation`.
+
+The narration source may spell `Wi-Compass` and `A-MASS` solely as Kokoro pronunciation hints. Those forms must never appear in visible video text.
 
 ### Level 1 — Hero title
 
@@ -129,12 +140,14 @@ Figure-internal prose, block headings, legends, axes, formulas, and annotations 
 
 Use a fixed palette of **three to four chromatic colors for the entire teaser**, never more. Black/dark background and white/gray neutrals are structural tones and do not count toward this limit.
 
-Each chromatic color must keep one semantic role throughout the video—for example:
+The current semantic mapping is fixed:
 
-- WiCompass/proposed method;
-- baseline or comparison;
-- warning/generalization gap;
-- selection/annotation highlight.
+- **green:** WiCompass, selected acquisition targets, and the favorable comparison;
+- **blue:** project identity and existing mmWave observations;
+- **yellow:** baseline/reference conditions and neutral comparison series;
+- **red:** held-out failure, uncovered regions, and the worse comparison.
+
+AMASS reference poses remain white/gray neutrals in the method scene. They are the coordinate system, not a competing method, so they do not receive a new accent color.
 
 Do not assign a new accent color merely because a new scene was added. Prefer shape, position, line style, or motion before adding color.
 
@@ -159,11 +172,12 @@ Production rules:
 - derive AAC/M4A from the WAV only when the HTML recorder needs `assets/audio/voiceover.m4a`;
 - keep narration text synchronized with `content/timeline.js` and `assets/audio/voiceover.txt`;
 - regenerate TTS after script changes rather than time-stretching stale audio;
+- use the locked `af_heart` voice unless a new voice is explicitly approved;
 - do not synthesize final narration until wording and scene timing are approved.
 
-The repository generates the locked narration at Kokoro `1.25×` speed. This keeps an approximately 180–200-word conference script natural inside the 85–90-second cut while preserving short scene-boundary pauses. Override `KOKORO_SPEED` only after rechecking every scene boundary.
+The repository generates the locked narration at Kokoro `1.25×` speed. Keep the conference script within roughly 160–200 words so it stays natural inside the 85–90-second cut while preserving short scene-boundary pauses. Override `KOKORO_SPEED` only after rechecking every scene boundary.
 
-The macOS placeholder generator may remain available for timing diagnostics, but its output is never the final voice.
+The macOS placeholder generator writes only to `tmp/placeholder-audio/`; it must never overwrite the canonical Kokoro WAV, M4A, text, or manifest.
 
 ## 6. Duration
 
@@ -195,4 +209,4 @@ Before picture lock, confirm:
 
 ## Current migration status
 
-The current nine-scene cut is 89.1 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. Because the cut is close to the 90-second hard limit, future additions must replace existing material rather than extend the timeline.
+The current eight-scene cut is 84.1 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: it uses a single shared-space figure to connect encoding, directional coverage, and target selection without switching visual grammars.

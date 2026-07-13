@@ -32,15 +32,6 @@
   align-self: stretch;
 }
 
-.scene-hook .chart-frame figcaption {
-  top: 0;
-  color: var(--muted);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-  line-height: 1.1;
-}
-
 .scene-hook .chart-legend-marker.series-included {
   fill: var(--green);
   stroke: var(--green);
@@ -49,12 +40,6 @@
 .scene-hook .chart-legend-marker.series-heldout {
   fill: var(--red);
   stroke: var(--red);
-}
-
-.scene-hook .chart-frame figcaption {
-  right: 0;
-  left: auto;
-  text-align: right;
 }
 
 .scene-hook .chart-grid text,
@@ -163,9 +148,4 @@
 #efficiency-chart .reference-label {
   fill: var(--yellow);
   font-weight: 680;
-}
-
-.stage[data-scene="actions"] .caption-band,
-.stage[data-scene="efficiency"] .caption-band {
-  display: none;
 }

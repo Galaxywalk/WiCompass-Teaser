@@ -1,6 +1,6 @@
-/* Compact shared-pose-space method scene.
-   The figure carries one idea: a MoCap prior gives both datasets a common
-   representation, so coverage becomes directly measurable. */
+/* One continuous method scene: shared encoding, directional coverage, target selection.
+   Neutral = AMASS reference, blue = existing mmWave labels, red = gap set,
+   green = WiCompass targets. No color changes meaning inside the scene. */
 
 .scene-method {
   inset: 0;
@@ -15,298 +15,371 @@
   align-self: start;
 }
 
-.scene-method .method-kicker {
-  margin: 0 0 4px;
-}
-
-.scene-method .method-vocabulary {
-  width: 960px;
-  height: 320px;
+.scene-method .method-pipeline {
+  width: 1100px;
+  height: 340px;
   min-height: 0;
   display: grid;
-  grid-template-columns: 220px 64px 210px 64px 354px;
-  gap: 12px;
+  grid-template-columns: 170px 38px 150px 38px 500px 38px 166px;
   align-items: center;
   justify-self: center;
   align-self: center;
 }
 
-.scene-method .method-inputs {
-  height: 296px;
-  min-height: 0;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 14px;
+.scene-method .method-pipeline header strong,
+.scene-method .method-pipeline header span,
+.scene-method .method-input-stream > span,
+.scene-method .method-space-key,
+.scene-method .method-neighborhood-test text {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  line-height: 1.08;
 }
 
-.scene-method .method-pose-stream {
-  position: relative;
-  min-height: 0;
-  display: grid;
-  grid-template-rows: auto 72px;
-  padding: 10px 16px;
-  border-left: 4px solid;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.055), transparent 92%);
-}
-
-.scene-method .method-amass {
-  border-color: var(--green);
-}
-
-.scene-method .method-mmwave {
-  border-color: var(--yellow);
-}
-
-.scene-method .method-pose-stream header {
-  display: grid;
-  gap: 3px;
-  line-height: 1;
-}
-
-.scene-method .method-pose-stream header strong {
+.scene-method .method-pipeline header strong {
   color: var(--fg);
-  font-size: var(--spec-type-annotation);
-  font-weight: 720;
+  font-weight: 700;
 }
 
-.scene-method .method-pose-stream header span {
+.scene-method .method-pipeline header span,
+.scene-method .method-input-stream > span {
   color: var(--muted);
-  font-size: var(--spec-type-annotation);
   font-weight: 520;
 }
 
-.scene-method .method-pose-strip,
-.scene-method .method-label-record {
-  width: 100%;
-  height: 72px;
-  min-height: 72px;
+.scene-method .method-inputs {
+  height: 310px;
+  display: grid;
+  grid-template-rows: auto 1fr 1fr;
+  gap: 8px;
+  opacity: clamp(0, calc(var(--p) * 8), 1);
+}
+
+.scene-method .method-inputs > header {
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--line);
+}
+
+.scene-method .method-input-stream {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 8px 10px 4px 12px;
+  border-left: 4px solid;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 94%);
+}
+
+.scene-method .method-amass {
+  border-color: var(--muted);
+  opacity: clamp(0, calc((var(--p) - 0.01) * 7), 1);
+}
+
+.scene-method .method-mmwave {
+  border-color: var(--blue);
+  opacity: clamp(0, calc((var(--p) - 0.07) * 7), 1);
+}
+
+.scene-method .method-input-poses {
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
 }
 
-.scene-method .method-pose-strip img,
-.scene-method .method-label-record img {
-  flex: 0 0 52px;
-  width: 52px;
-  height: 72px;
+.scene-method .method-input-poses img {
+  width: 48px;
+  height: 92px;
   object-fit: contain;
-  opacity: clamp(0, calc(var(--p) * 2), 1);
-  transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2), 1)) * 8px));
+  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.03) * 7), 1)) * 12px));
 }
 
-.scene-method .method-pose-strip img {
-  filter: hue-rotate(-95deg) saturate(0.9);
+.scene-method .method-amass img {
+  filter: grayscale(1) brightness(1.72);
 }
 
-.scene-method .method-pose-strip img:nth-child(2) {
-  transform: translateY(calc((1 - clamp(0, calc(var(--p) * 2), 1)) * 8px)) scale(1.22);
+.scene-method .method-mmwave img {
+  filter: none;
 }
 
-.scene-method .method-label-record img {
-  filter: hue-rotate(218deg) saturate(1.18);
+.scene-method .method-converge {
+  width: 38px;
+  height: 300px;
 }
 
-.scene-method .method-merge,
-.scene-method .method-forward {
-  position: relative;
+.scene-method .method-converge svg {
+  display: block;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
-.scene-method .method-merge::before {
-  content: "";
-  position: absolute;
-  left: 16px;
-  top: 25%;
-  bottom: 25%;
-  width: 2px;
-  background: var(--line);
-  transform: scaleY(clamp(0, calc((var(--p) - 0.08) * 2.6), 1));
+.scene-method .method-converge path {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.11) * 6), 1));
 }
 
-.scene-method .method-merge::after,
-.scene-method .method-forward::after {
-  content: "";
-  position: absolute;
-  left: 16px;
-  right: 0;
-  top: calc(50% - 7px);
-  height: 14px;
-  background: var(--green);
-  clip-path: polygon(0 42%, 72% 42%, 72% 0, 100% 50%, 72% 100%, 72% 58%, 0 58%);
-  transform: scaleX(clamp(0, calc((var(--p) - 0.12) * 2.6), 1));
-  transform-origin: left;
-}
-
-.scene-method .method-forward::after {
-  left: 0;
-}
-
-.scene-method .method-merge span,
-.scene-method .method-forward span {
-  position: absolute;
-  left: 50%;
-  top: calc(50% - 36px);
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-  line-height: 1;
-  white-space: nowrap;
-  transform: translateX(-50%);
-}
-
-.scene-method .method-tokenizer {
-  width: 210px;
-  height: 224px;
-  min-width: 0;
+.scene-method .method-encoder {
+  width: 150px;
+  height: 220px;
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: 12px;
+  gap: 10px;
   align-self: center;
-  padding: 18px 14px 16px;
+  padding: 16px 12px 14px;
   border-top: 4px solid var(--green);
   border-bottom: 2px solid var(--line);
   background: rgba(255, 255, 255, 0.035);
+  opacity: clamp(0, calc((var(--p) - 0.13) * 7), 1);
+  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.13) * 7), 1)) * -10px));
 }
 
-.scene-method .method-tokenizer header {
+.scene-method .method-encoder header {
   display: grid;
   gap: 4px;
   text-align: center;
 }
 
-.scene-method .method-tokenizer header span,
-.scene-method .method-shared-latent header span {
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  line-height: 1.05;
-}
-
-.scene-method .method-tokenizer header span {
-  color: var(--yellow);
+.scene-method .method-encoder header span {
+  color: var(--green);
   font-weight: 620;
 }
 
-.scene-method .method-tokenizer header strong,
-.scene-method .method-shared-latent header strong {
-  color: var(--fg);
-  font-size: var(--spec-type-annotation);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.08;
-}
-
-.scene-method .method-encoding {
-  display: grid;
-  place-items: center;
-}
-
-.scene-method .method-encoding b {
+.scene-method .method-encoder b {
   width: 68px;
   height: 68px;
   display: grid;
   place-items: center;
+  align-self: center;
+  justify-self: center;
   color: var(--bg);
   background: var(--green);
   font-family: "JetBrains Mono Teaser", monospace;
-  font-size: var(--spec-type-explanation);
+  font-size: var(--spec-type-annotation);
   font-weight: 780;
   line-height: 1;
 }
 
-.scene-method .method-shared-latent {
+.scene-method .method-map-arrow,
+.scene-method .method-target-arrow {
+  width: 100%;
+  height: 16px;
+  background: var(--green);
+  clip-path: polygon(0 42%, 72% 42%, 72% 0, 100% 50%, 72% 100%, 72% 58%, 0 58%);
+  transform: scaleX(clamp(0, calc((var(--p) - 0.21) * 6), 1));
+  transform-origin: left center;
+}
+
+.scene-method .method-space {
   position: relative;
-  width: 354px;
-  height: 296px;
+  width: 510px;
+  height: 320px;
   overflow: hidden;
-  align-self: center;
   border-top: 4px solid var(--green);
   border-bottom: 2px solid var(--line);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 42px 42px;
+  background:
+    radial-gradient(circle at 72% 46%, rgba(131, 193, 103, 0.055), transparent 44%),
+    rgba(255, 255, 255, 0.018);
+  opacity: clamp(0, calc((var(--p) - 0.22) * 7), 1);
 }
 
-.scene-method .method-shared-latent header {
+.scene-method .method-space > header {
   position: absolute;
-  left: 18px;
-  right: 18px;
-  top: 14px;
-  z-index: 3;
-  display: grid;
-  gap: 3px;
+  left: 16px;
+  top: 12px;
+  z-index: 4;
 }
 
-.scene-method .method-shared-latent .latent-points {
+.scene-method .method-space-map {
   position: absolute;
-  inset: 80px 18px 52px;
-  display: grid;
-  grid-template-columns: repeat(12, 14px);
-  grid-auto-rows: 14px;
-  gap: 8px 8px;
-  align-content: center;
-  justify-content: center;
+  left: 5px;
+  right: 5px;
+  top: 38px;
+  width: 500px;
+  height: 260px;
+  overflow: visible;
 }
 
-.scene-method .method-shared-latent .latent-points i {
-  position: static;
-  width: 14px;
-  height: 14px;
-  border: 0;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--green) 72%, var(--bg));
-  opacity: calc(0.14 + var(--p) * 0.82);
-  transform: scale(calc(0.25 + var(--p) * 0.75));
+.scene-method .method-manifold-ribbon {
+  fill: none;
+  stroke: rgba(244, 243, 238, 0.07);
+  stroke-width: 82;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.25) * 4.5), 1));
 }
 
-.scene-method .method-shared-latent .latent-points i.hot {
-  width: 12px;
-  height: 12px;
-  border: 3px solid var(--yellow);
-  border-radius: 0;
-  background: transparent;
-  transform: rotate(45deg) scale(calc(0.25 + var(--p) * 0.75));
+.scene-method .method-amass-point {
+  fill: var(--muted);
+  opacity: clamp(0, calc((var(--p) - 0.28 - var(--i) * 0.0012) * 7), 0.78);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.2, calc((var(--p) - 0.28 - var(--i) * 0.0012) * 7), 1));
 }
 
-.scene-method .method-latent-key {
+.scene-method .method-mmwave-point {
+  fill: var(--blue);
+  stroke: var(--bg);
+  stroke-width: 2;
+  opacity: clamp(0, calc((var(--p) - 0.39 - var(--i) * 0.005) * 8), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.2, calc((var(--p) - 0.39 - var(--i) * 0.005) * 8), 1));
+}
+
+.scene-method .method-local-support {
+  fill: rgba(244, 243, 238, 0.025);
+  stroke: var(--fg);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+  opacity: clamp(0, calc((var(--p) - 0.44) * 7), 0.78);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.1, calc((var(--p) - 0.44) * 6), 1));
+}
+
+.scene-method .method-nearest-distance {
+  stroke: var(--red);
+  stroke-width: 3;
+  stroke-dasharray: 0.08 0.06;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.48) * 6), 1));
+  opacity: clamp(0, calc((var(--p) - 0.48) * 7), 1);
+}
+
+.scene-method .method-nearest-mmwave {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 3;
+  opacity: clamp(0, calc((var(--p) - 0.48) * 7), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.1, calc((var(--p) - 0.48) * 7), 1));
+}
+
+.scene-method .method-neighborhood-test text {
+  fill: var(--red);
+  font-weight: 620;
+  opacity: clamp(0, calc((var(--p) - 0.52) * 7), 1);
+}
+
+.scene-method .method-gap-contour {
+  fill: rgba(252, 98, 85, 0.035);
+  stroke: var(--red);
+  stroke-width: 2.5;
+  stroke-dasharray: 0.035 0.025;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.57) * 5), 1));
+  opacity: clamp(0, calc((var(--p) - 0.57) * 6), 0.9);
+}
+
+.scene-method .method-gap-origin {
+  fill: var(--muted);
+  opacity: clamp(0, calc((var(--p) - 0.58 - var(--i) * 0.01) * 8), 0.8);
+}
+
+.scene-method .method-gap-ring {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 3;
+  opacity: clamp(0, calc((var(--p) - 0.58 - var(--i) * 0.01) * 8), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.15, calc((var(--p) - 0.58 - var(--i) * 0.01) * 8), 1));
+}
+
+.scene-method .method-selected-target {
+  fill: var(--green);
+  stroke: var(--bg);
+  stroke-width: 2;
+  opacity: clamp(0, calc((var(--p) - 0.68 - var(--i) * 0.01) * 8), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.1, calc((var(--p) - 0.68 - var(--i) * 0.01) * 8), 1));
+}
+
+.scene-method .method-space-key {
   position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 12px;
+  left: 16px;
+  right: 16px;
+  bottom: 9px;
+  z-index: 4;
   display: flex;
-  gap: 24px;
+  gap: 20px;
   color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-  line-height: 1;
+  font-weight: 520;
+  opacity: clamp(0, calc((var(--p) - 0.38) * 6), 1);
 }
 
-.scene-method .method-latent-key span::before {
+.scene-method .method-space-key span::before {
   content: "";
   display: inline-block;
   width: 12px;
   height: 12px;
-  margin-right: 8px;
-  border: 0;
+  margin-right: 7px;
   border-radius: 50%;
-  background: var(--green);
+  vertical-align: 1px;
+  background: var(--muted);
 }
 
-.scene-method .method-latent-key .key-mmwave::before {
-  border: 3px solid var(--yellow);
-  border-radius: 0;
+.scene-method .method-space-key .key-mmwave::before {
+  background: var(--blue);
+}
+
+.scene-method .method-space-key .key-gap::before {
+  border: 3px solid var(--red);
   background: transparent;
-  transform: rotate(45deg);
+}
+
+.scene-method .method-target-arrow {
+  transform: scaleX(clamp(0, calc((var(--p) - 0.7) * 7), 1));
+}
+
+.scene-method .method-targets {
+  width: 166px;
+  height: 286px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  padding: 12px 6px 8px 12px;
+  border-left: 4px solid var(--green);
+  background: linear-gradient(90deg, rgba(131, 193, 103, 0.08), transparent 95%);
+  opacity: clamp(0, calc((var(--p) - 0.72) * 8), 1);
+  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.72) * 8), 1)) * -10px));
+}
+
+.scene-method .method-targets header {
+  display: grid;
+  gap: 4px;
+}
+
+.scene-method .method-target-poses {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  align-items: center;
+}
+
+.scene-method .method-target-poses img {
+  width: 50px;
+  height: 166px;
+  object-fit: contain;
+  filter: hue-rotate(-88deg) saturate(1.08) brightness(1.55);
+  opacity: clamp(0, calc((var(--p) - 0.74) * 8), 1);
+  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.74) * 8), 1)) * 12px));
 }
 
 .scene-method .method-takeaway {
   color: var(--muted);
 }
 
-.stage[data-scene="method"] .caption-band {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  .scene-method :is(.method-converge path, .method-manifold-ribbon, .method-nearest-distance, .method-gap-contour) {
+    stroke-dashoffset: 0;
+  }
 }

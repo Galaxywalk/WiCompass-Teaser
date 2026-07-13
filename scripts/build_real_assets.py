@@ -24,6 +24,12 @@ CONNECTIONS = [
     (9, 14), (14, 17), (17, 19), (19, 21),
 ]
 
+# Keep source examples and acquisition targets visually disjoint. The target
+# indices are farthest-point samples in normalized SMPL-X joint space, chosen
+# from the actual WiCompass real-world target pool rather than invented poses.
+INPUT_POSE_INDICES = (0, 92, 145)
+TARGET_POSE_INDICES = (139, 31, 163)
+
 
 def setup_axis(ax):
     ax.set_facecolor((0, 0, 0, 0))
@@ -112,47 +118,22 @@ def render_real_radar_case():
     plt.close(fig)
 
 
-def render_target_pose_strip():
+def render_pose_assets():
     poses = np.load(DATA / "wicompass_real_world_target_poses.npy")
     if poses.ndim == 2:
         poses = poses.reshape(-1, 22, 3)
-    indices = np.linspace(0, len(poses) - 1, min(8, len(poses)), dtype=int)
-    fig, axes = plt.subplots(1, len(indices), figsize=(16, 3.2), dpi=160)
-    fig.patch.set_alpha(0)
-    for ax, index in zip(np.atleast_1d(axes), indices):
-        setup_axis(ax)
-        joints = poses[index, :22]
-        draw_skeleton(ax, joints, color="#61e1df", width=2.5, size=13)
-        center = joints.mean(axis=0)
-        extent = max(np.ptp(joints[:, 0]), np.ptp(joints[:, 2])) * 0.64
-        ax.set_xlim(center[0] - extent, center[0] + extent)
-        ax.set_ylim(center[2] - extent, center[2] + extent)
-    fig.subplots_adjust(0, 0, 1, 1, wspace=0.08)
-    fig.savefig(OUTPUT / "wicompass_target_pose_strip.png", transparent=True, bbox_inches="tight", pad_inches=0.02)
-    plt.close(fig)
-
-    selected = poses[indices[3], :22]
-    fig, ax = plt.subplots(figsize=(4, 5), dpi=180)
-    fig.patch.set_alpha(0)
-    setup_axis(ax)
-    draw_skeleton(ax, selected, color="#61e1df", width=3.2, size=20)
-    center = selected.mean(axis=0)
-    extent = max(np.ptp(selected[:, 0]), np.ptp(selected[:, 2])) * 0.6
-    ax.set_xlim(center[0] - extent, center[0] + extent)
-    ax.set_ylim(center[2] - extent, center[2] + extent)
-    fig.subplots_adjust(0, 0, 1, 1)
-    fig.savefig(OUTPUT / "wicompass_target_pose.png", transparent=True, bbox_inches="tight", pad_inches=0.01)
-    plt.close(fig)
 
     # These representative cases keep the exact SMPL-X joint geometry used by WiCompass.
-    for number, index in enumerate((0, 92, 145), start=1):
+    for number, index in enumerate(INPUT_POSE_INDICES, start=1):
         write_pose_svg(poses[index, :22], OUTPUT / f"smplx_pose_{number}.svg")
+    for number, index in enumerate(TARGET_POSE_INDICES, start=1):
+        write_pose_svg(poses[index, :22], OUTPUT / f"smplx_target_pose_{number}.svg")
 
 
 def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
     render_real_radar_case()
-    render_target_pose_strip()
+    render_pose_assets()
     print(f"Wrote derived assets to {OUTPUT}")
 
 

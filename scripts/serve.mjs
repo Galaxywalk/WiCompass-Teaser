@@ -23,8 +23,43 @@ export function startServer(port = 0) {
       if (filePath !== root && !filePath.startsWith(`${root}${sep}`)) throw new Error("Invalid path");
       const info = await stat(filePath);
       if (!info.isFile()) throw new Error("Not a file");
-      response.writeHead(200, { "content-type": mime[extname(filePath)] ?? "application/octet-stream", "cache-control": "no-store" });
-      response.end(await readFile(filePath));
+      const body = await readFile(filePath);
+      const headers = {
+        "accept-ranges": "bytes",
+        "cache-control": "no-store",
+        "content-type": mime[extname(filePath)] ?? "application/octet-stream",
+      };
+      const range = request.headers.range?.match(/^bytes=(\d*)-(\d*)$/);
+      if (request.headers.range && !range) {
+        response.writeHead(416, { ...headers, "content-range": `bytes */${body.length}` });
+        response.end();
+        return;
+      }
+      if (range) {
+        const suffixLength = range[1] === "" ? Number(range[2]) : undefined;
+        const start = suffixLength === undefined
+          ? Number(range[1])
+          : Math.max(0, body.length - suffixLength);
+        const requestedEnd = range[2] === "" || suffixLength !== undefined
+          ? body.length - 1
+          : Number(range[2]);
+        const end = Math.min(requestedEnd, body.length - 1);
+        if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || start > end || start >= body.length) {
+          response.writeHead(416, { ...headers, "content-range": `bytes */${body.length}` });
+          response.end();
+          return;
+        }
+        const chunk = body.subarray(start, end + 1);
+        response.writeHead(206, {
+          ...headers,
+          "content-length": chunk.length,
+          "content-range": `bytes ${start}-${end}/${body.length}`,
+        });
+        response.end(request.method === "HEAD" ? undefined : chunk);
+        return;
+      }
+      response.writeHead(200, { ...headers, "content-length": body.length });
+      response.end(request.method === "HEAD" ? undefined : body);
     } catch {
       response.writeHead(404, { "content-type": "text/plain" });
       response.end("Not found");

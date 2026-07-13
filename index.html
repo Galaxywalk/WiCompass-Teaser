@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="styles/migrated/evidence.css" />
     <link rel="stylesheet" href="styles/migrated/deployment.css" />
     <link rel="stylesheet" href="styles/migrated/method.css" />
-    <link rel="stylesheet" href="styles/migrated/coverage.css" />
     <link rel="stylesheet" href="styles/migrated/typography.css" />
   </head>
   <body>
@@ -34,10 +33,10 @@
           </header>
           <figure class="chart-frame action-chart">
             <svg id="loo-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="All-included and leave-one-out pose error by action"></svg>
-            <div class="chart-callout"><span>left-hand wave held out</span><strong data-fact="action-gap"></strong></div>
+            <div class="chart-callout"><span>Left-hand wave held out</span><strong data-fact="action-gap"></strong></div>
           </figure>
           <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
-            <span>We train on 26 MMFi actions and test on the held-out action.</span>
+            <span>Each leave-one-out run trains on 26 MMFi actions; the comparison model includes all 27.</span>
           </footer>
         </article>
 
@@ -57,87 +56,76 @@
         <article class="scene slide scene-method" data-scene="method">
           <header class="method-heading scene-heading">
             <p class="method-kicker scene-kicker">Method</p>
-            <h2 class="scene-headline">MoCap priors build a shared pose space to measure mmWave data coverage.</h2>
+            <h2 class="scene-headline">MoCap measures mmWave pose coverage.</h2>
           </header>
-          <div class="method-vocabulary" role="img" aria-label="A pose encoder trained on AMASS maps both motion-capture poses and mmWave dataset pose labels into one shared latent space where mmWave coverage can be measured">
-            <section class="method-inputs" aria-label="Pose-label inputs">
-              <div class="method-pose-stream method-amass">
-                <header><strong>AMASS</strong><span>MoCap prior</span></header>
-                <div class="method-pose-strip">
+          <div class="method-pipeline" role="img" aria-label="AMASS poses and mmWave pose labels pass through the same AMASS-trained encoder and codebook. In the shared pose space, an AMASS pose is uncovered when its nearest mmWave pose lies outside the local radius defined by neighboring AMASS poses. WiCompass selects diverse poses from this gap set as the next collection targets.">
+            <section class="method-inputs" aria-label="Pose label inputs">
+              <header><strong>Pose labels</strong></header>
+              <div class="method-input-stream method-amass">
+                <span>AMASS</span>
+                <div class="method-input-poses">
                   <img src="assets/derived/smplx_pose_1.svg" alt="AMASS SMPL-X pose" />
                   <img src="assets/derived/smplx_pose_2.svg" alt="AMASS SMPL-X pose" />
                 </div>
               </div>
-              <div class="method-pose-stream method-mmwave">
-                <header><strong>mmWave</strong><span>pose labels</span></header>
-                <div class="method-label-record">
-                  <img src="assets/derived/smplx_pose_1.svg" alt="SMPL-X representation of a mmWave dataset pose label" />
+              <div class="method-input-stream method-mmwave">
+                <span>mmWave</span>
+                <div class="method-input-poses">
+                  <img src="assets/derived/smplx_pose_3.svg" alt="SMPL-X pose label paired with mmWave data" />
                 </div>
               </div>
             </section>
 
-            <div class="method-merge" aria-hidden="true"><span>encode</span></div>
+            <div class="method-converge" aria-hidden="true">
+              <svg viewBox="0 0 44 300" preserveAspectRatio="none">
+                <path pathLength="1" d="M0 78 H14 Q22 78 22 96 V150 H44" />
+                <path pathLength="1" d="M0 222 H14 Q22 222 22 204 V150" />
+              </svg>
+            </div>
 
-            <section class="method-tokenizer" aria-label="Frozen AMASS pose tokenizer">
-              <header><span>trained on AMASS</span><strong>Frozen pose encoder</strong></header>
-              <div class="method-encoding">
-                <b>E</b>
+            <section class="method-encoder" aria-label="Frozen pose tokenizer with an encoder and codebook trained only on AMASS">
+              <header><span>Trained on AMASS</span><strong>Frozen tokenizer</strong></header>
+              <b>E+C</b>
+            </section>
+
+            <div class="method-map-arrow" aria-hidden="true"></div>
+
+            <section class="method-space" aria-label="Shared pose space and directional neighborhood coverage test">
+              <header><strong>Shared pose space</strong></header>
+              <svg class="method-space-map" viewBox="0 0 500 260" aria-hidden="true">
+                <path class="method-manifold-ribbon" pathLength="1" d="M28 164 C74 52 146 45 218 91 S334 222 468 116" />
+                <g id="method-amass-points" class="method-amass-points"></g>
+                <g id="method-mmwave-points" class="method-mmwave-points"></g>
+                <path class="method-gap-contour" pathLength="1" d="M352 65 C398 34 467 57 481 113 C492 158 459 220 397 218 C353 216 332 181 340 137 C346 105 330 85 352 65 Z" />
+                <g id="method-gap-points" class="method-gap-points"></g>
+                <g class="method-neighborhood-test">
+                  <circle class="method-local-support" cx="418" cy="102" r="32" />
+                  <line class="method-nearest-distance" pathLength="1" x1="418" y1="102" x2="332" y2="86" />
+                  <circle class="method-nearest-mmwave" cx="332" cy="86" r="11" />
+                  <text x="250" y="48">Outside local radius</text>
+                </g>
+              </svg>
+              <div class="method-space-key" aria-hidden="true">
+                <span class="key-amass">AMASS prior</span>
+                <span class="key-mmwave">mmWave labels</span>
+                <span class="key-gap">Gap set</span>
               </div>
             </section>
 
-            <div class="method-forward" aria-hidden="true"><span>embed</span></div>
+            <div class="method-target-arrow" aria-hidden="true"></div>
 
-            <section class="method-shared-latent" aria-label="Shared pose latent space">
-              <header><strong>Shared pose space</strong><span>compare coverage directly</span></header>
-              <div id="map-points" class="latent-points"></div>
-              <footer class="method-latent-key">
-                <span class="key-amass">AMASS</span>
-                <span class="key-mmwave">mmWave labels</span>
-              </footer>
+            <section class="method-targets" aria-label="Next poses selected from uncovered regions">
+              <header><strong>Next targets</strong></header>
+              <div class="method-target-poses">
+                <img src="assets/derived/smplx_target_pose_1.svg" alt="Selected uncovered target pose" />
+                <img src="assets/derived/smplx_target_pose_2.svg" alt="Selected uncovered target pose" />
+                <img src="assets/derived/smplx_target_pose_3.svg" alt="Selected uncovered target pose" />
+              </div>
             </section>
           </div>
           <footer class="scene-footer method-takeaway">
-            <span>Distances reveal which MoCap poses the mmWave dataset does not cover.</span>
+            <span>WiCompass samples diverse poses from the gap set for the next collection round.</span>
           </footer>
-        </article>
-
-        <article class="scene slide scene-coverage" data-scene="coverage">
-          <header class="coverage-spec-heading scene-heading">
-            <p class="coverage-spec-kicker scene-kicker">Method</p>
-            <h2 class="scene-headline">Find the poses the radar dataset never saw.</h2>
-          </header>
-          <div class="coverage-spec-flow" role="img" aria-label="A shared pose-space map identifies AMASS motions not covered by mmWave data, then gives motions with larger coverage gaps higher collection priority.">
-            <section class="coverage-directional">
-              <div class="coverage-field-shell">
-                <div class="coverage-field" id="coverage-field"></div>
-                <div class="coverage-local-test" aria-hidden="true">
-                  <span class="coverage-radius"></span>
-                  <span class="coverage-candidate"></span>
-                  <span class="coverage-distance"></span>
-                  <span class="coverage-nearest"></span>
-                </div>
-              </div>
-              <div class="coverage-spec-key">
-                <span class="key-amass">MoCap prior</span>
-                <span class="key-mmwave">mmWave coverage</span>
-                <span class="key-gap">uncovered</span>
-              </div>
-            </section>
-
-            <div class="coverage-spec-arrow" aria-hidden="true"></div>
-
-            <section class="coverage-sampling">
-              <header class="coverage-sampling-heading">
-                <strong>Larger coverage gap, higher priority</strong>
-              </header>
-              <div class="coverage-picked-poses" aria-label="Uncovered target poses receive increasing collection priority as their distance from mmWave coverage grows">
-                <figure style="--priority:0.35"><img src="assets/derived/smplx_pose_1.svg" alt="Target pose near the mmWave coverage boundary" /></figure>
-                <figure style="--priority:0.65"><img src="assets/derived/smplx_pose_2.svg" alt="Target pose with a medium coverage gap" /></figure>
-                <figure style="--priority:1"><img src="assets/derived/smplx_pose_3.svg" alt="Target pose far from mmWave coverage" /></figure>
-              </div>
-              <div class="coverage-priority-axis"><span>near coverage</span><i></i><span>far from mmWave data</span></div>
-            </section>
-          </div>
         </article>
 
         <article class="scene slide scene-simulation" data-scene="simulation">
@@ -149,13 +137,13 @@
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
           <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
-            <span>We use RF Genesis to generate 2k–40k training poses for the mmBody trace and WiCompass.</span>
+            <span>We use RF-Genesis to synthesize 2k–40k radar samples for both collection strategies.</span>
           </footer>
         </article>
 
         <article class="scene slide scene-realworld" data-scene="realworld">
           <header class="slide-heading scene-heading">
-            <p class="eyebrow scene-kicker">Real-world Evaluation</p>
+            <p class="eyebrow scene-kicker">Real-World Evaluation</p>
             <h2 class="scene-headline">WiCompass generalizes better.</h2>
           </header>
           <figure class="chart-frame realworld-frame">
@@ -168,7 +156,7 @@
 
         <article class="scene scene-finale" data-scene="summary">
           <p class="final-kicker scene-kicker">Takeaway</p>
-          <h2 class="scene-headline">Prioritize data quality over scale, measure dataset coverage, and guide costly RF collection with inexpensive MoCap priors.</h2>
+          <h2 class="scene-headline">For mmWave HPE, data quality matters more than scale: measure pose coverage and guide collection with MoCap priors.</h2>
         </article>
 
         <article class="scene scene-back" data-scene="back">
@@ -183,11 +171,6 @@
           </div>
         </article>
 
-        <footer class="caption-band">
-          <div class="scene-index" id="scene-index" aria-hidden="true">01 / 09</div>
-          <div class="caption" id="caption"></div>
-          <div class="timeline-mark"><span id="timeline-progress"></span></div>
-        </footer>
       </section>
 
       <nav class="controls" aria-label="Playback controls">

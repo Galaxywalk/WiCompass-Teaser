@@ -2,13 +2,13 @@
 
 Read [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md) before changing typography, hierarchy, figures, palette, or duration. It is the normative design contract; this file describes the mechanics of making a change.
 
-The current nine-scene order is `cover` → `actions` → `efficiency` → `method` → `coverage` → `simulation` → `realworld` → `summary` → `back`. Its scientific spine is Question → Insight → Mechanism → Evidence → Vision; preserve that order when revising copy or timing.
+The current eight-scene order is `cover` → `actions` → `efficiency` → `method` → `simulation` → `realworld` → `summary` → `back`. Its scientific spine is Question → Insight → Mechanism → Evidence → Vision; preserve that order when revising copy or timing.
 
 ## Change wording without changing design
 
 Edit the relevant scene in `index.html`. If the wording contains a measured result, add or update a derived value in `content/facts.js` and bind it with `data-fact`; do not copy a number from the chart into HTML.
 
-Edit captions, narration, durations, or review-frame times in `content/timeline.js`. During timing work, the placeholder audio may be rebuilt. After script and picture lock, generate the final English WAV with the local Kokoro command in `VIDEO_GENERATION_SPEC.md`, derive `assets/audio/voiceover.m4a`, and run `npm run check`.
+Edit captions, narration, durations, or review-frame times in `content/timeline.js`. During timing work, the non-delivery placeholder under `tmp/placeholder-audio/` may be rebuilt. After script and picture lock, generate the final English WAV with the local Kokoro command in `VIDEO_GENERATION_SPEC.md`, derive `assets/audio/voiceover.m4a`, and run `npm run check`.
 
 ## Change paper data
 
@@ -25,7 +25,7 @@ Every content scene uses `.scene-heading`, `.scene-kicker`, and `.scene-headline
 
 ## Change visual format
 
-Edit `styles/tokens.css` for global design decisions, `styles/migrated/typography.css` for shared text roles, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for scene-specific geometry. Do not put colors, fonts, or pixel layout values in content or runtime modules. Keep `method` and `coverage` as one coherent mechanism sequence when revising them.
+Edit `styles/tokens.css` for global design decisions, `styles/migrated/typography.css` for shared text roles, `styles.css` for shared layouts/animation, and the relevant file under `styles/migrated/` for scene-specific geometry. Do not put colors, fonts, or pixel layout values in content or runtime modules. Keep encoding, directional coverage, and target selection inside the single `method` scene so the shared pose space never changes visual grammar mid-explanation.
 
 ## Add a scene
 
@@ -43,10 +43,10 @@ Adding a scene is exceptional: first check whether its point can replace seconda
 
 ## Review motion efficiently
 
-- One exact slide: `npm run frame -- --scene coverage`
-- One scene at 1×: `npm run record:draft -- --scene coverage`
+- One exact slide: `npm run frame -- --scene method`
+- One scene at 1×: `npm run record:draft -- --scene method`
 - Whole film at 6×: `npm run record:preview`
 - Whole film at 1×, fast encode: `npm run record:draft`
-- Delivery draft: `npm run record`
+- Delivery-quality final: `npm run record`
 
 Use the 1× scene recording for animation timing. The 6× preview is intended for layout, ordering, and transition checks.

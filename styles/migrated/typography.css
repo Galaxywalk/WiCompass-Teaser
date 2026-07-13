@@ -53,8 +53,7 @@
   line-height: 1.16;
 }
 
-.scene .science-chart text,
-.scene .chart-frame figcaption {
+.scene .science-chart text {
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-annotation);
   font-weight: 520;
@@ -82,24 +81,4 @@
 
 .scene-hook .chart-callout strong {
   font-weight: 700;
-}
-
-.scene-method :is(.method-tokenizer, .method-shared-latent) > header > strong {
-  font-size: var(--spec-type-annotation);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.08;
-}
-
-.scene-method .method-encoding b {
-  font-family: "JetBrains Mono Teaser", monospace;
-}
-
-.coverage-sampling-note,
-.coverage-sampling-note span {
-  color: var(--muted);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 520;
-  line-height: 1.08;
 }

@@ -4,7 +4,8 @@ import { join, resolve } from "node:path";
 import { DURATION, SCENES } from "../content/timeline.js";
 
 const work = resolve("tmp/placeholder-audio");
-const output = resolve("assets/audio/voiceover.m4a");
+const output = join(work, "voiceover-placeholder.m4a");
+const textOutput = join(work, "voiceover-placeholder.txt");
 
 const segments = SCENES.map(({ duration, voiceover }) => ({ duration, text: voiceover }));
 
@@ -45,5 +46,5 @@ const concatList = join(work, "concat.txt");
 writeFileSync(concatList, rendered.map((path) => `file '${path.replaceAll("'", "'\\''")}'`).join("\n"));
 run("ffmpeg", ["-y", "-f", "concat", "-safe", "0", "-i", concatList, "-t", String(DURATION), "-ar", "48000", "-ac", "2", "-c:a", "aac", "-b:a", "160k", output]);
 
-writeFileSync("assets/audio/voiceover.txt", segments.filter((segment) => segment.text).map((segment) => segment.text).join("\n\n") + "\n");
-process.stdout.write(`Placeholder voiceover written to ${output}. Final narration must be generated with the user's local Kokoro TTS after picture lock.\n`);
+writeFileSync(textOutput, segments.filter((segment) => segment.text).map((segment) => segment.text).join("\n\n") + "\n");
+process.stdout.write(`Non-delivery placeholder written to ${output}. Canonical Kokoro assets were not changed.\n`);

@@ -7,7 +7,7 @@
     "dev": "node scripts/serve.mjs",
     "check": "node scripts/validate-content.mjs",
     "audit:typography": "node scripts/audit-typography.mjs",
-    "audio:kokoro": "KOKORO_SPEED=1.25 node scripts/generate-kokoro-voiceover.mjs",
+    "audio:kokoro": "node scripts/generate-kokoro-voiceover.mjs",
     "audio:placeholder": "node scripts/make-placeholder-voiceover.mjs",
     "qr:github": "qrcode -o assets/github-qr.png -w 640 -q 2 -e H -d 101010ff -l f4f3eeff https://github.com/Galaxywalk/WiCompass",
     "frame": "node scripts/frame.mjs",

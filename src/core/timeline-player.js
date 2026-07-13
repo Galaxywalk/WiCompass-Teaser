@@ -7,9 +7,6 @@ export function createTimelinePlayer({
   duration,
   sceneElements,
   stage,
-  caption,
-  sceneIndex,
-  timelineProgress,
   scrubber,
   timecode,
   playButton,
@@ -49,9 +46,6 @@ export function createTimelinePlayer({
       stage.dataset.scene = scene.id;
     }
 
-    caption.textContent = scene.caption;
-    sceneIndex.textContent = `${String(resolvedIndex + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
-    timelineProgress.style.width = `${(currentTime / duration) * 100}%`;
     scrubber.value = String(currentTime);
     timecode.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
     onFrame({ time: currentTime, scene, sceneIndex: resolvedIndex });

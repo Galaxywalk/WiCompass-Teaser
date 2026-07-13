@@ -38,10 +38,39 @@ SCENES.forEach((scene) => {
 const html = await readFile("index.html", "utf8");
 const domIds = [...html.matchAll(/data-scene="([^"]+)"/g)].map((match) => match[1]);
 assert.deepEqual(domIds, ids, "Scene DOM IDs and order must exactly match the timeline");
-assert.equal((html.match(/class="[^"]*scene-kicker[^"]*"/g) ?? []).length, 7, "Every narrative scene needs one shared scene-kicker");
-assert.equal((html.match(/class="[^"]*scene-headline[^"]*"/g) ?? []).length, 7, "Every narrative scene needs one shared scene-headline");
+assert.equal((html.match(/class="[^"]*scene-kicker[^"]*"/g) ?? []).length, 6, "Every narrative scene needs one shared scene-kicker");
+assert.equal((html.match(/class="[^"]*scene-headline[^"]*"/g) ?? []).length, 6, "Every narrative scene needs one shared scene-headline");
 assert.equal((html.match(/class="[^"]*scene-footer[^"]*"/g) ?? []).length, 5, "Expected five single-sentence narrative footers");
 assert.doesNotMatch(html, /class="[^"]*scene-footer[^"]*"[^>]*>(?:(?!<\/footer>)[\s\S])*?<strong>/, "Scene footers must not introduce a second emphasized headline");
+
+const methodInputs = html.match(/<section class="method-inputs"[\s\S]*?<\/section>/)?.[0] ?? "";
+const methodTargets = html.match(/<section class="method-targets"[\s\S]*?<\/section>/)?.[0] ?? "";
+const imageSources = (markup) => [...markup.matchAll(/<img[^>]+src="([^"]+)"/g)].map((match) => match[1]);
+const inputPoseSources = imageSources(methodInputs);
+const targetPoseSources = imageSources(methodTargets);
+assert.equal(targetPoseSources.length, 3, "Method scene needs exactly three next-target poses");
+assert.equal(new Set(targetPoseSources).size, targetPoseSources.length, "Next-target poses must be distinct");
+assert.ok(targetPoseSources.every((path) => !inputPoseSources.includes(path)), "Next-target poses must not reuse encoder input poses");
+
+const visibleCopy = JSON.stringify({
+  html: html.replace(/<[^>]+>/g, " "),
+  charts: { LINE_CHARTS, BAR_CHARTS },
+  facts: FACTS,
+  project: PROJECT,
+});
+for (const [variant, canonical] of [
+  ["Wi-Compass", "WiCompass"],
+  ["mmwave", "mmWave"],
+  ["MMWave", "mmWave"],
+  ["MmWave", "mmWave"],
+  ["Mocap", "MoCap"],
+  ["MOCAP", "MoCap"],
+  ["Amass", "AMASS"],
+  ["MMbody", "mmBody"],
+  ["Mmbody", "mmBody"],
+]) {
+  assert.ok(!visibleCopy.includes(variant), `Visible copy uses ${variant}; use ${canonical}`);
+}
 
 for (const { selector, config } of LINE_CHARTS) {
   assert.ok(config.series.length > 0, `${selector}: missing series`);
@@ -68,8 +97,7 @@ for (const { selector, config } of BAR_CHARTS) {
 }
 
 assert.equal(FACTS["action-gap"], "41.1 → 151.1 mm");
-assert.equal(FACTS["realworld-improvement"], "7.2 mm better than action-list collection");
-assert.equal(FACTS["simulation-gap"], "25–30 mm lower OOD MPJPE");
+assert.equal(FACTS["efficiency-title"], "Keeping 30% of the data barely changes error.");
 
 const assetPaths = [
   ...[...html.matchAll(/(?:src|href)="((?:assets\/)[^"]+)"/g)].map((match) => match[1]),
@@ -85,6 +113,8 @@ for (const path of cssFiles) {
     assert.match(match[1], /^var\(--(?:type-(utility|body|deck|title|hero)|spec-type-(hero|section|explanation|annotation))\)$/, `${path}: font-size must use the locked type scale (${match[1]})`);
   }
 }
+const methodCss = await readFile("styles/migrated/method.css", "utf8");
+assert.doesNotMatch(methodCss, /var\(--yellow\)/, "Method colors are fixed: yellow must not reappear as an ambiguous coverage marker");
 
 const expectedVoiceover = `${SCENES.map(({ voiceover }) => voiceover).filter(Boolean).join("\n\n")}\n`;
 assert.equal(await readFile("assets/audio/voiceover.txt", "utf8"), expectedVoiceover, "voiceover.txt is stale");

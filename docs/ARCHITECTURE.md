@@ -4,14 +4,14 @@ The repository has three intentional layers. A change should normally touch only
 
 Visual decisions must follow [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md). The architecture describes where a decision belongs; the specification defines which decisions are allowed.
 
-The current timeline has nine scenes and runs 89.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`, `coverage`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
+The current timeline has eight scenes and runs 84.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
 
 Narrative typography is centralized in `styles/migrated/typography.css`. Scene styles own geometry and scientific figure presentation, but may not redefine `.scene-kicker`, `.scene-headline`, `.scene-footer`, or `.scene-support`. Cover and back-cover identity typography remains in `styles/migrated/identity.css`.
 
 ## Content
 
 - `index.html`: semantic scene structure and ordinary explanatory copy.
-- `content/timeline.js`: scene order, duration, review frame, caption, and narration.
+- `content/timeline.js`: scene order, duration, review frame, and narration.
 - `content/project.js`: title, venue, authors, institutions, and repository URL.
 - `content/chart-data.js`: paper measurements and chart semantics.
 - `content/facts.js`: human-readable claims derived from chart data; do not duplicate those numbers in HTML.
@@ -25,7 +25,7 @@ Narrative typography is centralized in `styles/migrated/typography.css`. Scene s
 - `styles.css`: shared shell, layout components, chart primitives, and CSS timeline animation.
 - `styles/migrated/`: focused presentation overrides for scene families already moved to the new system.
 
-JavaScript chart configs use semantic series names, while CSS owns their color and appearance. All nine scenes are migrated. New scene work must use Inter, reserve JetBrains Mono for math/code, use only the four specification tokens, and keep all visible text at least 24 px.
+JavaScript chart configs use semantic series names, while CSS owns their color and appearance. All eight scenes are migrated. New scene work must use Inter, reserve JetBrains Mono for math/code, use only the four specification tokens, and keep all visible text at least 24 px.
 
 ## Functionality
 

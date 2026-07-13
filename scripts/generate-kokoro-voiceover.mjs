@@ -18,7 +18,7 @@ const m4aOutput = join(projectRoot, "assets/audio/voiceover.m4a");
 const textOutput = join(projectRoot, "assets/audio/voiceover.txt");
 const manifestOutput = join(projectRoot, "assets/audio/voiceover.manifest.json");
 const voice = process.env.KOKORO_VOICE || "af_heart";
-const speed = Number(process.env.KOKORO_SPEED) || 1;
+const speed = Number(process.env.KOKORO_SPEED) || 1.25;
 const leadInSeconds = 0.25;
 const minimumTailSeconds = 0.3;
 

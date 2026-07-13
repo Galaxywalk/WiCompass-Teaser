@@ -1,6 +1,30 @@
-export const LATENT_MAP = Object.freeze({ seed: 1902, pointCount: 92, hotEvery: 11 });
-
-export const COVERAGE_GRID = Object.freeze({
-  cellCount: 84,
-  gapIndices: Object.freeze([8, 9, 15, 22, 23, 34, 47, 48, 55, 62, 69]),
+export const METHOD_SPACE = Object.freeze({
+  seed: 260218,
+  referenceClusters: Object.freeze([
+    Object.freeze({ cx: 72, cy: 148, rx: 55, ry: 72, count: 18, rotation: -0.18 }),
+    Object.freeze({ cx: 174, cy: 101, rx: 92, ry: 63, count: 24, rotation: 0.12 }),
+    Object.freeze({ cx: 286, cy: 157, rx: 108, ry: 72, count: 28, rotation: -0.16 }),
+    Object.freeze({ cx: 423, cy: 133, rx: 58, ry: 78, count: 18, rotation: 0.1 }),
+  ]),
+  mmwavePoints: Object.freeze([
+    Object.freeze([52, 142]),
+    Object.freeze([78, 111]),
+    Object.freeze([104, 170]),
+    Object.freeze([126, 82]),
+    Object.freeze([158, 125]),
+    Object.freeze([188, 73]),
+    Object.freeze([211, 116]),
+    Object.freeze([244, 151]),
+    Object.freeze([272, 104]),
+    Object.freeze([301, 175]),
+    Object.freeze([332, 86]),
+  ]),
+  gapPoints: Object.freeze([
+    Object.freeze({ x: 382, y: 76, selected: true }),
+    Object.freeze({ x: 418, y: 102, selected: true }),
+    Object.freeze({ x: 454, y: 128, selected: false }),
+    Object.freeze({ x: 399, y: 158, selected: false }),
+    Object.freeze({ x: 446, y: 188, selected: true }),
+    Object.freeze({ x: 374, y: 199, selected: false }),
+  ]),
 });

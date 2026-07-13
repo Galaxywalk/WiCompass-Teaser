@@ -16,10 +16,6 @@
   margin-bottom: 4px;
 }
 
-.stage[data-scene="realworld"] .caption-band {
-  display: none;
-}
-
 /* Figure 9(b): one full-width plot; the comparison lives on its bars. */
 .scene-realworld .realworld-frame {
   width: 100%;
