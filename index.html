@@ -40,10 +40,10 @@
             <h2 data-fact="efficiency-title"></h2>
           </header>
           <figure class="chart-frame efficiency-frame">
-            <figcaption><span>MPJPE as the retained subset shrinks</span><strong><span id="data-used-number">100</span>% data kept</strong></figcaption>
+            <figcaption><strong><span id="data-used-number">100</span>% data kept</strong></figcaption>
             <svg id="efficiency-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="mmBody pose error versus percentage of training data used"></svg>
           </figure>
-          <footer class="slide-note"><strong data-fact="efficiency-note"></strong><span>Repeated poses add volume, not coverage.</span></footer>
+          <footer class="slide-note"><strong data-fact="efficiency-note"></strong><span>Blindly expanding a dataset does not scale performance.</span></footer>
         </article>
 
         <article class="scene slide scene-method" data-scene="method">
@@ -119,7 +119,6 @@
             <h2>Coverage-aware data keeps scaling.</h2>
           </header>
           <figure class="chart-frame simulation-frame">
-            <figcaption><span>Same model</span><span>Same budget</span><span>Held-out 40k-pose benchmark</span></figcaption>
             <svg id="scaling-chart" class="science-chart" viewBox="0 0 1100 380" role="img" aria-label="WiCompass and mmBody out-of-distribution error versus data quantity"></svg>
           </figure>
           <footer class="simulation-takeaway"><strong data-fact="simulation-gap"></strong><span>across the same 2k–40k data budget</span></footer>
@@ -152,7 +151,6 @@
 
         <article class="scene scene-back" data-scene="back">
           <div class="back-copy">
-            <p class="eyebrow">Paper, code, and data collection tools</p>
             <h2 data-project-title></h2>
             <p class="back-authors" data-project-authors></p>
             <div class="back-logos" data-project-logos aria-label="Participating institutions"></div>

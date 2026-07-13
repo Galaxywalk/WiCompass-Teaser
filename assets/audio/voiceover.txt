@@ -1,13 +1,17 @@
+From Peking University, UESTC, Pitt, and MIT, we present Wi-Compass for MobiCom 2026.
+
 Include an action, and error stays low. Hold it out, and left-hand wave jumps from 41.1 to 151.1 millimeters.
 
-On mmBody, keeping thirty percent of the frames leaves error near sixty-eight millimeters. More data is not more coverage.
+On mmBody, thirty percent of the data still yields sixty-eight millimeters. More data alone does not scale performance.
 
 Wi-Compass trains a pose tokenizer on A-MASS. The frozen encoder maps motion-capture and millimeter-wave pose labels into one shared latent space.
 
 Directional nearest-neighbor coverage finds A-MASS poses missing from the radar dataset. Capped sampling prioritizes sparse regions without chasing extreme outliers.
 
-With the same model and budget, fitted scaling laws remain twenty-five to thirty millimeters apart from two thousand to forty thousand samples.
+From two thousand to forty thousand samples, the fitted scaling laws remain twenty-five to thirty millimeters apart.
 
 Training errors match. On held-out poses, Wi-Compass reaches 105.7 millimeters, versus 112.9 from an action list.
 
 Scale motion coverage, not repeated frames.
+
+Wi-Compass scales motion coverage for millimeter-wave pose estimation. Scan the code to read our paper.

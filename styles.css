@@ -551,14 +551,6 @@ h2 { font-size: var(--type-title); }
   min-height: 0;
   align-self: stretch;
 }
-.simulation-frame figcaption {
-  left: 0;
-  top: 0;
-  display: flex;
-  gap: 32px;
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-}
 .scene-simulation .chart-grid text,
 .scene-simulation .axis-label {
   font-family: "Inter Teaser", sans-serif;

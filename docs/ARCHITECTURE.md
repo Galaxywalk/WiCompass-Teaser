@@ -4,7 +4,7 @@ The repository has three intentional layers. A change should normally touch only
 
 Visual decisions must follow [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md). The architecture describes where a decision belongs; the specification defines which decisions are allowed.
 
-The current timeline has nine scenes and runs 82.6 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`, `coverage`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
+The current timeline has nine scenes and runs 86.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`, `coverage`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
 
 ## Content
 

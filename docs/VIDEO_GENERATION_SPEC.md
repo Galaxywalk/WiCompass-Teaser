@@ -164,6 +164,6 @@ Before picture lock, confirm:
 
 ## Current migration status
 
-The current nine-scene cut is 82.6 seconds. `cover`, `actions`, `efficiency`, `simulation`, `realworld`, `summary`, and `back` follow the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above.
+The current nine-scene cut is 86.1 seconds. `cover`, `actions`, `efficiency`, `simulation`, `realworld`, `summary`, and `back` follow the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above.
 
 `method` and `coverage` are the only scenes still awaiting a dedicated redesign. They are intentionally held back so the shared-pose-space and coverage-selection mechanisms can be solved together rather than cosmetically restyled. The validator may continue to tolerate their legacy presentation during this focused migration, but new work must not copy that legacy formatting.
