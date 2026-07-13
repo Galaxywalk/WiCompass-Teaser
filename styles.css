@@ -314,6 +314,7 @@ h2 { font-size: var(--type-title); }
 
 /* Shared evidence footer: optional setup metadata, never a repeated result. */
 .experiment-condition {
+  min-width: 0;
   min-height: 44px;
   display: flex;
   align-items: center;
