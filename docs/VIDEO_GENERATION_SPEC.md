@@ -86,6 +86,8 @@ Every narrative scene uses the same semantic classes:
 
 These roles are implemented in `styles/migrated/typography.css`, which is loaded after scene-specific styles and is authoritative for typography. Do not override them inside an individual scene stylesheet. Cover and back-cover identity typography are the only exceptions.
 
+Inter display tracking is also locked globally: scene headlines use `-0.012em`, identity titles use `-0.015em`, and the 96 px `WiCompass` hero uses `-0.025em`. Smaller explanations, annotations, axes, and footers keep their natural spacing unless a global typography review changes the specification. Do not restore the earlier `-0.04em` to `-0.06em` tracking, which makes Inter visibly cramped at presentation scale.
+
 ### Level 4 — Annotation
 
 Use for arrow labels, figure annotations, legends, axes, and short supporting labels.

@@ -95,7 +95,7 @@
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-section);
   font-weight: 690;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--spec-tracking-identity);
   line-height: 1.03;
 }
 
@@ -103,7 +103,7 @@
   color: var(--blue);
   font-size: var(--spec-type-hero);
   font-weight: 780;
-  letter-spacing: -0.06em;
+  letter-spacing: var(--spec-tracking-hero);
 }
 
 .scene-cover .cover-authors {
@@ -144,8 +144,8 @@
   inset: 0;
   padding: 48px 64px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 286px;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  gap: 28px;
   align-items: center;
 }
 
@@ -163,7 +163,7 @@
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-section);
   font-weight: 720;
-  letter-spacing: -0.045em;
+  letter-spacing: var(--spec-tracking-identity);
   line-height: 1.04;
 }
 
@@ -208,8 +208,8 @@
 }
 
 .scene-back .qr-panel img {
-  width: 286px;
-  height: 286px;
+  width: 270px;
+  height: 270px;
 }
 
 .scene-back .qr-panel strong {

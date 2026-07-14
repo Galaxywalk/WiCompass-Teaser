@@ -21,7 +21,7 @@
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-section);
   font-weight: 720;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--spec-tracking-headline);
   line-height: 1.02;
 }
 

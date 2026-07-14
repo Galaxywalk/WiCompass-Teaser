@@ -42,6 +42,11 @@
   --spec-type-explanation: 36px;
   --spec-type-annotation: 26px;
 
+  /* Inter needs only restrained display tracking at the locked 720p sizes. */
+  --spec-tracking-headline: -0.012em;
+  --spec-tracking-identity: -0.015em;
+  --spec-tracking-hero: -0.025em;
+
   --p: 0;
   --v: 0;
   --data-reveal: 0;

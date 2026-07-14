@@ -74,7 +74,7 @@ h2 {
   color: var(--fg);
   font-family: "Inter Teaser", sans-serif;
   font-weight: 720;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--spec-tracking-headline);
   line-height: 1.02;
 }
 
