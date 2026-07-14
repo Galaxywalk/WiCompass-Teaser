@@ -1,12 +1,12 @@
-/* One continuous method scene: shared encoding, directional coverage, target selection.
-   Neutral = AMASS reference, blue = existing mmWave labels, red = gap set,
-   green = WiCompass targets. No color changes meaning inside the scene. */
+/* The shared pose space is the scene's only visual center.
+   Neutral = MoCap prior, blue = recorded mmWave coverage,
+   red = a missing pose, green = the acquisition loop. */
 
 .scene-method {
   inset: 0;
   padding: 32px 64px 24px;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 12px;
+  gap: 10px;
   align-items: stretch;
   font-family: "Inter Teaser", sans-serif;
 }
@@ -15,68 +15,58 @@
   align-self: start;
 }
 
-.scene-method .method-pipeline {
+.scene-method .method-map {
+  position: relative;
   width: 1100px;
-  height: 340px;
+  height: 350px;
   min-height: 0;
-  display: grid;
-  grid-template-columns: 170px 38px 150px 38px 500px 38px 166px;
-  align-items: center;
   justify-self: center;
   align-self: center;
 }
 
-.scene-method .method-pipeline header strong,
-.scene-method .method-pipeline header span,
-.scene-method .method-input-stream > span,
-.scene-method .method-space-key,
-.scene-method .method-neighborhood-test text {
+.scene-method .method-map :is(header strong, .method-space-labels, .method-targets > span) {
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-annotation);
   line-height: 1.08;
 }
 
-.scene-method .method-pipeline header strong {
+.scene-method .method-map header strong {
   color: var(--fg);
   font-weight: 700;
 }
 
-.scene-method .method-pipeline header span,
-.scene-method .method-input-stream > span {
-  color: var(--muted);
-  font-weight: 520;
-}
-
 .scene-method .method-inputs {
-  height: 310px;
-  display: grid;
-  grid-template-rows: auto 1fr 1fr;
-  gap: 8px;
-  opacity: clamp(0, calc(var(--p) * 8), 1);
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 4;
+  width: 190px;
 }
 
-.scene-method .method-inputs > header {
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--line);
-}
-
-.scene-method .method-input-stream {
-  min-height: 0;
+.scene-method .method-source {
+  position: absolute;
+  left: 0;
+  width: 190px;
+  height: 142px;
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 8px 10px 4px 12px;
+  gap: 4px;
+  padding: 8px 8px 4px 12px;
   border-left: 4px solid;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 94%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.045), transparent 92%);
 }
 
 .scene-method .method-amass {
+  top: 14px;
   border-color: var(--muted);
-  opacity: clamp(0, calc((var(--p) - 0.01) * 7), 1);
+  opacity: clamp(0, calc((var(--p) - 0.02) * 8), 1);
+  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.02) * 8), 1)) * -12px));
 }
 
 .scene-method .method-mmwave {
+  bottom: 14px;
   border-color: var(--blue);
-  opacity: clamp(0, calc((var(--p) - 0.07) * 7), 1);
+  opacity: clamp(0, calc((var(--p) - 0.1) * 8), 1);
+  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.1) * 8), 1)) * -12px));
 }
 
 .scene-method .method-input-poses {
@@ -88,290 +78,348 @@
 }
 
 .scene-method .method-input-poses img {
-  width: 48px;
-  height: 92px;
+  width: 56px;
+  height: 100px;
   object-fit: contain;
-  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.03) * 7), 1)) * 12px));
+  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.05) * 8), 1)) * 10px));
 }
 
 .scene-method .method-amass img {
   filter: grayscale(1) brightness(1.72);
+  opacity: 0.82;
 }
 
 .scene-method .method-mmwave img {
   filter: none;
 }
 
-.scene-method .method-converge {
-  width: 38px;
-  height: 300px;
-}
-
-.scene-method .method-converge svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+.scene-method .method-flow-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 1100px;
+  height: 350px;
   overflow: visible;
+  pointer-events: none;
 }
 
-.scene-method .method-converge path {
+.scene-method #method-arrow-green path {
+  fill: var(--green);
+}
+
+.scene-method #method-arrow-red path {
+  fill: var(--red);
+}
+
+.scene-method .method-flow-lines > path {
   fill: none;
-  stroke: var(--green);
-  stroke-width: 4;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.11) * 6), 1));
 }
 
-.scene-method .method-encoder {
-  width: 150px;
-  height: 220px;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 10px;
-  align-self: center;
-  padding: 16px 12px 14px;
-  border-top: 4px solid var(--green);
-  border-bottom: 2px solid var(--line);
-  background: rgba(255, 255, 255, 0.035);
-  opacity: clamp(0, calc((var(--p) - 0.13) * 7), 1);
-  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.13) * 7), 1)) * -10px));
+.scene-method .method-input-path {
+  stroke: var(--green);
+  marker-end: url(#method-arrow-green);
 }
 
-.scene-method .method-encoder header {
-  display: grid;
-  gap: 4px;
-  text-align: center;
+.scene-method .method-input-path-amass {
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.12) * 7), 1));
+  opacity: clamp(0, calc((var(--p) - 0.12) * 7), 1);
 }
 
-.scene-method .method-encoder header span {
-  color: var(--green);
-  font-weight: 620;
+.scene-method .method-input-path-mmwave {
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.2) * 7), 1));
+  opacity: clamp(0, calc((var(--p) - 0.2) * 7), 1);
 }
 
-.scene-method .method-encoder b {
-  width: 68px;
-  height: 68px;
-  display: grid;
-  place-items: center;
-  align-self: center;
-  justify-self: center;
-  color: var(--bg);
-  background: var(--green);
-  font-family: "JetBrains Mono Teaser", monospace;
-  font-size: var(--spec-type-annotation);
-  font-weight: 780;
-  line-height: 1;
+.scene-method .method-target-path {
+  stroke: var(--red);
+  marker-end: url(#method-arrow-red);
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.64) * 7), 1));
+  opacity: clamp(0, calc((var(--p) - 0.64) * 7), 1);
 }
 
-.scene-method .method-map-arrow,
-.scene-method .method-target-arrow {
-  width: 100%;
-  height: 16px;
-  background: var(--green);
-  clip-path: polygon(0 42%, 72% 42%, 72% 0, 100% 50%, 72% 100%, 72% 58%, 0 58%);
-  transform: scaleX(clamp(0, calc((var(--p) - 0.21) * 6), 1));
-  transform-origin: left center;
+.scene-method .method-return-path {
+  stroke: var(--green);
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.79) * 7), 1));
+  marker-end: url(#method-arrow-green);
+  opacity: clamp(0, calc((var(--p) - 0.79) * 7), 1);
 }
 
 .scene-method .method-space {
-  position: relative;
-  width: 510px;
-  height: 320px;
-  overflow: hidden;
-  border-top: 4px solid var(--green);
-  border-bottom: 2px solid var(--line);
-  background:
-    radial-gradient(circle at 72% 46%, rgba(131, 193, 103, 0.055), transparent 44%),
-    rgba(255, 255, 255, 0.018);
-  opacity: clamp(0, calc((var(--p) - 0.22) * 7), 1);
+  position: absolute;
+  left: 210px;
+  top: 3px;
+  z-index: 2;
+  width: 730px;
+  height: 344px;
+  overflow: visible;
+  opacity: clamp(0, calc((var(--p) - 0.13) * 8), 1);
 }
 
 .scene-method .method-space > header {
   position: absolute;
-  left: 16px;
-  top: 12px;
-  z-index: 4;
+  left: 25px;
+  top: 1px;
+  z-index: 6;
+}
+
+.scene-method .method-space > header strong {
+  color: var(--green);
 }
 
 .scene-method .method-space-map {
   position: absolute;
-  left: 5px;
-  right: 5px;
-  top: 38px;
-  width: 500px;
-  height: 260px;
+  left: 25px;
+  top: 30px;
+  width: 680px;
+  height: 280px;
   overflow: visible;
+}
+
+.scene-method .method-space-boundary {
+  fill: rgba(131, 193, 103, 0.018);
+  stroke: rgba(131, 193, 103, 0.55);
+  stroke-width: 2;
+  stroke-dasharray: 7 8;
+  opacity: clamp(0, calc((var(--p) - 0.15) * 7), 1);
 }
 
 .scene-method .method-manifold-ribbon {
   fill: none;
-  stroke: rgba(244, 243, 238, 0.07);
-  stroke-width: 82;
+  stroke: rgba(244, 243, 238, 0.065);
+  stroke-width: 88;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.25) * 4.5), 1));
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.17) * 5), 1));
 }
 
 .scene-method .method-amass-point {
   fill: var(--muted);
-  opacity: clamp(0, calc((var(--p) - 0.28 - var(--i) * 0.0012) * 7), 0.78);
+  opacity: clamp(0, calc((var(--p) - 0.2 - var(--i) * 0.001) * 7), 0.78);
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(clamp(0.2, calc((var(--p) - 0.28 - var(--i) * 0.0012) * 7), 1));
+  transform: scale(clamp(0.2, calc((var(--p) - 0.2 - var(--i) * 0.001) * 7), 1));
 }
 
 .scene-method .method-mmwave-point {
   fill: var(--blue);
   stroke: var(--bg);
   stroke-width: 2;
-  opacity: clamp(0, calc((var(--p) - 0.39 - var(--i) * 0.005) * 8), 1);
+  opacity: clamp(0, calc((var(--p) - 0.35 - var(--i) * 0.004) * 8), 1);
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(clamp(0.2, calc((var(--p) - 0.39 - var(--i) * 0.005) * 8), 1));
+  transform: scale(clamp(0.2, calc((var(--p) - 0.35 - var(--i) * 0.004) * 8), 1));
 }
 
 .scene-method .method-local-support {
-  fill: rgba(244, 243, 238, 0.025);
+  fill: rgba(244, 243, 238, 0.02);
   stroke: var(--fg);
   stroke-width: 2;
-  stroke-dasharray: 5 5;
-  opacity: clamp(0, calc((var(--p) - 0.44) * 7), 0.78);
+  stroke-dasharray: 6 6;
+  opacity: clamp(0, calc((var(--p) - 0.48) * 7), 0.8);
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(clamp(0.1, calc((var(--p) - 0.44) * 6), 1));
+  transform: scale(clamp(0.1, calc((var(--p) - 0.48) * 6), 1));
 }
 
 .scene-method .method-nearest-distance {
   stroke: var(--red);
   stroke-width: 3;
   stroke-dasharray: 0.08 0.06;
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.48) * 6), 1));
-  opacity: clamp(0, calc((var(--p) - 0.48) * 7), 1);
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.51) * 6), 1));
+  opacity: clamp(0, calc((var(--p) - 0.51) * 7), 1);
 }
 
 .scene-method .method-nearest-mmwave {
   fill: none;
   stroke: var(--blue);
   stroke-width: 3;
-  opacity: clamp(0, calc((var(--p) - 0.48) * 7), 1);
+  opacity: clamp(0, calc((var(--p) - 0.51) * 7), 1);
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(clamp(0.1, calc((var(--p) - 0.48) * 7), 1));
+  transform: scale(clamp(0.1, calc((var(--p) - 0.51) * 7), 1));
 }
 
 .scene-method .method-neighborhood-test text {
   fill: var(--red);
-  font-weight: 620;
-  opacity: clamp(0, calc((var(--p) - 0.52) * 7), 1);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 650;
+  opacity: clamp(0, calc((var(--p) - 0.53) * 7), 1);
 }
 
 .scene-method .method-gap-contour {
-  fill: rgba(252, 98, 85, 0.035);
+  fill: rgba(252, 98, 85, 0.03);
   stroke: var(--red);
   stroke-width: 2.5;
   stroke-dasharray: 0.035 0.025;
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.57) * 5), 1));
-  opacity: clamp(0, calc((var(--p) - 0.57) * 6), 0.9);
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.49) * 5), 1));
+  opacity: clamp(0, calc((var(--p) - 0.49) * 6), 0.92);
 }
 
 .scene-method .method-gap-origin {
   fill: var(--muted);
-  opacity: clamp(0, calc((var(--p) - 0.58 - var(--i) * 0.01) * 8), 0.8);
+  opacity: clamp(0, calc((var(--p) - 0.52 - var(--i) * 0.012) * 8), 0.8);
 }
 
 .scene-method .method-gap-ring {
   fill: none;
   stroke: var(--red);
   stroke-width: 3;
-  opacity: clamp(0, calc((var(--p) - 0.58 - var(--i) * 0.01) * 8), 1);
+  opacity: clamp(0, calc((var(--p) - 0.52 - var(--i) * 0.012) * 8), 1);
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(clamp(0.15, calc((var(--p) - 0.58 - var(--i) * 0.01) * 8), 1));
+  transform: scale(clamp(0.15, calc((var(--p) - 0.52 - var(--i) * 0.012) * 8), 1));
 }
 
 .scene-method .method-selected-target {
-  fill: var(--green);
+  fill: var(--red);
   stroke: var(--bg);
   stroke-width: 2;
-  opacity: clamp(0, calc((var(--p) - 0.68 - var(--i) * 0.01) * 8), 1);
+  opacity: clamp(0, calc((var(--p) - 0.57) * 8), 1);
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(clamp(0.1, calc((var(--p) - 0.68 - var(--i) * 0.01) * 8), 1));
+  transform: scale(clamp(0.1, calc((var(--p) - 0.57) * 8), 1));
 }
 
-.scene-method .method-space-key {
+.scene-method .method-gap-point.is-selected {
+  opacity: clamp(0, calc((0.93 - var(--p)) * 12), 1);
+}
+
+.scene-method .method-new-sample {
+  fill: var(--blue);
+  stroke: var(--fg);
+  stroke-width: 2;
+  opacity: clamp(0, calc((var(--p) - 0.86) * 10), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0.1, calc((var(--p) - 0.86) * 9), 1));
+}
+
+.scene-method .method-space-labels {
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 9px;
-  z-index: 4;
+  left: 44px;
+  right: 36px;
+  bottom: 2px;
+  z-index: 7;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
   color: var(--muted);
-  font-weight: 520;
-  opacity: clamp(0, calc((var(--p) - 0.38) * 6), 1);
+  font-weight: 540;
+  opacity: clamp(0, calc((var(--p) - 0.33) * 7), 1);
 }
 
-.scene-method .method-space-key span::before {
+.scene-method .method-space-labels span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scene-method .method-space-labels span::before {
   content: "";
-  display: inline-block;
   width: 12px;
   height: 12px;
-  margin-right: 7px;
+  flex: 0 0 auto;
   border-radius: 50%;
-  vertical-align: 1px;
   background: var(--muted);
 }
 
-.scene-method .method-space-key .key-mmwave::before {
+.scene-method .method-space-labels .method-label-recorded {
+  color: var(--blue);
+}
+
+.scene-method .method-space-labels .method-label-recorded::before {
   background: var(--blue);
 }
 
-.scene-method .method-space-key .key-gap::before {
+.scene-method .method-space-labels .method-label-gap {
+  color: var(--red);
+}
+
+.scene-method .method-space-labels .method-label-gap::before {
   border: 3px solid var(--red);
   background: transparent;
 }
 
-.scene-method .method-target-arrow {
-  transform: scaleX(clamp(0, calc((var(--p) - 0.7) * 7), 1));
+.scene-method .method-gap-preview {
+  position: absolute;
+  left: 579px;
+  top: 78px;
+  z-index: 5;
+  width: 64px;
+  height: 104px;
+  opacity: clamp(0, min(calc((var(--p) - 0.56) * 8), calc((0.93 - var(--p)) * 12)), 0.9);
+  transform: scale(clamp(0.2, calc((var(--p) - 0.56) * 7), 1));
+  transform-origin: center;
+}
+
+.scene-method .method-gap-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: hue-rotate(174deg) saturate(1.7) brightness(1.15);
 }
 
 .scene-method .method-targets {
-  width: 166px;
-  height: 286px;
+  position: absolute;
+  right: 0;
+  top: 58px;
+  z-index: 5;
+  width: 146px;
+  height: 238px;
   display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 12px;
-  padding: 12px 6px 8px 12px;
-  border-left: 4px solid var(--green);
-  background: linear-gradient(90deg, rgba(131, 193, 103, 0.08), transparent 95%);
-  opacity: clamp(0, calc((var(--p) - 0.72) * 8), 1);
-  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.72) * 8), 1)) * -10px));
+  grid-template-rows: auto 1fr auto;
+  gap: 8px;
+  padding: 10px 2px 8px 12px;
+  border-left: 4px solid var(--red);
+  background: linear-gradient(90deg, rgba(252, 98, 85, 0.07), transparent 96%);
+  opacity: clamp(0, calc((var(--p) - 0.68) * 8), 1);
+  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.68) * 8), 1)) * 12px));
 }
 
-.scene-method .method-targets header {
-  display: grid;
-  gap: 4px;
-}
-
-.scene-method .method-target-poses {
+.scene-method .method-capture {
   min-height: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  grid-template-columns: 64px 62px;
   align-items: center;
+  gap: 2px;
 }
 
-.scene-method .method-target-poses img {
-  width: 50px;
-  height: 166px;
+.scene-method .method-capture > img {
+  width: 64px;
+  height: 128px;
   object-fit: contain;
-  filter: hue-rotate(-88deg) saturate(1.08) brightness(1.55);
-  opacity: clamp(0, calc((var(--p) - 0.74) * 8), 1);
-  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.74) * 8), 1)) * 12px));
+  filter: hue-rotate(174deg) saturate(1.7) brightness(1.15);
+}
+
+.scene-method .method-radar {
+  width: 62px;
+  height: 82px;
+  overflow: visible;
+}
+
+.scene-method .method-radar rect,
+.scene-method .method-radar path {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scene-method .method-radar path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.72) * 7), 1));
+}
+
+.scene-method .method-targets > span {
+  color: var(--blue);
+  font-weight: 620;
 }
 
 .scene-method .method-takeaway {
@@ -379,7 +427,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scene-method :is(.method-converge path, .method-manifold-ribbon, .method-nearest-distance, .method-gap-contour) {
+  .scene-method :is(.method-flow-lines > path, .method-manifold-ribbon, .method-nearest-distance, .method-gap-contour, .method-radar path) {
     stroke-dashoffset: 0;
   }
 }

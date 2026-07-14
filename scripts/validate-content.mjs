@@ -49,7 +49,7 @@ const methodTargets = html.match(/<section class="method-targets"[\s\S]*?<\/sect
 const imageSources = (markup) => [...markup.matchAll(/<img[^>]+src="([^"]+)"/g)].map((match) => match[1]);
 const inputPoseSources = imageSources(methodInputs);
 const targetPoseSources = imageSources(methodTargets);
-assert.equal(targetPoseSources.length, 3, "Method scene needs exactly three next-target poses");
+assert.equal(targetPoseSources.length, 1, "Method scene needs exactly one selected collection target");
 assert.equal(new Set(targetPoseSources).size, targetPoseSources.length, "Next-target poses must be distinct");
 assert.ok(targetPoseSources.every((path) => !inputPoseSources.includes(path)), "Next-target poses must not reuse encoder input poses");
 

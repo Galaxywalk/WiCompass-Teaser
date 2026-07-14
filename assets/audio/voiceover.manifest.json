@@ -8,9 +8,9 @@
     "truePeakDbtp": -1.5,
     "loudnessRange": 11
   },
-  "sourceHash": "9ae4b1048a5ab522bdad68b0eb0f6d978ef6e84e035870d34ea9a8ded33fe594",
+  "sourceHash": "7491ebb66a27da399cba72f46046cb2f46cf9f06e2deb6e8534e6e68cf14500c",
   "duration": 87,
-  "generatedAt": "2026-07-14T04:35:53.525Z",
+  "generatedAt": "2026-07-14T10:05:34.344Z",
   "scenes": [
     {
       "id": "cover",
@@ -43,9 +43,9 @@
     {
       "id": "method",
       "sceneDuration": 16.3,
-      "speechDuration": 15.65,
+      "speechDuration": 14.825,
       "leadIn": 0.25,
-      "tail": 0.4
+      "tail": 1.225
     },
     {
       "id": "simulation",

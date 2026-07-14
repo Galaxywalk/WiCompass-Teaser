@@ -26,8 +26,8 @@ const sceneDefinitions = [
   {
     id: "method",
     duration: 16.3,
-    stillOffset: 13.9,
-    voiceover: "Wi-Compass instead scales pose coverage. It learns a tokenizer from A-MASS and embeds radar pose labels. An A-MASS pose is missing when its nearest radar label falls outside the A-MASS-defined radius. Wi-Compass collects those motions selectively, then repeats the loop.",
+    stillOffset: 15.3,
+    voiceover: "To solve this, Wi-Compass maps motion-capture poses and millimeter-wave pose labels into a shared pose space. The motion prior reveals which valid poses radar data has missed. Wi-Compass collects those poses selectively, adds the new samples, then repeats the loop.",
   },
   {
     id: "simulation",

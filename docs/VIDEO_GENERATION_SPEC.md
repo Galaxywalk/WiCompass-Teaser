@@ -16,12 +16,26 @@ The current cut contains nine scenes and follows one scientific argument:
 | **Background** | `background` | Explain how sparse radar reflections become a 3D pose without capturing identifiable images. |
 | **Question** | `actions` | Explain one controlled left-hand-wave leave-one-out comparison. |
 | **Insight** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
-| **Mechanism** | `method` | Explain the shared pose representation, directional coverage test, and selection of under-covered regions in one continuous map. |
+| **Mechanism** | `method` | Center the shared pose space: MoCap defines valid motion, mmWave labels expose a gap, and the missing pose becomes the next RF capture. |
 | **Evidence** | `simulation`, `realworld` | Test the claim in fitted scaling laws and real-world deployment. |
 | **Vision** | `summary` | Leave the viewer with the principle: scale motion coverage, not repeated frames. |
 | Closing identity | `back` | Provide paper identity and a repository QR code. |
 
 Do not add a scene unless the new information cannot be absorbed into this structure without creating a second focal point. Preserve the Background → Question → Insight → Mechanism → Evidence → Vision order.
+
+### Audience-comprehension contract
+
+Apply the following rules when writing, drawing, and timing every scene. They adapt Kayvon Fatahalian's [Tips for Giving Clear Talks](https://graphics.stanford.edu/~kayvonf/misc/cleartalktips.pdf) to an 85-second research teaser:
+
+- **Give each scene one claim, and write that claim as its headline.** A viewer should use the figure to verify the stated conclusion, not infer the conclusion from the figure.
+- **Say why before what.** Introduce the unresolved question or need before showing a mechanism, metric, or evaluation. The next scene should feel expected from the previous one.
+- **Budget the audience's mental effort.** Never make viewers infer why an element is present, what a highlight means, or where to look. Spend their attention on the scientific implication instead.
+- **Explain visuals in display order.** Narration should name the input, visual encoding, comparison, and highlighted conclusion in the same order that animation reveals them. Remove any element that narration cannot justify.
+- **Make every word and mark earn its place.** Delete implementation detail, repeated values, decorative labels, and paper-completeness material that do not advance the teaser's single argument.
+- **Audit the title sequence alone.** Reading only the scene headlines in thumbnail order must produce a coherent summary of the paper.
+- **End with the field-level lesson.** The takeaway should state how the audience should think differently after seeing the work, rather than listing generic future work.
+
+The source recommends section-divider slides for longer talks. Do not import them into this teaser: the persistent scene kicker already marks narrative stages without spending scarce runtime on standalone dividers.
 
 ## 1. Typography
 
@@ -216,4 +230,4 @@ Before picture lock, confirm:
 
 ## Current migration status
 
-The current nine-scene cut is 87 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: it uses a single shared-space figure to connect encoding, directional coverage, and target selection without switching visual grammars.
+The current nine-scene cut is 87 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: the shared pose space remains the visual center while source poses, the uncovered motion, and targeted RF capture appear around it.

@@ -192,72 +192,81 @@
         <article class="scene slide scene-method" data-scene="method">
           <header class="method-heading scene-heading">
             <p class="method-kicker scene-kicker">Method</p>
-            <h2 class="scene-headline">MoCap measures mmWave pose coverage.</h2>
+            <h2 class="scene-headline">A shared pose space reveals what radar data misses.</h2>
           </header>
-          <div class="method-pipeline" role="img" aria-label="AMASS poses and mmWave pose labels pass through the same AMASS-trained encoder and codebook. In the shared pose space, an AMASS pose is uncovered when its nearest mmWave pose lies outside the local radius defined by neighboring AMASS poses. WiCompass selects diverse poses from this gap set as the next collection targets.">
-            <section class="method-inputs" aria-label="Pose label inputs">
-              <header><strong>Pose labels</strong></header>
-              <div class="method-input-stream method-amass">
-                <span>AMASS</span>
+          <div class="method-map" role="img" aria-label="Motion-capture poses and mmWave pose labels are mapped into one shared pose space. The motion-capture prior defines valid human motion, while the mmWave labels show which regions have already been recorded. A pose outside mmWave coverage becomes the next targeted RF capture, and the new sample is added back into the space.">
+            <section class="method-inputs" aria-label="Inputs mapped through the same pose encoder">
+              <div class="method-source method-amass">
+                <header><strong>MoCap pose prior</strong></header>
                 <div class="method-input-poses">
                   <img src="assets/derived/smplx_pose_1.svg" alt="AMASS SMPL-X pose" />
                   <img src="assets/derived/smplx_pose_2.svg" alt="AMASS SMPL-X pose" />
                 </div>
               </div>
-              <div class="method-input-stream method-mmwave">
-                <span>mmWave</span>
+              <div class="method-source method-mmwave">
+                <header><strong>mmWave pose labels</strong></header>
                 <div class="method-input-poses">
                   <img src="assets/derived/smplx_pose_3.svg" alt="SMPL-X pose label paired with mmWave data" />
+                  <img src="assets/derived/smplx_pose_2.svg" alt="Another pose label paired with mmWave data" />
                 </div>
               </div>
             </section>
 
-            <div class="method-converge" aria-hidden="true">
-              <svg viewBox="0 0 44 300" preserveAspectRatio="none">
-                <path pathLength="1" d="M0 78 H14 Q22 78 22 96 V150 H44" />
-                <path pathLength="1" d="M0 222 H14 Q22 222 22 204 V150" />
-              </svg>
-            </div>
+            <svg class="method-flow-lines" viewBox="0 0 1100 350" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="method-arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 Z" />
+                </marker>
+                <marker id="method-arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 Z" />
+                </marker>
+              </defs>
+              <path class="method-input-path method-input-path-amass" pathLength="1" d="M188 80 C224 80 226 103 270 103" />
+              <path class="method-input-path method-input-path-mmwave" pathLength="1" d="M188 272 C226 272 228 229 277 229" />
+              <path class="method-target-path" pathLength="1" d="M845 126 C906 126 911 147 958 147" />
+              <path class="method-return-path" pathLength="1" d="M1030 268 C1010 334 870 342 793 296" />
+            </svg>
 
-            <section class="method-encoder" aria-label="Frozen pose tokenizer with an encoder and codebook trained only on AMASS">
-              <header><span>Trained on AMASS</span><strong>Frozen tokenizer</strong></header>
-              <b>E+C</b>
-            </section>
-
-            <div class="method-map-arrow" aria-hidden="true"></div>
-
-            <section class="method-space" aria-label="Shared pose space and directional neighborhood coverage test">
+            <section class="method-space" aria-label="Shared pose space with MoCap prior, recorded mmWave coverage, and an uncovered motion">
               <header><strong>Shared pose space</strong></header>
-              <svg class="method-space-map" viewBox="0 0 500 260" aria-hidden="true">
-                <path class="method-manifold-ribbon" pathLength="1" d="M28 164 C74 52 146 45 218 91 S334 222 468 116" />
+              <svg class="method-space-map" viewBox="0 0 680 280" aria-hidden="true">
+                <ellipse class="method-space-boundary" cx="340" cy="142" rx="330" ry="128" />
+                <path class="method-manifold-ribbon" pathLength="1" d="M30 175 C105 47 235 48 334 108 S505 244 650 102" />
                 <g id="method-amass-points" class="method-amass-points"></g>
                 <g id="method-mmwave-points" class="method-mmwave-points"></g>
-                <path class="method-gap-contour" pathLength="1" d="M352 65 C398 34 467 57 481 113 C492 158 459 220 397 218 C353 216 332 181 340 137 C346 105 330 85 352 65 Z" />
+                <path class="method-gap-contour" pathLength="1" d="M505 55 C555 26 630 42 661 97 C680 143 650 223 580 229 C523 235 489 196 494 145 C498 108 481 78 505 55 Z" />
                 <g id="method-gap-points" class="method-gap-points"></g>
                 <g class="method-neighborhood-test">
-                  <circle class="method-local-support" cx="418" cy="102" r="32" />
-                  <line class="method-nearest-distance" pathLength="1" x1="418" y1="102" x2="332" y2="86" />
-                  <circle class="method-nearest-mmwave" cx="332" cy="86" r="11" />
-                  <text x="250" y="48">Outside local radius</text>
+                  <circle class="method-local-support" cx="575" cy="105" r="37" />
+                  <line class="method-nearest-distance" pathLength="1" x1="575" y1="105" x2="450" y2="103" />
+                  <circle class="method-nearest-mmwave" cx="450" cy="103" r="11" />
+                  <text x="516" y="42">Not covered</text>
                 </g>
+                <circle class="method-new-sample" cx="575" cy="105" r="7" />
               </svg>
-              <div class="method-space-key" aria-hidden="true">
-                <span class="key-amass">AMASS prior</span>
-                <span class="key-mmwave">mmWave labels</span>
-                <span class="key-gap">Gap set</span>
+              <div class="method-space-labels" aria-hidden="true">
+                <span class="method-label-prior">MoCap prior</span>
+                <span class="method-label-recorded">mmWave coverage</span>
+                <span class="method-label-gap">Missing motion</span>
+              </div>
+              <div class="method-gap-preview" aria-hidden="true">
+                <img src="assets/derived/smplx_target_pose_1.svg" alt="" />
               </div>
             </section>
 
-            <div class="method-target-arrow" aria-hidden="true"></div>
-
-            <section class="method-targets" aria-label="Next poses selected from uncovered regions">
-              <header><strong>Next targets</strong></header>
-              <div class="method-target-poses">
+            <section class="method-targets" aria-label="Targeted RF collection for the selected missing pose">
+              <header><strong>Collect this pose</strong></header>
+              <div class="method-capture">
                 <img src="assets/derived/smplx_target_pose_1.svg" alt="Selected uncovered target pose" />
-                <img src="assets/derived/smplx_target_pose_2.svg" alt="Selected uncovered target pose" />
-                <img src="assets/derived/smplx_target_pose_3.svg" alt="Selected uncovered target pose" />
+                <svg class="method-radar" viewBox="0 0 100 100" aria-hidden="true">
+                  <rect x="5" y="29" width="30" height="42" rx="2" />
+                  <path pathLength="1" d="M45 35 Q66 50 45 65" />
+                  <path pathLength="1" d="M54 22 Q91 50 54 78" />
+                </svg>
               </div>
+              <span>RF capture</span>
             </section>
+
           </div>
           <footer class="scene-footer method-takeaway">
             <span>WiCompass identifies missing poses, collects them selectively, then repeats the loop.</span>
