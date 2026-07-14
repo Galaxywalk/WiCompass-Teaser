@@ -13,7 +13,7 @@ The current cut contains eight scenes and follows one scientific argument:
 | Narrative role | Scene IDs | Purpose |
 | --- | --- | --- |
 | Opening identity | `cover` | Establish the paper, authors, institutions, and venue. |
-| **Question** | `actions` | Show that conventional action splits hide a severe held-out-action gap. |
+| **Question** | `actions` | Define mmWave HPE, then explain one controlled left-hand-wave leave-one-out comparison. |
 | **Insight** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
 | **Mechanism** | `method` | Explain the shared pose representation, directional coverage test, and selection of under-covered regions in one continuous map. |
 | **Evidence** | `simulation`, `realworld` | Test the claim in fitted scaling laws and real-world deployment. |
@@ -209,4 +209,4 @@ Before picture lock, confirm:
 
 ## Current migration status
 
-The current eight-scene cut is 84.1 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: it uses a single shared-space figure to connect encoding, directional coverage, and target selection without switching visual grammars.
+The current eight-scene cut is 87 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: it uses a single shared-space figure to connect encoding, directional coverage, and target selection without switching visual grammars.

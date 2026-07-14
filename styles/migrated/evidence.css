@@ -1,5 +1,4 @@
-/* Actions + efficiency migration to the 720p teaser specification.
-   This file is presentation-only: scientific values and copy stay in content/. */
+/* Problem + efficiency scenes. Scientific values stay in content/. */
 
 .stage[data-scene="actions"] .scene-hook,
 .stage[data-scene="efficiency"] .scene-redundancy {
@@ -25,106 +24,297 @@
   max-width: 1160px;
 }
 
-.scene-hook .chart-frame,
+/* One controlled comparison: same A17 test samples, one training-set change. */
+.scene-hook .action-comparison {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 28px;
+  align-self: stretch;
+  padding-top: 8px;
+}
+
+.scene-hook :is(.loo-setup, .loo-result) {
+  min-width: 0;
+  min-height: 0;
+  padding: 14px 18px 16px;
+  border-top: 4px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.scene-hook .loo-result {
+  border-top-color: var(--red);
+}
+
+.scene-hook .action-panel-heading {
+  min-height: 34px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--muted);
+  font-size: var(--spec-type-annotation);
+  line-height: 1.05;
+}
+
+.scene-hook .action-panel-heading strong {
+  color: var(--fg);
+  font: inherit;
+  font-weight: 700;
+}
+
+.scene-hook .action-panel-heading span {
+  color: var(--muted);
+  font: inherit;
+  font-weight: 520;
+}
+
+.scene-hook .loo-rows {
+  height: calc(100% - 42px);
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.scene-hook .loo-row {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px 196px;
+  align-items: center;
+  padding: 10px 12px 10px 16px;
+  border-left: 4px solid;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.045), transparent 94%);
+}
+
+.scene-hook .loo-seen {
+  border-color: var(--green);
+  opacity: clamp(0, calc((var(--p) - 0.03) * 7), 1);
+}
+
+.scene-hook .loo-heldout {
+  border-color: var(--red);
+  opacity: clamp(0, calc((var(--p) - 0.14) * 7), 1);
+}
+
+.scene-hook :is(.loo-training-set, .loo-test-action) {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  align-content: center;
+}
+
+.scene-hook :is(.loo-training-set, .loo-test-action) > span,
+.scene-hook :is(.loo-training-set, .loo-test-action) > strong,
+.scene-hook .loo-test-action em {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  line-height: 1.05;
+}
+
+.scene-hook :is(.loo-training-set, .loo-test-action) > span {
+  color: var(--muted);
+  font-weight: 520;
+}
+
+.scene-hook :is(.loo-training-set, .loo-test-action) > strong {
+  color: var(--fg);
+  font-weight: 680;
+}
+
+.scene-hook .action-tokens {
+  width: 206px;
+  display: grid;
+  grid-template-columns: repeat(9, 14px);
+  gap: 6px 8px;
+  margin-top: 5px;
+}
+
+.scene-hook .action-tokens span {
+  width: 14px;
+  height: 8px;
+  border: 2px solid var(--quiet);
+  background: var(--quiet);
+}
+
+.scene-hook .loo-seen .action-tokens .is-target {
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.scene-hook .loo-heldout .action-tokens .is-excluded {
+  border-color: var(--red);
+  background: transparent;
+}
+
+.scene-hook .loo-arrow {
+  width: 32px;
+  height: 14px;
+  background: currentColor;
+  clip-path: polygon(0 42%, 70% 42%, 70% 0, 100% 50%, 70% 100%, 70% 58%, 0 58%);
+  transform: scaleX(clamp(0, calc((var(--p) - 0.2) * 6), 1));
+  transform-origin: left center;
+}
+
+.scene-hook .loo-seen .loo-arrow {
+  color: var(--green);
+}
+
+.scene-hook .loo-heldout .loo-arrow {
+  color: var(--red);
+}
+
+.scene-hook .loo-test-action {
+  padding-left: 10px;
+}
+
+.scene-hook .loo-test-action em {
+  width: max-content;
+  margin-top: 2px;
+  padding: 3px 8px;
+  color: var(--bg);
+  font-style: normal;
+  font-weight: 720;
+}
+
+.scene-hook .loo-seen .loo-test-action em {
+  background: var(--green);
+}
+
+.scene-hook .loo-heldout .loo-test-action em {
+  background: var(--red);
+}
+
+.scene-hook .loo-result {
+  position: relative;
+}
+
+.scene-hook .loo-bars {
+  position: relative;
+  height: calc(100% - 40px);
+  display: grid;
+  grid-template-columns: 120px 120px;
+  gap: 32px;
+  align-items: end;
+  padding: 10px 0 0 20px;
+}
+
+.scene-hook .loo-bar-group {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 32px minmax(0, 1fr) 54px;
+  gap: 5px;
+  justify-items: center;
+}
+
+.scene-hook .loo-bar-group > strong,
+.scene-hook .loo-bar-group > span,
+.scene-hook .loo-result-callout :is(strong, span) {
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  line-height: 1.05;
+}
+
+.scene-hook .loo-bar-group > strong {
+  align-self: end;
+  color: var(--muted);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  opacity: clamp(0, calc((var(--p) - 0.48) * 6), 1);
+}
+
+.scene-hook .loo-bar-seen > strong {
+  color: var(--green);
+}
+
+.scene-hook .loo-bar-heldout > strong {
+  color: var(--red);
+}
+
+.scene-hook .loo-bar-track {
+  position: relative;
+  width: 92px;
+  height: 100%;
+  align-self: stretch;
+  border-bottom: 2px solid var(--quiet);
+}
+
+.scene-hook .loo-bar-track i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--bar-ratio) * 100%);
+  border: 4px solid;
+  transform: scaleY(clamp(0, calc((var(--p) - 0.3) * 3.8), 1));
+  transform-origin: center bottom;
+}
+
+.scene-hook .loo-bar-seen .loo-bar-track i {
+  border-color: var(--green);
+  background: rgba(131, 193, 103, 0.24);
+}
+
+.scene-hook .loo-bar-heldout .loo-bar-track i {
+  border-color: var(--red);
+  background: rgba(252, 98, 85, 0.42);
+  transform: scaleY(clamp(0, calc((var(--p) - 0.4) * 3.8), 1));
+}
+
+.scene-hook .loo-bar-group > span {
+  color: var(--muted);
+  text-align: center;
+  font-weight: 560;
+}
+
+.scene-hook .loo-result-callout {
+  position: absolute;
+  right: 2px;
+  top: 42%;
+  display: grid;
+  gap: 3px;
+  padding-left: 12px;
+  border-left: 4px solid var(--red);
+  opacity: clamp(0, calc((var(--p) - 0.62) * 6), 1);
+}
+
+.scene-hook .loo-result-callout strong {
+  color: var(--red);
+  font-weight: 760;
+}
+
+.scene-hook .loo-result-callout span {
+  color: var(--muted);
+  font-weight: 520;
+}
+
+/* The data-efficiency scene keeps the shared native line-chart grammar. */
 .scene-redundancy .chart-frame {
   height: auto;
   min-height: 0;
   align-self: stretch;
 }
 
-.scene-hook .chart-legend-marker.series-included {
-  fill: var(--green);
-  stroke: var(--green);
-}
-
-.scene-hook .chart-legend-marker.series-heldout {
-  fill: var(--red);
-  stroke: var(--red);
-}
-
-.scene-hook .chart-grid text,
-.scene-hook .chart-legend text,
-.scene-hook .chart-highlight-label,
-.scene-hook .axis-label,
-.scene-redundancy .chart-grid text,
-.scene-redundancy .axis-label,
-.scene-redundancy .reference-label {
+.scene-redundancy :is(.chart-grid text, .axis-label, .reference-label) {
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-annotation);
   font-weight: 520;
 }
 
-.scene-hook .axis-label,
 .scene-redundancy .axis-label {
   fill: var(--muted);
   font-weight: 600;
 }
 
-.scene-hook .chart-grid line,
 .scene-redundancy .chart-grid line {
   stroke: #3a3a37;
 }
 
-.scene-hook .chart-grid line.vertical,
 .scene-redundancy .chart-grid line.vertical {
   stroke: #282826;
-}
-
-/* Actions encode two dataset splits, not a temporal trajectory. */
-#loo-chart .series-included {
-  stroke: var(--green);
-}
-
-#loo-chart .series-heldout,
-#loo-chart .gap-stem {
-  stroke: var(--red);
-}
-
-#loo-chart .chart-point {
-  fill: var(--bg);
-  stroke-width: 3;
-}
-
-#loo-chart .chart-point.important {
-  stroke-width: 6;
-}
-
-#loo-chart .gap-stem {
-  stroke-width: 3;
-  stroke-dasharray: 7 7;
-}
-
-#loo-chart .chart-highlight {
-  fill: rgba(252, 98, 85, 0.09);
-}
-
-#loo-chart .chart-highlight-label {
-  fill: var(--red);
-  font-weight: 760;
-}
-
-.scene-hook .chart-callout {
-  top: 58px;
-  right: 18px;
-  gap: 2px;
-  padding: 8px 0 8px 15px;
-  color: var(--muted);
-  border-left: 4px solid var(--red);
-  background: transparent;
-  opacity: clamp(0, calc((var(--p) - 0.12) * 6), 1);
-}
-
-.scene-hook .chart-callout span {
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 560;
-}
-
-.scene-hook .chart-callout strong {
-  color: var(--red);
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  font-weight: 700;
 }
 
 #efficiency-chart .series-primary {
@@ -148,4 +338,10 @@
 #efficiency-chart .reference-label {
   fill: var(--yellow);
   font-weight: 680;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-hook :is(.loo-arrow, .loo-bar-track i) {
+    transform: none;
+  }
 }

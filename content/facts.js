@@ -1,14 +1,12 @@
-import { EFFICIENCY_READOUT_PERCENTAGES, LINE_CHARTS } from "./chart-data.js";
+import { ACTION_GENERALIZATION, EFFICIENCY_READOUT_PERCENTAGES } from "./chart-data.js";
 
-const lineConfig = (selector) => LINE_CHARTS.find((chart) => chart.selector === selector).config;
-const action = lineConfig("#loo-chart");
-
-const actionIndex = action.highlight.index;
-const actionIncluded = action.series.find(({ key }) => key === "included").values[actionIndex];
-const actionHeldout = action.series.find(({ key }) => key === "heldout").values[actionIndex];
+const actionSeen = ACTION_GENERALIZATION.conditions.find(({ key }) => key === "seen");
+const actionHeldout = ACTION_GENERALIZATION.conditions.find(({ key }) => key === "heldout");
 const retainedEnd = EFFICIENCY_READOUT_PERCENTAGES.at(-1);
 
 export const FACTS = Object.freeze({
-  "action-gap": `${actionIncluded.toFixed(1)} → ${actionHeldout.toFixed(1)} mm`,
+  "action-seen": `${actionSeen.value.toFixed(1)} mm`,
+  "action-heldout": `${actionHeldout.value.toFixed(1)} mm`,
+  "action-ratio": `${(actionHeldout.value / actionSeen.value).toFixed(1)}× error`,
   "efficiency-title": `Keeping ${retainedEnd}% of the data barely changes error.`,
 });

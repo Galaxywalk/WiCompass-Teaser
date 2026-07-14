@@ -4,45 +4,16 @@
 export const EFFICIENCY_PERCENTAGES = Object.freeze([100, 90, 80, 70, 60, 50, 40, 30]);
 export const EFFICIENCY_READOUT_PERCENTAGES = EFFICIENCY_PERCENTAGES;
 
+export const ACTION_GENERALIZATION = Object.freeze({
+  action: Object.freeze({ id: "A17", label: "Left-hand wave", index: 16 }),
+  yMax: 170,
+  conditions: Object.freeze([
+    Object.freeze({ key: "seen", label: "Seen in training", trainingActions: 27, value: 41.11 }),
+    Object.freeze({ key: "heldout", label: "Held out", trainingActions: 26, value: 151.12 }),
+  ]),
+});
+
 export const LINE_CHARTS = Object.freeze([
-  {
-    selector: "#loo-chart",
-    config: {
-      padding: { left: 96, right: 24, top: 60, bottom: 64 },
-      yMin: 20,
-      yMax: 190,
-      yTicks: [60, 100, 140, 180],
-      yLabel: "MPJPE (mm)",
-      yLabelX: 26,
-      xLabel: "Held-out action",
-      xLabelBottom: 4,
-      xTickY: 342,
-      legendY: 26,
-      legendStep: 236,
-      legendMarker: "point",
-      xTicks: [
-        { index: 0, label: "A01" },
-        { index: 8, label: "A09" },
-        { index: 16, label: "A17" },
-        { index: 26, label: "A27" },
-      ],
-      highlight: { index: 16 },
-      gapSeriesIndex: 1,
-      gapFromSeriesIndex: 0,
-      series: [
-        {
-          key: "included",
-          label: "All included",
-          values: [41.26, 32.70, 39.01, 43.64, 41.91, 33.36, 37.41, 42.83, 48.25, 43.34, 37.68, 51.73, 33.03, 37.26, 42.64, 42.11, 41.11, 55.92, 56.47, 46.18, 46.49, 45.54, 45.18, 46.15, 48.67, 41.01, 37.26],
-        },
-        {
-          key: "heldout",
-          label: "Leave one out",
-          values: [112.84, 92.74, 113.37, 115.40, 110.22, 92.38, 85.82, 84.00, 156.57, 167.67, 90.60, 150.46, 106.64, 110.71, 100.69, 98.62, 151.12, 148.48, 167.60, 125.30, 126.06, 101.62, 109.96, 103.43, 108.31, 107.90, 84.61],
-        },
-      ],
-    },
-  },
   {
     selector: "#efficiency-chart",
     config: {

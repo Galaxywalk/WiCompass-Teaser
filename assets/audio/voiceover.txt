@@ -1,10 +1,10 @@
-From Peking University, UESTC, Pitt, and MIT: Wi-Compass, Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation.
+Wi-Compass: Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation. This MobiCom twenty twenty-six paper is by Peking University, UESTC, Pitt, and MIT.
 
-Millimeter-wave human pose estimation enables privacy-preserving sensing, but current models fail on unseen actions. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.
+Millimeter-wave sensing recovers human poses from radio reflections without cameras, preserving privacy. But models fail on unseen actions: holding out left-hand wave increases error from 41.1 to 151.1 millimeters.
 
 Yet adding more of the same data barely helps. On mmBody, a thirty-percent subset performs similarly.
 
-Wi-Compass learns a pose tokenizer from A-MASS and embeds millimeter-wave pose labels. An A-MASS pose is missing when its nearest label falls outside the A-MASS-defined local radius. Wi-Compass then selectively collects data for them and repeats the loop.
+To solve this, Wi-Compass learns a pose tokenizer from A-MASS and embeds radar pose labels. An A-MASS pose is missing when its nearest radar label falls outside the A-MASS-defined radius. Wi-Compass collects those motions selectively, then repeats the loop.
 
 In simulation, Wi-Compass scales while the mmBody trace saturates, staying twenty-five to thirty millimeters lower from two thousand to forty thousand samples.
 

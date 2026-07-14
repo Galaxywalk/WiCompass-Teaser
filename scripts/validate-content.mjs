@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { extname, join } from "node:path";
-import { BAR_CHARTS, LINE_CHARTS } from "../content/chart-data.js";
+import { ACTION_GENERALIZATION, BAR_CHARTS, LINE_CHARTS } from "../content/chart-data.js";
 import { FACTS } from "../content/facts.js";
 import { PROJECT } from "../content/project.js";
 import { DURATION, SCENES } from "../content/timeline.js";
@@ -54,7 +54,7 @@ assert.ok(targetPoseSources.every((path) => !inputPoseSources.includes(path)), "
 
 const visibleCopy = JSON.stringify({
   html: html.replace(/<[^>]+>/g, " "),
-  charts: { LINE_CHARTS, BAR_CHARTS },
+  charts: { ACTION_GENERALIZATION, LINE_CHARTS, BAR_CHARTS },
   facts: FACTS,
   project: PROJECT,
 });
@@ -96,7 +96,13 @@ for (const { selector, config } of BAR_CHARTS) {
   assert.ok(Math.min(...values) >= config.yMin && Math.max(...values) <= config.yMax, `${selector}: data outside y domain`);
 }
 
-assert.equal(FACTS["action-gap"], "41.1 → 151.1 mm");
+assert.equal(ACTION_GENERALIZATION.action.id, "A17");
+assert.equal(ACTION_GENERALIZATION.action.label, "Left-hand wave");
+assert.equal(ACTION_GENERALIZATION.conditions.length, 2);
+assert.ok(ACTION_GENERALIZATION.conditions.every(({ value }) => Number.isFinite(value) && value >= 0 && value <= ACTION_GENERALIZATION.yMax));
+assert.equal(FACTS["action-seen"], "41.1 mm");
+assert.equal(FACTS["action-heldout"], "151.1 mm");
+assert.equal(FACTS["action-ratio"], "3.7× error");
 assert.equal(FACTS["efficiency-title"], "Keeping 30% of the data barely changes error.");
 
 const assetPaths = [
@@ -164,4 +170,4 @@ for (const { path, duration } of audioDurations) {
 }
 assert.ok(Math.abs(audioDurations[0].duration - audioDurations[1].duration) < 0.1, "Kokoro WAV and M4A durations differ");
 
-process.stdout.write(`Validated ${SCENES.length} scenes, ${DURATION}s timeline, ${LINE_CHARTS.length + BAR_CHARTS.length} charts, locked typography, assets, and Kokoro audio manifest.\n`);
+process.stdout.write(`Validated ${SCENES.length} scenes, ${DURATION}s timeline, ${1 + LINE_CHARTS.length + BAR_CHARTS.length} figures, locked typography, assets, and Kokoro audio manifest.\n`);

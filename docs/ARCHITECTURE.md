@@ -4,7 +4,7 @@ The repository has three intentional layers. A change should normally touch only
 
 Visual decisions must follow [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md). The architecture describes where a decision belongs; the specification defines which decisions are allowed.
 
-The current timeline has eight scenes and runs 84.1 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
+The current timeline has eight scenes and runs 87 seconds. Its content order is `cover`, Question (`actions`), Insight (`efficiency`), Mechanism (`method`), Evidence (`simulation`, `realworld`), Vision (`summary`), and `back`.
 
 Narrative typography is centralized in `styles/migrated/typography.css`. Scene styles own geometry and scientific figure presentation, but may not redefine `.scene-kicker`, `.scene-headline`, `.scene-footer`, or `.scene-support`. Cover and back-cover identity typography remains in `styles/migrated/identity.css`.
 

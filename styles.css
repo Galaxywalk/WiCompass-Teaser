@@ -294,40 +294,11 @@ h2 { font-size: var(--spec-type-section); }
 .annotation-line { stroke: var(--red); stroke-width: 2; stroke-dasharray: 5 6; }
 .annotation-label { fill: var(--red); font-weight: 760; }
 
-.series-included,
 .series-primary,
 .series-training { stroke: var(--blue); }
-.series-heldout { stroke: var(--red); }
 .series-wicompass { stroke: var(--green); }
 .series-baseline,
 .series-testing { stroke: var(--yellow); }
-
-/* Actions are categories, not a time series. Animate only the split gap. */
-#loo-chart .chart-line { display: none; }
-#loo-chart .chart-point.series-index-0 { opacity: 1; }
-#loo-chart .chart-point.series-index-1 {
-  opacity: 1;
-  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.12) * 2), 1)) * var(--lift)));
-}
-#loo-chart .gap-stem {
-  opacity: clamp(0, calc((var(--p) - 0.16) * 2.4), 0.72);
-  stroke-width: 2;
-  stroke-dasharray: 4 5;
-}
-
-.chart-callout {
-  position: absolute;
-  right: 54px;
-  top: 66px;
-  z-index: 5;
-  display: grid;
-  padding: 10px 14px;
-  color: #121212;
-  background: var(--red);
-  opacity: clamp(0, calc((var(--p) - 0.38) * 4), 1);
-}
-.chart-callout span { font-size: var(--spec-type-annotation); font-weight: 520; }
-.chart-callout strong { font-size: var(--spec-type-annotation); font-weight: 700; }
 
 #efficiency-chart .chart-line { stroke-dashoffset: calc(1 - var(--data-reveal)); }
 #efficiency-chart .chart-point { opacity: var(--data-reveal); }

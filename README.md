@@ -1,6 +1,6 @@
 # WiCompass — MobiCom '26 teaser
 
-An HTML-first, reproducible eight-scene motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**. The current cut is 84.1 seconds and follows a Question → Insight → Mechanism → Evidence → Vision narrative.
+An HTML-first, reproducible eight-scene motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**. The current cut is 87 seconds and follows a Question → Insight → Mechanism → Evidence → Vision narrative.
 
 The repository is deliberately split into three layers:
 
@@ -15,7 +15,7 @@ The render scripts under `scripts/` use the same browser runtime for individual 
 The scientific story is bracketed by an opening identity frame and a closing code frame:
 
 1. `cover` — paper identity;
-2. **Question:** `actions` exposes the held-out-action generalization gap;
+2. **Question:** `actions` explains mmWave HPE, then isolates the left-hand-wave leave-one-out gap;
 3. **Insight:** `efficiency` shows that repeated frames do not provide new motion coverage;
 4. **Mechanism:** `method` connects the shared pose space, directional coverage test, and target selection in one continuous figure;
 5. **Evidence:** `simulation` and `realworld` validate the scaling behavior and deployment result;
@@ -46,7 +46,7 @@ npm run frame -- --scene method
 npm run frame -- --time 44.5
 ```
 
-Render one scene at normal animation speed instead of replaying the full 84.1-second cut:
+Render one scene at normal animation speed instead of replaying the full 87-second cut:
 
 ```bash
 npm run record:draft -- --scene method

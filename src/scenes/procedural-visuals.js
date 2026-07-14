@@ -1,6 +1,7 @@
 import { METHOD_SPACE } from "../../content/procedural-data.js";
 import { requiredElement } from "../core/dom.js";
 import { seededRandom } from "../core/utils.js";
+import { renderActionGeneralization } from "./action-generalization.js";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -67,5 +68,6 @@ export function renderMethodSpace(root = document, config = METHOD_SPACE) {
 }
 
 export function renderProceduralVisuals(root = document) {
+  renderActionGeneralization(root);
   renderMethodSpace(root);
 }

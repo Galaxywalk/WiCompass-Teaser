@@ -1,15 +1,15 @@
 const sceneDefinitions = [
   {
     id: "cover",
-    duration: 9.5,
-    stillOffset: 4.75,
-    voiceover: "From Peking University, UESTC, Pitt, and MIT: Wi-Compass, Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation.",
+    duration: 12.2,
+    stillOffset: 6.1,
+    voiceover: "Wi-Compass: Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation. This MobiCom twenty twenty-six paper is by Peking University, UESTC, Pitt, and MIT.",
   },
   {
     id: "actions",
-    duration: 13.8,
-    stillOffset: 6.9,
-    voiceover: "Millimeter-wave human pose estimation enables privacy-preserving sensing, but current models fail on unseen actions. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.",
+    duration: 15.8,
+    stillOffset: 12.6,
+    voiceover: "Millimeter-wave sensing recovers human poses from radio reflections without cameras, preserving privacy. But models fail on unseen actions: holding out left-hand wave increases error from 41.1 to 151.1 millimeters.",
   },
   {
     id: "efficiency",
@@ -21,7 +21,7 @@ const sceneDefinitions = [
     id: "method",
     duration: 15.8,
     stillOffset: 13.4,
-    voiceover: "Wi-Compass learns a pose tokenizer from A-MASS and embeds millimeter-wave pose labels. An A-MASS pose is missing when its nearest label falls outside the A-MASS-defined local radius. Wi-Compass then selectively collects data for them and repeats the loop.",
+    voiceover: "To solve this, Wi-Compass learns a pose tokenizer from A-MASS and embeds radar pose labels. An A-MASS pose is missing when its nearest radar label falls outside the A-MASS-defined radius. Wi-Compass collects those motions selectively, then repeats the loop.",
   },
   {
     id: "simulation",
@@ -31,8 +31,8 @@ const sceneDefinitions = [
   },
   {
     id: "realworld",
-    duration: 13,
-    stillOffset: 6.5,
+    duration: 11.2,
+    stillOffset: 5.6,
     voiceover: "In real-world evaluation, Wi-Compass beats action-list collection: 105.7 millimeters on held-out poses versus 112.9, at similar training error.",
   },
   {

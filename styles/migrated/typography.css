@@ -72,13 +72,3 @@
 .scene .science-chart :is(.chart-highlight-label, .chart-gap-label, .bar-comparison-label, .reference-label) {
   font-weight: 700;
 }
-
-.scene-hook .chart-callout :is(span, strong) {
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  line-height: 1.08;
-}
-
-.scene-hook .chart-callout strong {
-  font-weight: 700;
-}
