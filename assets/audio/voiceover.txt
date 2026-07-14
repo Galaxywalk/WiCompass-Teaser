@@ -4,7 +4,7 @@ Millimeter-wave radar estimates human poses from sparse reflections, preserving 
 
 But on the same left-hand-wave test, excluding it from training raises error from 41.1 to 151.1 millimeters.
 
-More similar data does not solve this. On mmBody, a thirty-percent subset performs nearly the same.
+Directly collecting more data barely helps: on mmBody, a thirty-percent subset performs nearly the same.
 
 To solve this, Wi-Compass maps motion-capture poses and millimeter-wave pose labels into a shared pose space. The motion prior reveals which valid poses radar data has missed. Wi-Compass collects those poses selectively, adds the new samples, then repeats the loop.
 

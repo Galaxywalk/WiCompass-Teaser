@@ -342,6 +342,7 @@ h2 { font-size: var(--spec-type-section); }
   stroke-width: 5;
   stroke-dasharray: 13 10;
   opacity: clamp(0, calc(var(--p) * 2.4), 1);
+  will-change: opacity;
 }
 #scaling-chart .fit-label {
   font-family: "JetBrains Mono Teaser", monospace;
@@ -361,8 +362,11 @@ h2 { font-size: var(--spec-type-section); }
   fill: none;
   stroke: var(--green);
   stroke-width: 4;
-  stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.28) * 3), 1));
+  opacity: clamp(0, calc((var(--p) - 0.3) * 6), 1);
+  transform: scaleY(clamp(0, calc((var(--p) - 0.3) * 4), 1));
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: opacity, transform;
 }
 #scaling-chart .chart-gap-label {
   fill: var(--green);

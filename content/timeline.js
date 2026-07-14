@@ -21,7 +21,7 @@ const sceneDefinitions = [
     id: "efficiency",
     duration: 6.8,
     stillOffset: 3.4,
-    voiceover: "More similar data does not solve this. On mmBody, a thirty-percent subset performs nearly the same.",
+    voiceover: "Directly collecting more data barely helps: on mmBody, a thirty-percent subset performs nearly the same.",
   },
   {
     id: "method",

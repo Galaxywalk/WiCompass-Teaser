@@ -6,5 +6,5 @@ export const FACTS = Object.freeze({
   "action-seen": `${actionSeen.value.toFixed(1)} mm`,
   "action-heldout": `${actionHeldout.value.toFixed(1)} mm`,
   "action-ratio": `${(actionHeldout.value / actionSeen.value).toFixed(1)}× error`,
-  "efficiency-title": "More of the same data barely helps.",
+  "efficiency-title": "Directly collecting more data barely helps.",
 });

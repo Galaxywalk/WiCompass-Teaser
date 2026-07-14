@@ -14,6 +14,8 @@ if (sceneFlag >= 0 && !requestedScene) throw new Error(`Unknown scene: ${args[sc
 const previewSpeed = Math.max(1, Number(process.env.PREVIEW_SPEED) || 1);
 const isPreview = previewSpeed > 1;
 const isDraft = isPreview || args.includes("--draft");
+// Playwright recordVideo emits 25 fps; preserve that cadence instead of duplicating frames at 30 fps.
+const captureFps = 25;
 const segmentStart = requestedScene?.start ?? 0;
 const segmentEnd = requestedScene?.end ?? DURATION;
 const timelineSeconds = segmentEnd - segmentStart;
@@ -68,8 +70,8 @@ try { hasAudio = (await stat("assets/audio/voiceover.m4a")).isFile(); } catch {}
 const capturedDuration = probeDuration(capturedPath);
 const preRollSeconds = Math.max(0, capturedDuration - outputSeconds - tailHoldSeconds);
 const videoCodecArgs = isDraft
-  ? ["-r", "30", "-c:v", "libx264", "-preset", "ultrafast", "-crf", "25", "-pix_fmt", "yuv420p"]
-  : ["-r", "30", "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-maxrate", "5M", "-bufsize", "10M", "-pix_fmt", "yuv420p"];
+  ? ["-r", String(captureFps), "-c:v", "libx264", "-preset", "ultrafast", "-crf", "25", "-pix_fmt", "yuv420p"]
+  : ["-r", String(captureFps), "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-maxrate", "5M", "-bufsize", "10M", "-pix_fmt", "yuv420p"];
 
 const ffmpegArgs = ["-y", "-ss", preRollSeconds.toFixed(3), "-i", capturedPath];
 const includeAudio = !requestedScene && !isPreview && hasAudio;
