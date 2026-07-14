@@ -23,6 +23,8 @@ async function remove(path) {
 }
 
 await remove(".DS_Store");
+await remove("dist/.DS_Store");
+await remove("dist/stills/.DS_Store");
 await remove("dist/frames");
 
 for (const entry of await entries("dist")) {

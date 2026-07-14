@@ -1,6 +1,8 @@
 node_modules/
 .venv/
-dist/
+dist/*
+!dist/WiCompass-MobiCom26-Teaser.mp4
+!dist/SHA256SUMS
 tmp/
 .DS_Store
 test-results/

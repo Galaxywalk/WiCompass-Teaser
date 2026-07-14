@@ -1,6 +1,6 @@
 # WiCompass — MobiCom '26 teaser
 
-An HTML-first, reproducible nine-scene motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**. The current cut is 87 seconds and follows a Background → Question → Insight → Mechanism → Evidence → Vision narrative.
+An HTML-first, reproducible nine-scene motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**. The submitted cut is 87 seconds and follows a Background → Problem → Method → Evaluation → Takeaway narrative.
 
 The repository is deliberately split into three layers:
 
@@ -16,12 +16,13 @@ The scientific story is bracketed by an opening identity frame and a closing cod
 
 1. `cover` — paper identity;
 2. **Background:** `background` turns radar illumination, sparse body reflections, and a recovered 3D pose into one physical visual sequence;
-3. **Question:** `actions` isolates the left-hand-wave leave-one-out gap;
-4. **Insight:** `efficiency` shows that repeated frames do not provide new motion coverage;
-5. **Mechanism:** `method` connects the shared pose space, directional coverage test, and target selection in one continuous figure;
-6. **Evidence:** `simulation` and `realworld` validate the scaling behavior and deployment result;
-7. **Vision:** `summary` states the principle to remember;
-8. `back` — paper, authors, institutions, and repository QR code.
+3. **Problem:** `actions` isolates the left-hand-wave leave-one-out gap;
+4. **Problem:** `efficiency` shows that repeated frames do not provide new motion coverage;
+5. **Method:** `method` connects the shared pose space, directional coverage test, and target selection in one continuous figure;
+6. **Simulation Evaluation:** `simulation` validates the fitted scaling behavior;
+7. **Real-World Evaluation:** `realworld` validates deployment under a fixed collection budget;
+8. **Takeaway:** `summary` states the principle to remember;
+9. `back` — paper identity and repository QR code.
 
 ## Start the preview
 
@@ -70,6 +71,12 @@ npm run record          # 1×, delivery-quality final
 ```
 
 The full recorder writes `dist/WiCompass-MobiCom26-Teaser.mp4`. It muxes `assets/audio/voiceover.m4a` when present. Temporary browser captures are removed automatically; set `KEEP_CAPTURE=1` only when debugging the capture itself.
+
+The submitted MP4 and its checksum are checked in as archival delivery artifacts. Verify the frozen cut with:
+
+```bash
+shasum -a 256 -c dist/SHA256SUMS
+```
 
 After an iteration cycle, remove scene previews, draft renders, frame captures, placeholder audio, and TTS working caches with:
 

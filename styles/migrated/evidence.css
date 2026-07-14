@@ -24,147 +24,56 @@
   max-width: 1160px;
 }
 
-/* One controlled comparison: same A17 test samples, one training-set change. */
+/* One controlled comparison: one fixed A17 test, two training memberships. */
 .scene-hook .action-comparison {
   min-height: 0;
   display: grid;
-  grid-template-columns: 0.96fr 1.04fr;
-  gap: 28px;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 48px;
   align-self: stretch;
-  padding-top: 8px;
+  align-items: center;
+  padding: 18px 44px 12px;
 }
 
 .scene-hook :is(.loo-setup, .loo-result) {
   min-width: 0;
   min-height: 0;
-  padding: 14px 18px 16px;
-  border-top: 4px solid var(--line);
-  border-bottom: 2px solid var(--line);
-  background: rgba(255, 255, 255, 0.018);
 }
 
-.scene-hook .loo-result {
-  border-top-color: var(--red);
-}
-
-.scene-hook .action-panel-heading {
-  min-height: 34px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 18px;
-  color: var(--muted);
-  font-size: var(--spec-type-annotation);
-  line-height: 1.05;
-}
-
-.scene-hook .action-panel-heading strong {
-  color: var(--fg);
-  font: inherit;
-  font-weight: 700;
-}
-
-.scene-hook .action-panel-heading span {
-  color: var(--muted);
-  font: inherit;
-  font-weight: 520;
-}
-
-.scene-hook .loo-simple-setup {
-  height: calc(100% - 42px);
+.scene-hook .loo-setup {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 42px 180px;
-  gap: 10px;
-  align-items: stretch;
-  padding-top: 10px;
+  grid-template-rows: auto 210px auto auto;
+  justify-items: center;
+  align-items: center;
+  padding-right: 44px;
+  border-right: 2px solid var(--line);
+  text-align: center;
+  opacity: clamp(0, calc((var(--p) - 0.04) * 7), 1);
+  transform: translateY(calc((1 - clamp(0, calc((var(--p) - 0.04) * 7), 1)) * 8px));
 }
 
-.scene-hook .loo-training-conditions,
-.scene-hook .loo-condition-arrows {
-  min-height: 0;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 16px;
-}
-
-.scene-hook .loo-condition {
-  min-height: 0;
-  display: grid;
-  gap: 5px;
-  align-content: center;
-  padding: 16px 14px;
-  border-left: 4px solid;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 96%);
-  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.08) * 7), 1)) * -10px));
-}
-
-.scene-hook .loo-condition > :is(span, strong),
-.scene-hook .loo-shared-test > :is(span, strong, em) {
+.scene-hook .loo-setup :is(span, strong),
+.scene-hook .loo-result h3,
+.scene-hook .loo-bar-group :is(span, strong) {
   font-family: "Inter Teaser", sans-serif;
   font-size: var(--spec-type-annotation);
   line-height: 1.05;
 }
 
-.scene-hook .loo-condition > span {
+.scene-hook .loo-setup-label,
+.scene-hook .loo-setup > span:not(.loo-setup-label) {
   color: var(--muted);
-  font-weight: 520;
+  font-weight: 540;
 }
 
-.scene-hook .loo-condition > strong {
+.scene-hook .loo-setup > strong {
   color: var(--fg);
-  font-weight: 700;
-}
-
-.scene-hook .loo-condition.loo-seen {
-  border-color: var(--green);
-  opacity: clamp(0, calc((var(--p) - 0.08) * 7), 1);
-}
-
-.scene-hook .loo-condition.loo-heldout {
-  border-color: var(--red);
-  opacity: clamp(0, calc((var(--p) - 0.34) * 7), 1);
-  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.34) * 7), 1)) * -10px));
-}
-
-.scene-hook .loo-condition-arrows {
-  align-items: center;
-}
-
-.scene-hook .loo-condition-arrows i {
-  display: block;
-  width: 38px;
-  height: 14px;
-  background: currentColor;
-  clip-path: polygon(0 42%, 70% 42%, 70% 0, 100% 50%, 70% 100%, 70% 58%, 0 58%);
-  transform-origin: left center;
-}
-
-.scene-hook .loo-condition-arrows .arrow-seen {
-  color: var(--green);
-  transform: scaleX(clamp(0, calc((var(--p) - 0.16) * 7), 1));
-}
-
-.scene-hook .loo-condition-arrows .arrow-heldout {
-  color: var(--red);
-  transform: scaleX(clamp(0, calc((var(--p) - 0.42) * 7), 1));
-}
-
-.scene-hook .loo-shared-test {
-  min-width: 0;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
-  justify-items: center;
-  align-items: center;
-  padding: 12px 10px;
-  border: 2px solid var(--blue);
-  background: rgba(88, 196, 221, 0.04);
-  text-align: center;
-  opacity: clamp(0, calc((var(--p) - 0.03) * 8), 1);
+  font-weight: 760;
 }
 
 .scene-hook .loo-action-pose {
-  width: 82px;
-  height: 150px;
+  width: 118px;
+  height: 210px;
   overflow: visible;
 }
 
@@ -182,84 +91,52 @@
   stroke-width: 5;
 }
 
-.scene-hook .loo-shared-test > span,
-.scene-hook .loo-shared-test > em {
-  color: var(--muted);
-  font-weight: 520;
-  font-style: normal;
-}
-
-.scene-hook .loo-shared-test > strong {
-  color: var(--fg);
-  font-weight: 740;
-}
-
 .scene-hook .loo-result {
-  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 28px;
+  align-self: stretch;
+  padding: 20px 0 26px;
+}
+
+.scene-hook .loo-result h3 {
+  margin: 0;
+  color: var(--fg);
+  font-weight: 700;
 }
 
 .scene-hook .loo-bars {
-  position: relative;
-  height: calc(100% - 40px);
   display: grid;
-  grid-template-columns: 120px 120px;
-  gap: 32px;
-  align-items: end;
-  padding: 10px 0 0 20px;
+  align-content: center;
+  gap: 48px;
 }
 
 .scene-hook .loo-bar-group {
-  height: 100%;
-  min-height: 0;
   display: grid;
-  grid-template-rows: 32px minmax(0, 1fr) 54px;
-  gap: 5px;
-  justify-items: center;
+  grid-template-columns: 210px minmax(0, 1fr) 118px;
+  gap: 18px;
+  align-items: center;
 }
 
-.scene-hook .loo-bar-group > strong,
-.scene-hook .loo-bar-group > span,
-.scene-hook .loo-result-callout :is(strong, span) {
-  font-family: "Inter Teaser", sans-serif;
-  font-size: var(--spec-type-annotation);
-  line-height: 1.05;
-}
-
-.scene-hook .loo-bar-group > strong {
-  align-self: end;
+.scene-hook .loo-bar-group > span {
   color: var(--muted);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.scene-hook .loo-bar-seen > strong {
-  color: var(--green);
-  opacity: clamp(0, calc((var(--p) - 0.3) * 7), 1);
-}
-
-.scene-hook .loo-bar-heldout > strong {
-  color: var(--red);
-  opacity: clamp(0, calc((var(--p) - 0.54) * 7), 1);
+  font-weight: 560;
 }
 
 .scene-hook .loo-bar-track {
   position: relative;
-  width: 92px;
-  height: 100%;
-  align-self: stretch;
-  border-bottom: 2px solid var(--quiet);
+  height: 58px;
+  border-bottom: 2px solid var(--line);
 }
 
 .scene-hook .loo-bar-track i {
   position: absolute;
-  left: 0;
-  right: 0;
+  inset: 0 auto 0 0;
   bottom: 0;
-  height: calc(var(--bar-ratio) * 100%);
-  border: 4px solid;
-  transform: scaleY(clamp(0, calc((var(--p) - 0.2) * 4.5), 1));
-  transform-origin: center bottom;
+  width: calc(var(--bar-ratio) * 100%);
+  border: 3px solid;
+  transform: scaleX(clamp(0, calc((var(--p) - 0.34) * 4.8), 1));
+  transform-origin: left center;
 }
 
 .scene-hook .loo-bar-seen .loo-bar-track i {
@@ -270,34 +147,23 @@
 .scene-hook .loo-bar-heldout .loo-bar-track i {
   border-color: var(--red);
   background: rgba(252, 98, 85, 0.42);
-  transform: scaleY(clamp(0, calc((var(--p) - 0.44) * 4.5), 1));
+  transform: scaleX(clamp(0, calc((var(--p) - 0.58) * 4.8), 1));
 }
 
-.scene-hook .loo-bar-group > span {
-  color: var(--muted);
-  text-align: center;
-  font-weight: 560;
-}
-
-.scene-hook .loo-result-callout {
-  position: absolute;
-  right: 2px;
-  top: 42%;
-  display: grid;
-  gap: 3px;
-  padding-left: 12px;
-  border-left: 4px solid var(--red);
-  opacity: clamp(0, calc((var(--p) - 0.68) * 7), 1);
-}
-
-.scene-hook .loo-result-callout strong {
-  color: var(--red);
+.scene-hook .loo-bar-group > strong {
   font-weight: 760;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
-.scene-hook .loo-result-callout span {
-  color: var(--muted);
-  font-weight: 520;
+.scene-hook .loo-bar-seen > strong {
+  color: var(--green);
+  opacity: clamp(0, calc((var(--p) - 0.45) * 8), 1);
+}
+
+.scene-hook .loo-bar-heldout > strong {
+  color: var(--red);
+  opacity: clamp(0, calc((var(--p) - 0.69) * 8), 1);
 }
 
 /* The data-efficiency scene keeps the shared native line-chart grammar. */
@@ -350,7 +216,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scene-hook :is(.loo-condition-arrows i, .loo-bar-track i) {
+  .scene-hook .loo-bar-track i {
     transform: none;
   }
 }

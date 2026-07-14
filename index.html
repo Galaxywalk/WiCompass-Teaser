@@ -121,58 +121,30 @@
           </header>
           <div id="action-comparison" class="action-comparison" role="img" aria-label="The same MMFi left-hand-wave test action has 41.1 millimeters error when included in training and 151.1 millimeters when held out.">
             <section class="loo-setup" aria-label="Leave-one-out experiment setup">
-              <header class="action-panel-heading">
-                <strong>Leave-one-action-out setup</strong>
-                <span>Only training membership changes</span>
-              </header>
-              <div class="loo-simple-setup">
-                <div class="loo-training-conditions">
-                  <article class="loo-condition loo-seen">
-                    <span>Train on 27 actions</span>
-                    <strong>A17 included</strong>
-                  </article>
-                  <article class="loo-condition loo-heldout">
-                    <span>Train on 26 actions</span>
-                    <strong>A17 excluded</strong>
-                  </article>
-                </div>
-                <div class="loo-condition-arrows" aria-hidden="true">
-                  <i class="arrow-seen"></i>
-                  <i class="arrow-heldout"></i>
-                </div>
-                <article class="loo-shared-test">
-                  <span>Same test action</span>
-                  <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
-                  <strong>A17</strong>
-                  <em>Left-hand wave</em>
-                </article>
-              </div>
+              <span class="loo-setup-label">Same test action</span>
+              <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
+              <strong>A17</strong>
+              <span>Left-hand wave</span>
             </section>
 
             <section class="loo-result" aria-label="Left-hand-wave MPJPE result">
-              <header class="action-panel-heading">
-                <strong>Left-hand-wave MPJPE</strong>
-              </header>
+              <h3>MPJPE on the same test samples</h3>
               <div class="loo-bars">
                 <div class="loo-bar-group loo-bar-seen">
-                  <strong data-fact="action-seen"></strong>
+                  <span>Included in training</span>
                   <div class="loo-bar-track"><i data-action-bar="seen"></i></div>
-                  <span>Seen in training</span>
+                  <strong data-fact="action-seen"></strong>
                 </div>
                 <div class="loo-bar-group loo-bar-heldout">
-                  <strong data-fact="action-heldout"></strong>
-                  <div class="loo-bar-track"><i data-action-bar="heldout"></i></div>
                   <span>Held out</span>
-                </div>
-                <div class="loo-result-callout">
-                  <strong data-fact="action-ratio"></strong>
-                  <span>when held out</span>
+                  <div class="loo-bar-track"><i data-action-bar="heldout"></i></div>
+                  <strong data-fact="action-heldout"></strong>
                 </div>
               </div>
             </section>
           </div>
           <footer class="scene-footer experiment-condition" aria-label="Experiment conditions">
-            <span>We test MMFi action A17 on the same samples, changing only whether it appears in training.</span>
+            <span>On MMFi A17, we keep the test samples fixed and change only its training membership.</span>
           </footer>
         </article>
 

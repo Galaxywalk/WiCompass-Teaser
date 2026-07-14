@@ -14,14 +14,15 @@ The current cut contains nine scenes and follows one scientific argument:
 | --- | --- | --- |
 | Opening identity | `cover` | Establish the paper, authors, institutions, and venue. |
 | **Background** | `background` | Explain how sparse radar reflections become a 3D pose without capturing identifiable images. |
-| **Question** | `actions` | Explain one controlled left-hand-wave leave-one-out comparison. |
-| **Insight** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
-| **Mechanism** | `method` | Center the shared pose space: MoCap defines valid motion, mmWave labels expose a gap, and the missing pose becomes the next RF capture. |
-| **Evidence** | `simulation`, `realworld` | Test the claim in fitted scaling laws and real-world deployment. |
-| **Vision** | `summary` | Leave the viewer with the principle: scale motion coverage, not repeated frames. |
+| **Problem** | `actions` | Explain one controlled left-hand-wave leave-one-out comparison. |
+| **Problem** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
+| **Method** | `method` | Center the shared pose space: MoCap defines valid motion, mmWave labels expose a gap, and the missing pose becomes the next RF capture. |
+| **Simulation Evaluation** | `simulation` | Test whether coverage-aware collection keeps scaling in simulation. |
+| **Real-World Evaluation** | `realworld` | Test the collection strategy under a fixed real-world budget. |
+| **Takeaway** | `summary` | Leave the viewer with the principle: scale motion coverage, not repeated frames. |
 | Closing identity | `back` | Provide paper identity and a repository QR code. |
 
-Do not add a scene unless the new information cannot be absorbed into this structure without creating a second focal point. Preserve the Background → Question → Insight → Mechanism → Evidence → Vision order.
+Do not add a scene unless the new information cannot be absorbed into this structure without creating a second focal point. Preserve the Background → Problem → Method → Evaluation → Takeaway order.
 
 ### Audience-comprehension contract
 
@@ -88,7 +89,7 @@ Example: `Radar observes only sparse reflections.`
 - Locked 720p token: **36 px**
 - Keep it short enough to read without competing with the figure
 
-The chapter label at the upper left of each content scene also uses the locked **36 px** Level 3 token through `.scene-kicker`. Keep its Inter weight, muted color, spacing, and line height identical across Background, Question, Insight, Method, Evaluation, and Vision scenes. Change only the label text; do not create scene-specific kicker typography.
+The chapter label at the upper left of each content scene also uses the locked **36 px** Level 3 token through `.scene-kicker`. Keep its Inter weight, muted color, spacing, and line height identical across Background, Problem, Method, Evaluation, and Takeaway scenes. Change only the label text; do not create scene-specific kicker typography.
 
 Every narrative scene uses the same semantic classes:
 
@@ -131,7 +132,7 @@ Adjacent scenes should hand off one concrete visual or phrase instead of restart
 
 ### Result-scene template
 
-Evidence scenes must use the figure as the primary carrier of the conclusion:
+Evaluation scenes must use the figure as the primary carrier of the conclusion:
 
 - place the measured difference or scientific claim directly inside the chart, adjacent to the marks that support it;
 - reserve the bottom `.experiment-condition` rail for one short natural-language sentence covering only the essential dataset/environment and evaluation setup;
