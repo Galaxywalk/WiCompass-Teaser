@@ -5,6 +5,7 @@ import { readFile, readdir, stat } from "node:fs/promises";
 import { extname, join } from "node:path";
 import { ACTION_GENERALIZATION, BAR_CHARTS, LINE_CHARTS } from "../content/chart-data.js";
 import { FACTS } from "../content/facts.js";
+import { LEFT_HAND_WAVE_POSE } from "../content/pose-data.js";
 import { PROJECT } from "../content/project.js";
 import { DURATION, SCENES } from "../content/timeline.js";
 import { probeDuration } from "./lib/media.mjs";
@@ -103,7 +104,12 @@ assert.ok(ACTION_GENERALIZATION.conditions.every(({ value }) => Number.isFinite(
 assert.equal(FACTS["action-seen"], "41.1 mm");
 assert.equal(FACTS["action-heldout"], "151.1 mm");
 assert.equal(FACTS["action-ratio"], "3.7× error");
-assert.equal(FACTS["efficiency-title"], "Keeping 30% of the data barely changes error.");
+assert.equal(FACTS["efficiency-title"], "More of the same data barely helps.");
+assert.equal(LEFT_HAND_WAVE_POSE.joints.length, 24, "Shared action motif must use the canonical 24-joint pose");
+assert.ok(
+  LEFT_HAND_WAVE_POSE.chains.flat().every((index) => Number.isInteger(index) && index >= 0 && index < LEFT_HAND_WAVE_POSE.joints.length),
+  "Shared action motif contains an invalid joint index",
+);
 
 const assetPaths = [
   ...[...html.matchAll(/(?:src|href)="((?:assets\/)[^"]+)"/g)].map((match) => match[1]),

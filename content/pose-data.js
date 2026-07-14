@@ -1,0 +1,38 @@
+// One canonical 24-joint left-hand-wave pose shared by the sensing explainer
+// and the controlled A17 leave-one-out experiment.
+export const LEFT_HAND_WAVE_POSE = Object.freeze({
+  viewBox: Object.freeze([0, 0, 222, 304]),
+  chains: Object.freeze([
+    Object.freeze([0, 1, 2, 3, 4, 5]),
+    Object.freeze([0, 6, 7, 8, 9]),
+    Object.freeze([0, 10, 11, 12, 13]),
+    Object.freeze([3, 14, 15, 16, 17, 18]),
+    Object.freeze([3, 19, 20, 21, 22, 23]),
+  ]),
+  joints: Object.freeze([
+    Object.freeze({ x: 110, y: 150, role: "pelvis" }),
+    Object.freeze({ x: 110, y: 122, role: "spine" }),
+    Object.freeze({ x: 110, y: 94, role: "spine" }),
+    Object.freeze({ x: 110, y: 64, role: "chest" }),
+    Object.freeze({ x: 110, y: 42, role: "neck" }),
+    Object.freeze({ x: 110, y: 6, role: "head" }),
+    Object.freeze({ x: 90, y: 158, role: "hip" }),
+    Object.freeze({ x: 84, y: 228, role: "knee" }),
+    Object.freeze({ x: 76, y: 296, role: "ankle" }),
+    Object.freeze({ x: 64, y: 304, role: "foot" }),
+    Object.freeze({ x: 130, y: 158, role: "hip" }),
+    Object.freeze({ x: 144, y: 228, role: "knee" }),
+    Object.freeze({ x: 152, y: 296, role: "ankle" }),
+    Object.freeze({ x: 166, y: 302, role: "foot" }),
+    Object.freeze({ x: 90, y: 58, role: "collar" }),
+    Object.freeze({ x: 72, y: 64, role: "shoulder" }),
+    Object.freeze({ x: 36, y: 100, role: "elbow" }),
+    Object.freeze({ x: 8, y: 128, role: "wrist" }),
+    Object.freeze({ x: 0, y: 136, role: "hand" }),
+    Object.freeze({ x: 130, y: 58, role: "collar" }),
+    Object.freeze({ x: 148, y: 64, role: "shoulder" }),
+    Object.freeze({ x: 182, y: 38, role: "elbow" }),
+    Object.freeze({ x: 214, y: 8, role: "wrist" }),
+    Object.freeze({ x: 222, y: 0, role: "hand" }),
+  ]),
+});

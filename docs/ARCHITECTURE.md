@@ -15,6 +15,7 @@ Narrative typography is centralized in `styles/migrated/typography.css`. Scene s
 - `content/project.js`: title, venue, authors, institutions, and repository URL.
 - `content/chart-data.js`: paper measurements and chart semantics.
 - `content/facts.js`: human-readable claims derived from chart data; do not duplicate those numbers in HTML.
+- `content/pose-data.js`: canonical joint geometry shared by recurring pose motifs.
 - `content/procedural-data.js`: deterministic seeds and membership data for generated visuals.
 
 `data-fact`, `data-project-*`, and chart mount IDs connect semantic HTML to content sources. These bindings are resolved by reusable functions in `src/scenes/`.

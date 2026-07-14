@@ -2,11 +2,11 @@ Wi-Compass: Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation
 
 Millimeter-wave radar estimates human poses from sparse reflections, preserving visual privacy.
 
-But models fail on unseen actions. Holding out left-hand wave increases error from 41.1 to 151.1 millimeters.
+But unseen actions remain hard. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.
 
-Yet adding more of the same data barely helps. On mmBody, a thirty-percent subset performs similarly.
+More similar data does not solve this. On mmBody, a thirty-percent subset performs nearly the same.
 
-To solve this, Wi-Compass learns a pose tokenizer from A-MASS and embeds radar pose labels. An A-MASS pose is missing when its nearest radar label falls outside the A-MASS-defined radius. Wi-Compass collects those motions selectively, then repeats the loop.
+Wi-Compass instead scales pose coverage. It learns a tokenizer from A-MASS and embeds radar pose labels. An A-MASS pose is missing when its nearest radar label falls outside the A-MASS-defined radius. Wi-Compass collects those motions selectively, then repeats the loop.
 
 In simulation, Wi-Compass scales while the mmBody trace saturates, staying twenty-five to thirty millimeters lower from two thousand to forty thousand samples.
 

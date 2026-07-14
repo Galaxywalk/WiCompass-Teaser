@@ -81,7 +81,7 @@
 .scene-hook .loo-row {
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 38px 196px;
+  grid-template-columns: minmax(0, 1fr) 38px 218px;
   align-items: center;
   padding: 10px 12px 10px 16px;
   border-left: 4px solid;
@@ -166,7 +166,37 @@
 }
 
 .scene-hook .loo-test-action {
+  grid-template-columns: 54px minmax(0, 1fr);
+  grid-template-rows: repeat(3, auto);
+  column-gap: 10px;
   padding-left: 10px;
+}
+
+.scene-hook .loo-test-action > :not(.loo-action-pose) {
+  grid-column: 2;
+}
+
+.scene-hook .loo-action-pose {
+  width: 50px;
+  height: 88px;
+  grid-column: 1;
+  grid-row: 1 / 4;
+  align-self: center;
+  overflow: visible;
+}
+
+.scene-hook .loo-action-pose .pose-bones path {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scene-hook .loo-action-pose .pose-joints circle {
+  fill: var(--bg);
+  stroke: var(--blue);
+  stroke-width: 5;
 }
 
 .scene-hook .loo-test-action em {

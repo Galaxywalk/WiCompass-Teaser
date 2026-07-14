@@ -109,6 +109,10 @@ Priority order:
 
 Do not create competing headlines, parallel caption systems, multiple type scales, or several equally prominent callouts. A viewer should understand where to look within one second.
 
+### Narrative continuity
+
+Adjacent scenes should hand off one concrete visual or phrase instead of restarting the explanation. When the same action, pose, dataset, or comparison recurs, render it from one canonical content source and preserve its geometry, naming, and semantic color. Use short connectors such as `But`, `More of the same`, and `Instead` only when they state the scientific relationship between scenes; do not add decorative transition copy.
+
 ### Result-scene template
 
 Evidence scenes must use the figure as the primary carrier of the conclusion:

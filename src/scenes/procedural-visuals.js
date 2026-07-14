@@ -1,4 +1,5 @@
 import { METHOD_SPACE } from "../../content/procedural-data.js";
+import { LEFT_HAND_WAVE_POSE } from "../../content/pose-data.js";
 import { requiredElement } from "../core/dom.js";
 import { seededRandom } from "../core/utils.js";
 import { renderActionGeneralization } from "./action-generalization.js";
@@ -23,6 +24,26 @@ function sampleClusterPoint(cluster, random) {
     x: cluster.cx + localX * cos - localY * sin,
     y: cluster.cy + localX * sin + localY * cos,
   };
+}
+
+export function renderPoseMotifs(root = document, config = LEFT_HAND_WAVE_POSE) {
+  root.querySelectorAll("[data-left-hand-wave-pose]").forEach((svg) => {
+    svg.setAttribute("viewBox", config.viewBox.join(" "));
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+    const bones = createSvgElement("g", {}, "pose-bones");
+    config.chains.forEach((chain) => {
+      const points = chain.map((index) => config.joints[index]);
+      const d = points.map(({ x, y }, index) => `${index === 0 ? "M" : "L"}${x} ${y}`).join(" ");
+      bones.append(createSvgElement("path", { d, pathLength: 1 }));
+    });
+
+    const joints = createSvgElement("g", {}, "pose-joints");
+    config.joints.forEach(({ x, y, role }) => {
+      joints.append(createSvgElement("circle", { cx: x, cy: y, r: role === "head" ? 9 : 6 }, `pose-joint pose-joint-${role}`));
+    });
+    svg.replaceChildren(bones, joints);
+  });
 }
 
 export function renderMethodSpace(root = document, config = METHOD_SPACE) {
@@ -68,6 +89,7 @@ export function renderMethodSpace(root = document, config = METHOD_SPACE) {
 }
 
 export function renderProceduralVisuals(root = document) {
+  renderPoseMotifs(root);
   renderActionGeneralization(root);
   renderMethodSpace(root);
 }

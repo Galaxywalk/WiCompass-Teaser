@@ -97,27 +97,7 @@
               </g>
 
               <g class="recovered-pose">
-                <g class="pose-bones">
-                  <path pathLength="1" d="M944 225 L944 197 L944 169 L944 139 L944 117 L944 81" />
-                  <path pathLength="1" d="M944 225 L924 233 L918 303 L910 371 L898 379" />
-                  <path pathLength="1" d="M944 225 L964 233 L978 303 L986 371 L1000 377" />
-                  <path pathLength="1" d="M944 139 L924 133 L906 139 L870 175 L842 203 L834 211" />
-                  <path pathLength="1" d="M944 139 L964 133 L982 139 L1016 113 L1048 83 L1056 75" />
-                </g>
-                <g class="pose-joints">
-                  <circle cx="944" cy="225" r="7" /><circle cx="944" cy="197" r="6" />
-                  <circle cx="944" cy="169" r="6" /><circle cx="944" cy="139" r="7" />
-                  <circle cx="944" cy="117" r="6" /><circle cx="944" cy="81" r="9" />
-                  <circle cx="924" cy="233" r="6" /><circle cx="918" cy="303" r="6" />
-                  <circle cx="910" cy="371" r="6" /><circle cx="898" cy="379" r="5" />
-                  <circle cx="964" cy="233" r="6" /><circle cx="978" cy="303" r="6" />
-                  <circle cx="986" cy="371" r="6" /><circle cx="1000" cy="377" r="5" />
-                  <circle cx="924" cy="133" r="6" /><circle cx="906" cy="139" r="6" />
-                  <circle cx="870" cy="175" r="6" /><circle cx="842" cy="203" r="6" />
-                  <circle cx="834" cy="211" r="5" /><circle cx="964" cy="133" r="6" />
-                  <circle cx="982" cy="139" r="6" /><circle cx="1016" cy="113" r="6" />
-                  <circle cx="1048" cy="83" r="6" /><circle cx="1056" cy="75" r="5" />
-                </g>
+                <svg class="left-hand-wave-pose" data-left-hand-wave-pose x="834" y="75" width="222" height="304"></svg>
                 <path class="pose-ground" d="M866 386 Q944 402 1022 386" />
               </g>
 
@@ -137,7 +117,7 @@
         <article class="scene slide scene-hook" data-scene="actions">
           <header class="slide-heading scene-heading">
             <p class="eyebrow scene-kicker">Problem</p>
-            <h2 class="scene-headline">Current mmWave pose models fail on unseen actions.</h2>
+            <h2 class="scene-headline">But mmWave pose models still fail on unseen actions.</h2>
           </header>
           <div id="action-comparison" class="action-comparison" role="img" aria-label="The same MMFi left-hand-wave test action has 41.1 millimeters error when included in training and 151.1 millimeters when held out.">
             <section class="loo-setup" aria-label="Leave-one-out experiment setup">
@@ -154,6 +134,7 @@
                   </div>
                   <div class="loo-arrow" aria-hidden="true"></div>
                   <div class="loo-test-action">
+                    <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
                     <span>Test action</span>
                     <strong>A17&nbsp; Left-hand wave</strong>
                     <em>Seen</em>
@@ -167,6 +148,7 @@
                   </div>
                   <div class="loo-arrow" aria-hidden="true"></div>
                   <div class="loo-test-action">
+                    <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
                     <span>Test action</span>
                     <strong>A17&nbsp; Left-hand wave</strong>
                     <em>Held out</em>
