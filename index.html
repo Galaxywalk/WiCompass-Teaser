@@ -122,37 +122,29 @@
           <div id="action-comparison" class="action-comparison" role="img" aria-label="The same MMFi left-hand-wave test action has 41.1 millimeters error when included in training and 151.1 millimeters when held out.">
             <section class="loo-setup" aria-label="Leave-one-out experiment setup">
               <header class="action-panel-heading">
-                <strong>Experiment setup</strong>
-                <span>Same A17 test samples</span>
+                <strong>Leave-one-action-out setup</strong>
+                <span>Only training membership changes</span>
               </header>
-              <div class="loo-rows">
-                <article class="loo-row loo-seen">
-                  <div class="loo-training-set">
-                    <span>Training set</span>
-                    <strong>All 27 actions</strong>
-                    <div class="action-tokens" data-action-dots="seen" aria-hidden="true"></div>
-                  </div>
-                  <div class="loo-arrow" aria-hidden="true"></div>
-                  <div class="loo-test-action">
-                    <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
-                    <span>Test action</span>
-                    <strong>A17&nbsp; Left-hand wave</strong>
-                    <em>Seen</em>
-                  </div>
-                </article>
-                <article class="loo-row loo-heldout">
-                  <div class="loo-training-set">
-                    <span>Training set</span>
-                    <strong>26 actions; A17 excluded</strong>
-                    <div class="action-tokens" data-action-dots="heldout" aria-hidden="true"></div>
-                  </div>
-                  <div class="loo-arrow" aria-hidden="true"></div>
-                  <div class="loo-test-action">
-                    <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
-                    <span>Test action</span>
-                    <strong>A17&nbsp; Left-hand wave</strong>
-                    <em>Held out</em>
-                  </div>
+              <div class="loo-simple-setup">
+                <div class="loo-training-conditions">
+                  <article class="loo-condition loo-seen">
+                    <span>Train on 27 actions</span>
+                    <strong>A17 included</strong>
+                  </article>
+                  <article class="loo-condition loo-heldout">
+                    <span>Train on 26 actions</span>
+                    <strong>A17 excluded</strong>
+                  </article>
+                </div>
+                <div class="loo-condition-arrows" aria-hidden="true">
+                  <i class="arrow-seen"></i>
+                  <i class="arrow-heldout"></i>
+                </div>
+                <article class="loo-shared-test">
+                  <span>Same test action</span>
+                  <svg class="loo-action-pose" data-left-hand-wave-pose aria-hidden="true"></svg>
+                  <strong>A17</strong>
+                  <em>Left-hand wave</em>
                 </article>
               </div>
             </section>

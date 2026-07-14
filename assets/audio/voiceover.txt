@@ -2,7 +2,7 @@ Wi-Compass: Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation
 
 Millimeter-wave radar estimates human poses from sparse reflections, preserving visual privacy.
 
-But unseen actions remain hard. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.
+But on the same left-hand-wave test, excluding it from training raises error from 41.1 to 151.1 millimeters.
 
 More similar data does not solve this. On mmBody, a thirty-percent subset performs nearly the same.
 

@@ -15,7 +15,7 @@ const sceneDefinitions = [
     id: "actions",
     duration: 9,
     stillOffset: 7.4,
-    voiceover: "But unseen actions remain hard. Holding out left-hand wave raises error from 41.1 to 151.1 millimeters.",
+    voiceover: "But on the same left-hand-wave test, excluding it from training raises error from 41.1 to 151.1 millimeters.",
   },
   {
     id: "efficiency",
