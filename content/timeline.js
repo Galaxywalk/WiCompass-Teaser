@@ -6,10 +6,16 @@ const sceneDefinitions = [
     voiceover: "Wi-Compass: Oracle-driven Data Scaling for millimeter-wave Human Pose Estimation. This MobiCom twenty twenty-six paper is by Peking University, UESTC, Pitt, and MIT.",
   },
   {
+    id: "background",
+    duration: 6.5,
+    stillOffset: 5.4,
+    voiceover: "Millimeter-wave radar estimates human poses from sparse reflections, preserving visual privacy.",
+  },
+  {
     id: "actions",
-    duration: 15.8,
-    stillOffset: 12.6,
-    voiceover: "Millimeter-wave sensing recovers human poses from radio reflections without cameras, preserving privacy. But models fail on unseen actions: holding out left-hand wave increases error from 41.1 to 151.1 millimeters.",
+    duration: 9.3,
+    stillOffset: 7.7,
+    voiceover: "But models fail on unseen actions. Holding out left-hand wave increases error from 41.1 to 151.1 millimeters.",
   },
   {
     id: "efficiency",

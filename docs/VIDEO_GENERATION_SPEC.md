@@ -8,19 +8,20 @@ For 1280×720 production, use four locked tokens: **96 px / 56 px / 36 px / 26 p
 
 ## Narrative structure
 
-The current cut contains eight scenes and follows one scientific argument:
+The current cut contains nine scenes and follows one scientific argument:
 
 | Narrative role | Scene IDs | Purpose |
 | --- | --- | --- |
 | Opening identity | `cover` | Establish the paper, authors, institutions, and venue. |
-| **Question** | `actions` | Define mmWave HPE, then explain one controlled left-hand-wave leave-one-out comparison. |
+| **Background** | `background` | Explain how sparse radar reflections become a 3D pose without capturing identifiable images. |
+| **Question** | `actions` | Explain one controlled left-hand-wave leave-one-out comparison. |
 | **Insight** | `efficiency` | Show that retaining fewer repeated frames barely changes error; volume is not coverage. |
 | **Mechanism** | `method` | Explain the shared pose representation, directional coverage test, and selection of under-covered regions in one continuous map. |
 | **Evidence** | `simulation`, `realworld` | Test the claim in fitted scaling laws and real-world deployment. |
 | **Vision** | `summary` | Leave the viewer with the principle: scale motion coverage, not repeated frames. |
 | Closing identity | `back` | Provide paper identity and a repository QR code. |
 
-Do not add a scene unless the new information cannot be absorbed into this structure without creating a second focal point. Preserve the Question → Insight → Mechanism → Evidence → Vision order.
+Do not add a scene unless the new information cannot be absorbed into this structure without creating a second focal point. Preserve the Background → Question → Insight → Mechanism → Evidence → Vision order.
 
 ## 1. Typography
 
@@ -73,7 +74,7 @@ Example: `Radar observes only sparse reflections.`
 - Locked 720p token: **36 px**
 - Keep it short enough to read without competing with the figure
 
-The chapter label at the upper left of each content scene also uses the locked **36 px** Level 3 token through `.scene-kicker`. Keep its Inter weight, muted color, spacing, and line height identical across Question, Insight, Method, Evaluation, and Vision scenes. Change only the label text; do not create scene-specific kicker typography.
+The chapter label at the upper left of each content scene also uses the locked **36 px** Level 3 token through `.scene-kicker`. Keep its Inter weight, muted color, spacing, and line height identical across Background, Question, Insight, Method, Evaluation, and Vision scenes. Change only the label text; do not create scene-specific kicker typography.
 
 Every narrative scene uses the same semantic classes:
 
@@ -209,4 +210,4 @@ Before picture lock, confirm:
 
 ## Current migration status
 
-The current eight-scene cut is 87 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: it uses a single shared-space figure to connect encoding, directional coverage, and target selection without switching visual grammars.
+The current nine-scene cut is 87 seconds. Every scene now follows the Inter/JetBrains Mono roles, four locked sizes, one-focus hierarchy, and restrained palette defined above. The method is intentionally one scene: it uses a single shared-space figure to connect encoding, directional coverage, and target selection without switching visual grammars.

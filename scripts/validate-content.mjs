@@ -38,9 +38,9 @@ SCENES.forEach((scene) => {
 const html = await readFile("index.html", "utf8");
 const domIds = [...html.matchAll(/data-scene="([^"]+)"/g)].map((match) => match[1]);
 assert.deepEqual(domIds, ids, "Scene DOM IDs and order must exactly match the timeline");
-assert.equal((html.match(/class="[^"]*scene-kicker[^"]*"/g) ?? []).length, 6, "Every narrative scene needs one shared scene-kicker");
-assert.equal((html.match(/class="[^"]*scene-headline[^"]*"/g) ?? []).length, 6, "Every narrative scene needs one shared scene-headline");
-assert.equal((html.match(/class="[^"]*scene-footer[^"]*"/g) ?? []).length, 5, "Expected five single-sentence narrative footers");
+assert.equal((html.match(/class="[^"]*scene-kicker[^"]*"/g) ?? []).length, 7, "Every narrative scene needs one shared scene-kicker");
+assert.equal((html.match(/class="[^"]*scene-headline[^"]*"/g) ?? []).length, 7, "Every narrative scene needs one shared scene-headline");
+assert.equal((html.match(/class="[^"]*scene-footer[^"]*"/g) ?? []).length, 6, "Expected six single-sentence narrative footers");
 assert.doesNotMatch(html, /class="[^"]*scene-footer[^"]*"[^>]*>(?:(?!<\/footer>)[\s\S])*?<strong>/, "Scene footers must not introduce a second emphasized headline");
 
 const methodInputs = html.match(/<section class="method-inputs"[\s\S]*?<\/section>/)?.[0] ?? "";

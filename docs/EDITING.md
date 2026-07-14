@@ -2,7 +2,7 @@
 
 Read [VIDEO_GENERATION_SPEC.md](VIDEO_GENERATION_SPEC.md) before changing typography, hierarchy, figures, palette, or duration. It is the normative design contract; this file describes the mechanics of making a change.
 
-The current eight-scene order is `cover` → `actions` → `efficiency` → `method` → `simulation` → `realworld` → `summary` → `back`. Its scientific spine is Question → Insight → Mechanism → Evidence → Vision; preserve that order when revising copy or timing.
+The current nine-scene order is `cover` → `background` → `actions` → `efficiency` → `method` → `simulation` → `realworld` → `summary` → `back`. Its scientific spine is Background → Question → Insight → Mechanism → Evidence → Vision; preserve that order when revising copy or timing.
 
 ## Change wording without changing design
 
@@ -39,7 +39,7 @@ The validator rejects duplicate IDs, order drift, review frames outside their sc
 
 Run `npm run audit:typography` after changing text or scene CSS. It renders every review frame in Chromium and rejects visible text outside the locked 26 / 36 / 56 / 96 px scale, non-Inter/JetBrains fonts, and canvas overflow.
 
-Adding a scene is exceptional: first check whether its point can replace secondary copy in the existing Question → Insight → Mechanism → Evidence → Vision structure while keeping the cut in the 82–87 second working range.
+Adding a scene is exceptional: first check whether its point can replace secondary copy in the existing Background → Question → Insight → Mechanism → Evidence → Vision structure while keeping the cut in the 82–87 second working range.
 
 ## Review motion efficiently
 

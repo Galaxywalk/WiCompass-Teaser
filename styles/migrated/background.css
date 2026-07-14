@@ -1,0 +1,212 @@
+/* mmWave HPE background scene: one continuous physical-to-semantic transform. */
+
+.stage[data-scene="background"] .scene-background {
+  inset: 0;
+  padding: 32px 64px 26px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  font-family: "Inter Teaser", sans-serif;
+}
+
+.scene-background .mmwave-explainer {
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  align-self: stretch;
+}
+
+.scene-background .mmwave-explainer svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.scene-background .mmwave-radar {
+  opacity: clamp(0, calc((var(--p) - 0.02) * 10), 1);
+  transform: translateX(calc((1 - clamp(0, calc((var(--p) - 0.02) * 10), 1)) * -20px));
+}
+
+.scene-background .radar-shadow {
+  fill: var(--bg);
+  opacity: 0.9;
+}
+
+.scene-background .radar-top {
+  fill: var(--line);
+  stroke: var(--muted);
+  stroke-width: 2;
+}
+
+.scene-background .radar-face {
+  fill: var(--panel);
+  stroke: var(--blue);
+  stroke-width: 3;
+}
+
+.scene-background .radar-side {
+  fill: var(--line);
+  stroke: var(--muted);
+  stroke-width: 2;
+}
+
+.scene-background .radar-array circle {
+  fill: var(--blue);
+  opacity: 0.86;
+}
+
+.scene-background .radar-wavefronts path {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: clamp(0, calc(1 - (var(--p) - 0.11) * 5), 1);
+  opacity: clamp(0, calc((var(--p) - 0.09) * 8), 0.76);
+}
+
+.scene-background .radar-wavefronts path:nth-child(2) {
+  stroke-dashoffset: clamp(0, calc(1 - (var(--p) - 0.15) * 5), 1);
+}
+
+.scene-background .radar-wavefronts path:nth-child(3) {
+  stroke-dashoffset: clamp(0, calc(1 - (var(--p) - 0.19) * 5), 1);
+}
+
+.scene-background .radar-rays path {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: clamp(0, calc(1 - (var(--p) - 0.17) * 4), 1);
+  opacity: clamp(0, calc((var(--p) - 0.15) * 4), 0.28);
+}
+
+.scene-background .sensed-person {
+  opacity: clamp(0, calc((var(--p) - 0.14) * 6), 0.56);
+}
+
+.scene-background .person-head {
+  fill: var(--quiet);
+}
+
+.scene-background .person-torso {
+  fill: var(--quiet);
+}
+
+.scene-background .person-limb {
+  fill: none;
+  stroke: var(--quiet);
+  stroke-width: 22;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scene-background .reflection-points circle {
+  fill: var(--blue);
+  stroke: var(--bg);
+  stroke-width: 3;
+  opacity: clamp(0, calc((var(--p) - 0.31) * 8), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0, calc((var(--p) - 0.3) * 7), 1));
+}
+
+.scene-background .reflection-points circle:nth-child(3n + 2) {
+  opacity: clamp(0, calc((var(--p) - 0.35) * 8), 1);
+  transform: scale(clamp(0, calc((var(--p) - 0.34) * 7), 1));
+}
+
+.scene-background .reflection-points circle:nth-child(3n) {
+  opacity: clamp(0, calc((var(--p) - 0.39) * 8), 1);
+  transform: scale(clamp(0, calc((var(--p) - 0.38) * 7), 1));
+}
+
+.scene-background .pose-inference path:first-child {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: clamp(0, calc(1 - (var(--p) - 0.46) * 5), 1);
+}
+
+.scene-background .pose-inference path:nth-child(2),
+.scene-background .pose-inference circle {
+  fill: var(--fg);
+  opacity: clamp(0, calc((var(--p) - 0.56) * 8), 1);
+}
+
+.scene-background .pose-inference circle:nth-of-type(1) {
+  opacity: clamp(0, calc((var(--p) - 0.47) * 9), 1);
+}
+
+.scene-background .pose-inference circle:nth-of-type(2) {
+  opacity: clamp(0, calc((var(--p) - 0.51) * 9), 1);
+}
+
+.scene-background .pose-inference circle:nth-of-type(3) {
+  opacity: clamp(0, calc((var(--p) - 0.55) * 9), 1);
+}
+
+.scene-background .pose-bones path {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: clamp(0, calc(1 - (var(--p) - 0.59) * 4), 1);
+}
+
+.scene-background .pose-joints circle {
+  fill: var(--bg);
+  stroke: var(--blue);
+  stroke-width: 4;
+  opacity: clamp(0, calc((var(--p) - 0.69) * 7), 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(clamp(0, calc((var(--p) - 0.68) * 6), 1));
+}
+
+.scene-background .pose-ground {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 3;
+  opacity: clamp(0, calc((var(--p) - 0.7) * 7), 1);
+}
+
+.scene-background .explainer-labels text {
+  fill: var(--muted);
+  font-family: "Inter Teaser", sans-serif;
+  font-size: var(--spec-type-annotation);
+  font-weight: 560;
+}
+
+.scene-background .explainer-labels text:nth-child(1) {
+  opacity: clamp(0, calc((var(--p) - 0.05) * 8), 1);
+}
+
+.scene-background .explainer-labels text:nth-child(2) {
+  opacity: clamp(0, calc((var(--p) - 0.31) * 8), 1);
+}
+
+.scene-background .explainer-labels text:nth-child(3) {
+  opacity: clamp(0, calc((var(--p) - 0.48) * 8), 1);
+}
+
+.scene-background .explainer-labels text:nth-child(4) {
+  fill: var(--fg);
+  opacity: clamp(0, calc((var(--p) - 0.66) * 8), 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-background :is(.radar-wavefronts path, .radar-rays path, .pose-inference path, .pose-bones path) {
+    stroke-dashoffset: 0;
+  }
+
+  .scene-background :is(.reflection-points circle, .pose-joints circle) {
+    transform: none;
+  }
+}

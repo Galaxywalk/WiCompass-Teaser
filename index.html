@@ -6,6 +6,7 @@
     <title>WiCompass — MobiCom 2026 teaser</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="styles/migrated/identity.css" />
+    <link rel="stylesheet" href="styles/migrated/background.css" />
     <link rel="stylesheet" href="styles/migrated/evidence.css" />
     <link rel="stylesheet" href="styles/migrated/deployment.css" />
     <link rel="stylesheet" href="styles/migrated/method.css" />
@@ -24,6 +25,113 @@
             <h1 data-project-title></h1>
           </div>
           <p class="cover-authors" data-project-authors></p>
+        </article>
+
+        <article class="scene slide scene-background" data-scene="background">
+          <header class="scene-heading">
+            <p class="scene-kicker">Background</p>
+            <h2 class="scene-headline">Radio reflections become a 3D human pose.</h2>
+          </header>
+          <figure class="mmwave-explainer" role="img" aria-label="A millimeter-wave radar illuminates a person, measures sparse body reflections, and reconstructs a three-dimensional human pose without recording a camera image.">
+            <svg viewBox="0 0 1152 410" aria-hidden="true">
+              <g class="mmwave-radar">
+                <path class="radar-shadow" d="M48 324 L168 294 L230 318 L108 350 Z" />
+                <path class="radar-top" d="M69 238 L155 217 L201 237 L114 260 Z" />
+                <path class="radar-face" d="M114 260 L201 237 L201 316 L114 340 Z" />
+                <path class="radar-side" d="M69 238 L114 260 L114 340 L69 313 Z" />
+                <g class="radar-array">
+                  <circle cx="137" cy="272" r="6" />
+                  <circle cx="169" cy="264" r="6" />
+                  <circle cx="137" cy="302" r="6" />
+                  <circle cx="169" cy="294" r="6" />
+                </g>
+              </g>
+
+              <g class="radar-wavefronts">
+                <path pathLength="1" d="M205 245 Q258 276 206 327" />
+                <path pathLength="1" d="M225 224 Q310 273 226 350" />
+                <path pathLength="1" d="M246 203 Q360 271 247 373" />
+              </g>
+
+              <g class="radar-rays">
+                <path pathLength="1" d="M195 266 L494 83" />
+                <path pathLength="1" d="M195 274 L453 194" />
+                <path pathLength="1" d="M195 282 L523 142" />
+                <path pathLength="1" d="M195 290 L571 111" />
+                <path pathLength="1" d="M195 298 L518 229" />
+                <path pathLength="1" d="M195 306 L552 302" />
+              </g>
+
+              <g class="sensed-person">
+                <circle class="person-head" cx="520" cy="75" r="27" />
+                <path class="person-torso" d="M500 113 Q520 103 540 113 L552 212 Q520 230 488 212 Z" />
+                <path class="person-limb" d="M500 128 L466 151 L437 190 L423 206" />
+                <path class="person-limb" d="M540 128 L571 108 L600 82 L611 67" />
+                <path class="person-limb" d="M500 211 L494 280 L483 354" />
+                <path class="person-limb" d="M540 211 L552 280 L568 354" />
+              </g>
+
+              <g class="reflection-points">
+                <circle cx="494" cy="83" r="6" />
+                <circle cx="528" cy="102" r="5" />
+                <circle cx="523" cy="142" r="7" />
+                <circle cx="501" cy="165" r="5" />
+                <circle cx="537" cy="184" r="6" />
+                <circle cx="518" cy="229" r="7" />
+                <circle cx="453" cy="194" r="6" />
+                <circle cx="437" cy="208" r="5" />
+                <circle cx="571" cy="111" r="6" />
+                <circle cx="600" cy="82" r="5" />
+                <circle cx="494" cy="274" r="6" />
+                <circle cx="485" cy="334" r="5" />
+                <circle cx="552" cy="302" r="6" />
+                <circle cx="565" cy="349" r="5" />
+              </g>
+
+              <g class="pose-inference">
+                <path pathLength="1" d="M645 224 H784" />
+                <path d="M784 224 L760 210 V238 Z" />
+                <circle cx="682" cy="224" r="5" />
+                <circle cx="714" cy="224" r="5" />
+                <circle cx="746" cy="224" r="5" />
+              </g>
+
+              <g class="recovered-pose">
+                <g class="pose-bones">
+                  <path pathLength="1" d="M944 225 L944 197 L944 169 L944 139 L944 117 L944 81" />
+                  <path pathLength="1" d="M944 225 L924 233 L918 303 L910 371 L898 379" />
+                  <path pathLength="1" d="M944 225 L964 233 L978 303 L986 371 L1000 377" />
+                  <path pathLength="1" d="M944 139 L924 133 L906 139 L870 175 L842 203 L834 211" />
+                  <path pathLength="1" d="M944 139 L964 133 L982 139 L1016 113 L1048 83 L1056 75" />
+                </g>
+                <g class="pose-joints">
+                  <circle cx="944" cy="225" r="7" /><circle cx="944" cy="197" r="6" />
+                  <circle cx="944" cy="169" r="6" /><circle cx="944" cy="139" r="7" />
+                  <circle cx="944" cy="117" r="6" /><circle cx="944" cy="81" r="9" />
+                  <circle cx="924" cy="233" r="6" /><circle cx="918" cy="303" r="6" />
+                  <circle cx="910" cy="371" r="6" /><circle cx="898" cy="379" r="5" />
+                  <circle cx="964" cy="233" r="6" /><circle cx="978" cy="303" r="6" />
+                  <circle cx="986" cy="371" r="6" /><circle cx="1000" cy="377" r="5" />
+                  <circle cx="924" cy="133" r="6" /><circle cx="906" cy="139" r="6" />
+                  <circle cx="870" cy="175" r="6" /><circle cx="842" cy="203" r="6" />
+                  <circle cx="834" cy="211" r="5" /><circle cx="964" cy="133" r="6" />
+                  <circle cx="982" cy="139" r="6" /><circle cx="1016" cy="113" r="6" />
+                  <circle cx="1048" cy="83" r="6" /><circle cx="1056" cy="75" r="5" />
+                </g>
+                <path class="pose-ground" d="M866 386 Q944 402 1022 386" />
+              </g>
+
+              <g class="explainer-labels">
+                <text x="134" y="397" text-anchor="middle">mmWave radar</text>
+                <text x="520" y="397" text-anchor="middle">Sparse body reflections</text>
+                <text x="714" y="192" text-anchor="middle">Pose estimator</text>
+                <text x="944" y="397" text-anchor="middle">3D human pose</text>
+              </g>
+            </svg>
+          </figure>
+          <footer class="scene-footer">
+            <span>mmWave sensing captures motion geometry, not identifiable images.</span>
+          </footer>
         </article>
 
         <article class="scene slide scene-hook" data-scene="actions">

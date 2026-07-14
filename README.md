@@ -1,6 +1,6 @@
 # WiCompass — MobiCom '26 teaser
 
-An HTML-first, reproducible eight-scene motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**. The current cut is 87 seconds and follows a Question → Insight → Mechanism → Evidence → Vision narrative.
+An HTML-first, reproducible nine-scene motion-graphics project for **WiCompass: Oracle-driven Data Scaling for mmWave Human Pose Estimation**. The current cut is 87 seconds and follows a Background → Question → Insight → Mechanism → Evidence → Vision narrative.
 
 The repository is deliberately split into three layers:
 
@@ -15,12 +15,13 @@ The render scripts under `scripts/` use the same browser runtime for individual 
 The scientific story is bracketed by an opening identity frame and a closing code frame:
 
 1. `cover` — paper identity;
-2. **Question:** `actions` explains mmWave HPE, then isolates the left-hand-wave leave-one-out gap;
-3. **Insight:** `efficiency` shows that repeated frames do not provide new motion coverage;
-4. **Mechanism:** `method` connects the shared pose space, directional coverage test, and target selection in one continuous figure;
-5. **Evidence:** `simulation` and `realworld` validate the scaling behavior and deployment result;
-6. **Vision:** `summary` states the principle to remember;
-7. `back` — paper, authors, institutions, and repository QR code.
+2. **Background:** `background` turns radar illumination, sparse body reflections, and a recovered 3D pose into one physical visual sequence;
+3. **Question:** `actions` isolates the left-hand-wave leave-one-out gap;
+4. **Insight:** `efficiency` shows that repeated frames do not provide new motion coverage;
+5. **Mechanism:** `method` connects the shared pose space, directional coverage test, and target selection in one continuous figure;
+6. **Evidence:** `simulation` and `realworld` validate the scaling behavior and deployment result;
+7. **Vision:** `summary` states the principle to remember;
+8. `back` — paper, authors, institutions, and repository QR code.
 
 ## Start the preview
 
@@ -52,7 +53,7 @@ Render one scene at normal animation speed instead of replaying the full 87-seco
 npm run record:draft -- --scene method
 ```
 
-Generate a clean set of eight review stills:
+Generate a clean set of nine review stills:
 
 ```bash
 npm run stills
