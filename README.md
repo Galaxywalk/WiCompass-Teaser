@@ -70,6 +70,14 @@ npm run record          # 1×, delivery-quality final
 
 The full recorder writes `dist/WiCompass-MobiCom26-Teaser.mp4`. It muxes `assets/audio/voiceover.m4a` when present. Temporary browser captures are removed automatically; set `KEEP_CAPTURE=1` only when debugging the capture itself.
 
+After an iteration cycle, remove scene previews, draft renders, frame captures, placeholder audio, and TTS working caches with:
+
+```bash
+npm run clean:intermediate
+```
+
+This preserves the final MP4, `dist/stills/current/`, and the ignored research inputs under `tmp/data/`.
+
 ## Narration
 
 Final narration uses the user's local Kokoro TTS installation:
