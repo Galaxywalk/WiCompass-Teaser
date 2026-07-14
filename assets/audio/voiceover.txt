@@ -4,7 +4,7 @@ Millimeter-wave human pose estimation enables privacy-preserving sensing, but cu
 
 Yet adding more of the same data barely helps. On mmBody, a thirty-percent subset performs similarly.
 
-Wi-Compass learns a pose tokenizer from A-MASS and embeds existing millimeter-wave pose labels. An A-MASS pose becomes a gap when its nearest label falls outside the A-MASS-defined local radius. Wi-Compass samples diverse gaps for the next collection round.
+Wi-Compass learns a pose tokenizer from A-MASS and embeds millimeter-wave pose labels. An A-MASS pose is missing when its nearest label falls outside the A-MASS-defined local radius. Wi-Compass then selectively collects data for them and repeats the loop.
 
 In simulation, Wi-Compass scales while the mmBody trace saturates, staying twenty-five to thirty millimeters lower from two thousand to forty thousand samples.
 

@@ -21,7 +21,7 @@ const sceneDefinitions = [
     id: "method",
     duration: 15.8,
     stillOffset: 13.4,
-    voiceover: "Wi-Compass learns a pose tokenizer from A-MASS and embeds existing millimeter-wave pose labels. An A-MASS pose becomes a gap when its nearest label falls outside the A-MASS-defined local radius. Wi-Compass samples diverse gaps for the next collection round.",
+    voiceover: "Wi-Compass learns a pose tokenizer from A-MASS and embeds millimeter-wave pose labels. An A-MASS pose is missing when its nearest label falls outside the A-MASS-defined local radius. Wi-Compass then selectively collects data for them and repeats the loop.",
   },
   {
     id: "simulation",
