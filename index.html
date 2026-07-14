@@ -213,18 +213,14 @@
             </section>
 
             <svg class="method-flow-lines" viewBox="0 0 1100 350" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <marker id="method-arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M 0 0 L 10 5 L 0 10 Z" />
-                </marker>
-                <marker id="method-arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M 0 0 L 10 5 L 0 10 Z" />
-                </marker>
-              </defs>
               <path class="method-input-path method-input-path-amass" pathLength="1" d="M188 80 C224 80 226 103 270 103" />
+              <polygon class="method-flow-arrowhead method-arrowhead-amass" points="270,103 256,95 256,111" />
               <path class="method-input-path method-input-path-mmwave" pathLength="1" d="M188 272 C226 272 228 229 277 229" />
+              <polygon class="method-flow-arrowhead method-arrowhead-mmwave" points="277,229 263,221 263,237" />
               <path class="method-target-path" pathLength="1" d="M845 126 C906 126 911 147 958 147" />
+              <polygon class="method-flow-arrowhead method-target-arrowhead" points="958,147 944,139 944,155" />
               <path class="method-return-path" pathLength="1" d="M1030 268 C1010 334 870 342 793 296" />
+              <polygon class="method-flow-arrowhead method-return-arrowhead" points="793,296 810,298 803,310" />
             </svg>
 
             <section class="method-space" aria-label="Shared pose space with MoCap prior, recorded mmWave coverage, and an uncovered motion">
@@ -257,12 +253,12 @@
             <section class="method-targets" aria-label="Targeted RF collection for the selected missing pose">
               <header><strong>Collect this pose</strong></header>
               <div class="method-capture">
-                <img src="assets/derived/smplx_target_pose_1.svg" alt="Selected uncovered target pose" />
                 <svg class="method-radar" viewBox="0 0 100 100" aria-hidden="true">
                   <rect x="5" y="29" width="30" height="42" rx="2" />
                   <path pathLength="1" d="M45 35 Q66 50 45 65" />
                   <path pathLength="1" d="M54 22 Q91 50 54 78" />
                 </svg>
+                <img src="assets/derived/smplx_target_pose_1.svg" alt="Selected uncovered target pose" />
               </div>
               <span>RF capture</span>
             </section>

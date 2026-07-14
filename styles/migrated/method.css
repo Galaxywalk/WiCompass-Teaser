@@ -103,14 +103,6 @@
   pointer-events: none;
 }
 
-.scene-method #method-arrow-green path {
-  fill: var(--green);
-}
-
-.scene-method #method-arrow-red path {
-  fill: var(--red);
-}
-
 .scene-method .method-flow-lines > path {
   fill: none;
   stroke-width: 3;
@@ -121,7 +113,6 @@
 
 .scene-method .method-input-path {
   stroke: var(--green);
-  marker-end: url(#method-arrow-green);
 }
 
 .scene-method .method-input-path-amass {
@@ -136,16 +127,44 @@
 
 .scene-method .method-target-path {
   stroke: var(--red);
-  marker-end: url(#method-arrow-red);
   stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.64) * 7), 1));
   opacity: clamp(0, calc((var(--p) - 0.64) * 7), 1);
 }
 
 .scene-method .method-return-path {
   stroke: var(--green);
-  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.79) * 7), 1));
-  marker-end: url(#method-arrow-green);
-  opacity: clamp(0, calc((var(--p) - 0.79) * 7), 1);
+  stroke-dashoffset: calc(1 - clamp(0, calc((var(--p) - 0.79) * 10), 1));
+  opacity: clamp(0, calc((var(--p) - 0.79) * 10), 1);
+}
+
+.scene-method .method-flow-arrowhead {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.2);
+}
+
+.scene-method .method-arrowhead-amass {
+  fill: var(--green);
+  opacity: clamp(0, calc((var(--p) - 0.26) * 14), 1);
+  transform: scale(clamp(0.2, calc((var(--p) - 0.26) * 14), 1));
+}
+
+.scene-method .method-arrowhead-mmwave {
+  fill: var(--green);
+  opacity: clamp(0, calc((var(--p) - 0.34) * 14), 1);
+  transform: scale(clamp(0.2, calc((var(--p) - 0.34) * 14), 1));
+}
+
+.scene-method .method-target-arrowhead {
+  fill: var(--red);
+  opacity: clamp(0, calc((var(--p) - 0.78) * 14), 1);
+  transform: scale(clamp(0.2, calc((var(--p) - 0.78) * 14), 1));
+}
+
+.scene-method .method-return-arrowhead {
+  fill: var(--green);
+  opacity: clamp(0, calc((var(--p) - 0.89) * 18), 1);
+  transform: scale(clamp(0.2, calc((var(--p) - 0.89) * 18), 1));
 }
 
 .scene-method .method-space {
@@ -385,7 +404,7 @@
 .scene-method .method-capture {
   min-height: 0;
   display: grid;
-  grid-template-columns: 64px 62px;
+  grid-template-columns: 62px 64px;
   align-items: center;
   gap: 2px;
 }
